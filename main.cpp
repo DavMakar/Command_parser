@@ -9,5 +9,5 @@
 
 int main(){
     Controller calc;
-    calc.run();
+    calc.exec();
 }

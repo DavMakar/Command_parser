@@ -4,4 +4,10 @@ project(Calculator)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(calculator main.cpp controller.cpp command_parser.cpp)
+set(SOURCES main.cpp controller.cpp command_parser.cpp)
+
+file(GLOB COMMAND_SOURCES
+    "concrete_commands/*.cpp"
+)
+
+add_executable(calculator ${SOURCES} ${COMMAND_SOURCES})

@@ -1,0 +1,10 @@
+# Ignore compiled binaries
+*.exe
+*.o
+
+# Ignore build directories
+build/
+
+# Ignore user-specific settings files
+tasks.json
+settings.json
