@@ -6,9 +6,8 @@
 #include <string>
 
 class CommandParser{
-
-    using ParserResult = std::tuple< std::string , double , double>;
     public:
+        using ParserResult = std::tuple< std::string , double , double>;
         ParserResult parse(std::stringstream& ss);
 };
 
