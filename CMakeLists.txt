@@ -1,7 +1,7 @@
-# cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.14)
 
-# project(Calculator)
+project(Calculator)
 
-# set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
-# add_executable(calculator main.cpp controller.cpp command_parser.cpp)
+add_executable(calculator main.cpp controller.cpp command_parser.cpp)
