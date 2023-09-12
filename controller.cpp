@@ -1,7 +1,18 @@
 #include "controller.hpp"
+
+#include "concrete_commands/AddCommand.hpp"
+#include "concrete_commands/DivCommand.hpp"
+#include "concrete_commands/MulCommand.hpp"
+#include "concrete_commands/SubCommand.hpp"
+#include "concrete_commands/QuitCommand.hpp"
+#include "concrete_commands/AndCommand.hpp"
+#include "concrete_commands/OrCommand.hpp"
+#include "concrete_commands/NotCommand.hpp"
+
 #include <iostream>
 
-Controller::Controller(){
+Controller::Controller(IOInterface& io): IOStrategy_{io}
+{
     registerCommands();
 }
 
@@ -10,6 +21,9 @@ void Controller::registerCommands(){
     register_["add"] = std::make_unique<AddCommand>();
     register_["sub"] = std::make_unique<SubCommand>();
     register_["mul"] = std::make_unique<MulCommand>();
+    register_["and"] = std::make_unique<AndCommand>();
+    register_["not"] = std::make_unique<NotCommand>();
+    register_["or"] = std::make_unique<OrCommand>();
     register_["quit"] = std::make_unique<QuitCommand>();
 }
 
@@ -28,24 +42,20 @@ void Controller::exec(){
 }
 
 auto Controller::getInput(){
-    std::string input;
-    std::getline(std::cin , input);
-
     // std::copy(std::istreambuf_iterator<char>(std::cin) , std::istreambuf_iterator<char>() 
     // , back_inserter(input));
-
-    std::stringstream ss(input);
-    return inputParser.parse(ss);   
+    std::stringstream ss(IOStrategy_.getInput("Enter command and arguments: "));
+    return ss;
 }
 
-void Controller::handleInput(CommandParser::ParserResult& parseResult){
-    auto [operation , operator1, operator2] = parseResult;
-    std::cout<< calculate(operation, operator1, operator2) <<std::endl;
+void Controller::handleInput(const std::string& operator_, const std::vector<double>& operands_){
+    IOStrategy_.printOutput(std::to_string(calculate(operator_, operands_)));
 }
 
 void Controller::run(){
     auto input = getInput();
-    handleInput(input);
+    inputParser.tokenize(input);
+    handleInput(inputParser.get_operator(),inputParser.get_operands());
 }
 
 Command* Controller::findCommand(const std::string& command){
@@ -56,6 +66,6 @@ Command* Controller::findCommand(const std::string& command){
     return command_iter->second.get();
 }
 
-double Controller::calculate(const std::string& command ,const double op1 ,const double op2){    
-    return findCommand(command)->exec(op1,op2);
+double Controller::calculate(const std::string& command , const std::vector<double>& operands_){    
+    return findCommand(command)->exec(operands_);
 }

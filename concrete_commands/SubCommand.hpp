@@ -5,7 +5,7 @@
 
 class SubCommand : public Command {
 public:
-    double exec(const double op1, const double op2) const override;
+    double exec(const std::vector<double>& operands) const override;
 };
 
 #endif // SUB_COMMAND_HPP

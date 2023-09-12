@@ -1,20 +1,34 @@
 #include "command_parser.hpp"
 
-CommandParser::ParserResult CommandParser::parse(std::stringstream& ss){
-    ParserResult result;
-
-    ss >> std::get<0>(result);
+void CommandParser::tokenize(std::stringstream& ss){
+    ss >> operator_;
 
     while (!ss.eof())
     {
         std::string token;
         ss >> token;
-        if(token == "-op1"){
-            ss >> std::get<1>(result);
-        }
-        else if(token == "-op2"){
-            ss >> std::get<2>(result);
+        double operand;
+        if(token.substr(0,3) == "-op"){
+            ss >> operand;
+            operands_.push_back(operand);
+        }else{
+            throw std::runtime_error("-opN , N = [1,2,....,n]");
         }
     }
-    return result; 
+    
+    if(operator_!= "" && operands_.empty()){
+        throw std::runtime_error("zero operands");
+    }
+}
+
+std::string CommandParser::get_operator()
+{
+    return operator_;
+}
+
+std::vector<double> CommandParser::get_operands()
+{
+    std::vector<double> tmp;
+    std::swap(tmp, operands_);
+    return tmp;
 }

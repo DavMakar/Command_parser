@@ -1,13 +1,8 @@
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <iterator>
-
 #include "controller.hpp"
-#include "command_parser.hpp"
+#include "consoleIO.hpp"
 
 int main(){
-    Controller calc;
+    ConsoleIO io;
+    Controller calc(io);
     calc.exec();
 }

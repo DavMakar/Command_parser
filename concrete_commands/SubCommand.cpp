@@ -1,5 +1,8 @@
 #include "SubCommand.hpp"
 
-double SubCommand::exec(const double op1, const double op2) const {
-    return op1 - op2;
+#include <functional>
+#include <numeric>
+
+double SubCommand::exec(const std::vector<double>& operands_) const {
+    return std::accumulate(operands_.begin() , operands_.end(), 0 , std::minus<>());
 }

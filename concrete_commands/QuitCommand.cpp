@@ -2,6 +2,6 @@
 
 #include "cstdlib"
 
-double QuitCommand::exec(const double op1,const double op2)const{
+double QuitCommand::exec(const std::vector<double>& operands)const{
     std::exit(0);
 }

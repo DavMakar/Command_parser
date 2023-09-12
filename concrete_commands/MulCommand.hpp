@@ -5,7 +5,7 @@
 
 class MulCommand: public Command{
 public: 
-    double exec(const double op1,const double op2)const override;
+    double exec(const std::vector<double>& operands_)const override;
 };
 
 #endif //MUL_COMMAND_HPP
