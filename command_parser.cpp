@@ -1,6 +1,6 @@
 #include "command_parser.hpp"
 
-void CommandParser::tokenize(std::stringstream& ss){
+void CommandParser::parse(std::string token){
     ss >> operator_;
 
     while (!ss.eof())

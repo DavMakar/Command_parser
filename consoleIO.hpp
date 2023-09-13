@@ -2,11 +2,19 @@
 #define CONSOLE_IO_HPP
 
 #include "ioInterface.hpp"
+#include <vector>
+#include <string>
+
+using Token = std::string;
+using TokenVector = std::vector<Token>;
 
 class ConsoleIO : public IOInterface{
     public:
-        std::string getInput(std::string_view msg) override;
+        TokenVector getInput() override;
         void printOutput(std::string_view output) override;
+    private:
+        void tokenizeInput();
+        TokenVector inputTokens;
 };
 
 #endif //CONSOLE_IO_HPP
