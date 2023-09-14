@@ -26,13 +26,11 @@ void CommandRegistry::registerCommands(){
     registry_["quit"] = std::make_unique<QuitCommand>();
 }
 
-Command* CommandRegistry::findCommand(std::string commandName)
+std::unique_ptr<Command> CommandRegistry::findCommand(std::string commandName)
 {
     auto command_iter = registry_.find(commandName);    
     if(command_iter == registry_.end()){
         throw std::runtime_error("entered invalid command");
     }
-    
-    return command_iter->second.clone(); // Get a reference to the original Command
-//TODO clone ???
+    return command_iter->second.get()->clone();
 }

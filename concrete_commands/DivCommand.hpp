@@ -5,7 +5,8 @@
 
 class DivCommand : public Command {
 public:
-    double exec(const std::vector<double>& operands) const override;
+    double exec() const override;
+    std::unique_ptr<Command> clone() const override;
 };
 
 #endif // DIV_COMMAND_HPP

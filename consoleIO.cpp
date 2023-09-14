@@ -2,19 +2,19 @@
 #include <iostream>
 #include <iterator>
 #include <string>
+#include <sstream>
+#include <limits>
 #include <algorithm>
 
 void ConsoleIO::printOutput(std::string_view output){
     std::cout << output << std::endl;
 }
 
-void ConsoleIO::tokenizeInput(){
-    std::copy(std::istream_iterator<Token>{std::cin},
-              std::istream_iterator<Token>(), std::back_inserter(inputTokens));
-}
-
-TokenVector ConsoleIO::getInput(){
-    tokenizeInput();
-    TokenVector tmp = std::move(inputTokens);
-    return tmp;
+TokenVector ConsoleIO::getInput(std::string_view msg){
+    std::cout<< msg;
+    std::string input;
+    std::getline(std::cin, input);
+    std::istringstream iss{input};
+    TokenVector tokens(std::istream_iterator<std::string>{iss} , {});
+    return tokens;
 }

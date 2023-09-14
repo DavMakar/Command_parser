@@ -5,7 +5,8 @@
 
 class NotCommand: public Command{
 public:
-    double exec(const std::vector<double>& operands_)const override;
+    double exec()const override;
+    std::unique_ptr<Command> clone() const override;    
 };
 
 #endif //NOT_COMMADN_HPP

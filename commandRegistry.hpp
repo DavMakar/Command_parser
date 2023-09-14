@@ -15,7 +15,7 @@ class CommandRegistry
 public:
     CommandRegistry();
 
-    Command* findCommand(std::string commandName);            
+    std::unique_ptr<Command> findCommand(std::string commandName);            
 private:
     void registerCommands();
     Register registry_;        

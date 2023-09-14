@@ -9,12 +9,9 @@ using Token = std::string;
 using TokenVector = std::vector<Token>;
 
 class ConsoleIO : public IOInterface{
-    public:
-        TokenVector getInput() override;
-        void printOutput(std::string_view output) override;
-    private:
-        void tokenizeInput();
-        TokenVector inputTokens;
+public:
+    TokenVector getInput(std::string_view) override;
+    void printOutput(std::string_view output) override;
 };
 
 #endif //CONSOLE_IO_HPP

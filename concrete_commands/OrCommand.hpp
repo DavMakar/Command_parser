@@ -5,7 +5,8 @@
 
 class OrCommand: public Command{
 public:
-    double exec(const std::vector<double>& operands_)const override;
+    double exec()const override;
+    std::unique_ptr<Command> clone() const override;    
 };
 
 #endif //OR_COMMADN_HPP
