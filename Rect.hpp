@@ -7,6 +7,7 @@
 class Rect: public Item{
 public:
     Rect();
+    std::string className() override;
     std::string info() override;
     std::string getAttrbute(std::string key) override;
     void setAttribute(std::string key , std::string value) override;

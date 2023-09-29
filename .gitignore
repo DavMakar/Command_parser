@@ -8,3 +8,6 @@ build/
 # Ignore user-specific settings files
 tasks.json
 settings.json
+
+registry.hpp
+registry.impl.hpp

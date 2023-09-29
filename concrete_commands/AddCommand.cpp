@@ -18,7 +18,6 @@ std::string AddCommand::exec(Iterator argumentBegin , Iterator argumentEnd, Item
 
 std::unique_ptr<Command> AddCommand::clone() const
 {
-    //return std::make_unique<AddCommand>(*this);
     return std::make_unique<AddCommand>();
 }
 

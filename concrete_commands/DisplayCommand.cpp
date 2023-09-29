@@ -11,5 +11,5 @@ std::string DisplayCommand::exec(Iterator argumentBegin, Iterator argumentEnd, I
 
 std::unique_ptr<Command> DisplayCommand::clone() const
 {
-    return std::unique_ptr<DisplayCommand>();
+    return std::make_unique<DisplayCommand>();
 }

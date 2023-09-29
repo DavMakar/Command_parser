@@ -1,7 +1,9 @@
 #include "commandRegistry.hpp"
 
+#include "concrete_commands/RemoveCommand.hpp"
 #include "concrete_commands/AddCommand.hpp"
 #include "concrete_commands/DisplayCommand.hpp"
+#include "concrete_commands/ListCommand.hpp"
 #include "concrete_commands/QuitCommand.hpp"
 
 CommandRegistry::CommandRegistry()
@@ -11,7 +13,9 @@ CommandRegistry::CommandRegistry()
 
 void CommandRegistry::registerCommands(){
     registry_["add"] = std::make_unique<AddCommand>();
+    registry_["remove"] = std::make_unique<RemoveCommand>();
     registry_["display"] = std::make_unique<DisplayCommand>();
+    registry_["list"] = std::make_unique<ListCommand>();
     registry_["quit"] = std::make_unique<QuitCommand>();
 }
 
