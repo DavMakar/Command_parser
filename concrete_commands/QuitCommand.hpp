@@ -5,9 +5,9 @@
 
 class QuitCommand:public Command{
 public:
-    double exec() const override;
+    std::string exec(Iterator argumentBegin , Iterator argumentEnd, ItemList&) override;
     std::unique_ptr<Command> clone() const override;
-    void addOperand(std::string key ,std::string value) override;    
+    //void addOperand(std::string key ,std::string value) override;    
 };
 
 #endif //QUIT_COMMAND_HPP

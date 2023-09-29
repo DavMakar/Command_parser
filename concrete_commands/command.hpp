@@ -3,20 +3,19 @@
 
 #include <vector>
 #include <memory>
+#include <string>
+#include <unordered_map>
+
+#include "../item.hpp"
+
+using ItemList = std::unordered_map<std::string,std::unique_ptr<Item>>;
+using Iterator = std::vector<std::string>::iterator;
 
 class Command{
-    public:
-        virtual double exec() const = 0;
-        virtual std::unique_ptr<Command> clone() const = 0;          
-        virtual void addOperand(std::string key , std::string value){
-            if(key.compare("-op")){
-                throw std::runtime_error("write -op before value");    
-            }
-            operands_.push_back(std::stod(value));
-        }         
-        virtual ~Command(){};
-    protected:
-        std::vector<double> operands_;
+public:
+    virtual std::string exec(Iterator argumentBegin , Iterator argumentEnd, ItemList& items) = 0;
+    virtual std::unique_ptr<Command> clone() const = 0;         
+    virtual ~Command(){};
 };
 
 

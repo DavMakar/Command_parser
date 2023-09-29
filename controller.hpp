@@ -2,8 +2,9 @@
 #define CONTROLLER_HPP
 
 #include "command_parser.hpp"
-#include "ioInterface.hpp"
 #include "commandRegistry.hpp"
+#include "ioInterface.hpp"
+#include "item.hpp"
 
 #include <memory>
 #include <unordered_map>
@@ -11,6 +12,7 @@
 #include <vector>
 
 class Controller{
+    using ItemList = std::unordered_map<std::string , std::unique_ptr<Item>>;
     //using CommandRegistry = std::unordered_map<std::string, std::unique_ptr<Command>>;
 public:    
     Controller(IOInterface& io);
@@ -21,6 +23,7 @@ private:
     auto readInput();
 
 private:
+    ItemList items;
     IOInterface& IOStrategy_;
     CommandParser inputParser;
 };
