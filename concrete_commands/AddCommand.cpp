@@ -7,7 +7,7 @@ std::string AddCommand::exec(Iterator argumentBegin , Iterator argumentEnd, Item
         throw std::runtime_error("to add item write -name [Item name]");
     }
  
-    auto newItem = std::move(register_.findItem(*std::next(argumentBegin)));
+    auto newItem = register_.findItem(*std::next(argumentBegin));
     newItem->init(std::next(argumentBegin,2),argumentEnd);
     auto newItemId = std::to_string(newItem->getId());
     items[newItemId] = std::move(newItem);
@@ -20,4 +20,3 @@ std::unique_ptr<Command> AddCommand::clone() const
 {
     return std::make_unique<AddCommand>();
 }
-

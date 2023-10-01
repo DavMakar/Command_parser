@@ -3,8 +3,9 @@
 int Item::counter = 0;
 
 
-Item::Item():id_(++counter)
+Item::Item()
 {
+    id_ = ++counter;
 }
 
 int Item::getId()

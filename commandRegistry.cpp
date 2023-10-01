@@ -5,6 +5,8 @@
 #include "concrete_commands/DisplayCommand.hpp"
 #include "concrete_commands/ListCommand.hpp"
 #include "concrete_commands/QuitCommand.hpp"
+#include "concrete_commands/SaveCommand.hpp"
+#include "concrete_commands/LoadCommand.hpp"
 
 CommandRegistry::CommandRegistry()
 {
@@ -17,6 +19,8 @@ void CommandRegistry::registerCommands(){
     registry_["display"] = std::make_unique<DisplayCommand>();
     registry_["list"] = std::make_unique<ListCommand>();
     registry_["quit"] = std::make_unique<QuitCommand>();
+    registry_["load"] = std::make_unique<LoadCommand>();
+    registry_["save"] = std::make_unique<SaveCommand>();
 }
 
 std::unique_ptr<Command> CommandRegistry::findCommand(std::string commandName) 

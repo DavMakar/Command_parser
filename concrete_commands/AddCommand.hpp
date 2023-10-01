@@ -5,12 +5,10 @@
 #include "../itemRegistry.hpp"
 #include <unordered_set>
 
-
-
 class AddCommand: public Command{
 public:
-    std::string exec(Iterator argumentBegin, Iterator argumentEnd, ItemList& items) override;
-    std::unique_ptr<Command> clone() const override;   
+    virtual std::string exec(Iterator argumentBegin, Iterator argumentEnd, ItemList& items);
+    virtual std::unique_ptr<Command> clone() const;
 private:
     ItemRegistry register_;
     std::unordered_set<std::string> args = {"-name"};

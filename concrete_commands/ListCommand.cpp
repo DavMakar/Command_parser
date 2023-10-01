@@ -4,7 +4,7 @@ std::string ListCommand::exec(Iterator argumentBegin, Iterator argumentEnd, Item
 {
     std::string result;
     for(const auto& [id , item] : items){
-        result += id + " " + item->className() + "\n";
+        result += id + " " + item->type() + "\n";
     }
     return result;
 }

@@ -13,7 +13,6 @@
 
 class Controller{
     using ItemList = std::unordered_map<std::string , std::unique_ptr<Item>>;
-    //using CommandRegistry = std::unordered_map<std::string, std::unique_ptr<Command>>;
 public:    
     Controller(IOInterface& io);
     void exec();

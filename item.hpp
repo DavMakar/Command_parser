@@ -15,7 +15,7 @@ public:
     template<typename It>
     void init(It begin , It end);
 
-    virtual std::string className() = 0;
+    virtual std::string type() = 0;
     virtual std::string info() = 0;
     virtual std::string getAttrbute(std::string key) = 0;
     virtual void setAttribute(std::string key , std::string value) = 0;

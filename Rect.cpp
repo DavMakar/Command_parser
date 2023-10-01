@@ -8,14 +8,14 @@ Rect::Rect()
     validArguments.insert("-y2");
 }
 
-std::string Rect::className()
+std::string Rect::type()
 {
     return std::string("Rect ");
 }
 
 std::string Rect::info()
 {
-    std::string objInfo = className();
+    std::string objInfo = type();
     for(const auto& [key , value] : attributes_){
         objInfo += key + " " + value + " ";
     }
