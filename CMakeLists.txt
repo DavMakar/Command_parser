@@ -4,7 +4,7 @@ project(Calculator)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCES main.cpp controller.cpp commandRegistry.cpp command_parser.cpp consoleIO.cpp item.cpp itemRegistry.cpp Rect.cpp)
+set(SOURCES main.cpp controller.cpp command_parser.cpp consoleIO.cpp item.cpp Rect.cpp)
 
 file(GLOB COMMAND_SOURCES
     "concrete_commands/*.cpp"

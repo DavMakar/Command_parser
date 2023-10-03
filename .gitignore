@@ -9,5 +9,5 @@ build/
 tasks.json
 settings.json
 
-registry.hpp
-registry.impl.hpp
+#registry.hpp
+#registry.impl.hpp

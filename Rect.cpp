@@ -34,5 +34,5 @@ void Rect::setAttribute(std::string key, std::string value)
 
 std::unique_ptr<Item> Rect::clone()
 {
-    return std::make_unique<Rect>(*this);
+    return std::make_unique<Rect>();
 }

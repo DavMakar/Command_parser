@@ -13,7 +13,7 @@ std::string LoadCommand::exec(Iterator argumentBegin, Iterator argumentEnd, Item
     while(getline(itemsFile,itemLine)){
         std::istringstream iss{itemLine};
         std::vector<std::string> arguments(std::istream_iterator<std::string>{iss} , {});
-        AddCommand::exec(arguments.begin(),arguments.end(),items);
+        add_.exec(arguments.begin(),arguments.end(),items);
     }
     return "loaded";
 }

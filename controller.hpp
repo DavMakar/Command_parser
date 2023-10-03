@@ -2,7 +2,6 @@
 #define CONTROLLER_HPP
 
 #include "command_parser.hpp"
-#include "commandRegistry.hpp"
 #include "ioInterface.hpp"
 #include "item.hpp"
 
