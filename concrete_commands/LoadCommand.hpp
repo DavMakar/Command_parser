@@ -2,15 +2,14 @@
 #define LOAD_COMMAND_HPP
 
 #include "command.hpp"
-#include "AddCommand.hpp"
+#include "../concrete_factories/AddFactory.hpp"
 
 class LoadCommand:public Command{
 public:
-    std::string exec(Iterator argumentBegin, Iterator argumentEnd, ItemList& items) override;
+    std::string exec(ItemList& items) override;
     std::unique_ptr<Command> clone() const override; 
 private:
-    AddCommand add_;
-    std::unordered_set<std::string> args = {"-file"};
+    AddFactory factory;    
 };
 
 #endif //LOAD_COMMAND_HPP

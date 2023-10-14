@@ -3,17 +3,15 @@
 #include <sstream>
 #include <iterator>
 
-std::string LoadCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList &items)
+std::string LoadCommand::exec(ItemList& items)
 {
-    if(args.find(*argumentBegin) == args.end()){
-        throw std::runtime_error("write -file [path]");
-    }
-    std::ifstream itemsFile{*std::next(argumentBegin)};
+    std::ifstream itemsFile{*std::next(arguments_.begin())};
     std::string itemLine;
     while(getline(itemsFile,itemLine)){
         std::istringstream iss{itemLine};
         std::vector<std::string> arguments(std::istream_iterator<std::string>{iss} , {});
-        add_.exec(arguments.begin(),arguments.end(),items);
+        auto addCommand = factory.makeCommand(arguments);
+        addCommand->exec(items);
     }
     return "loaded";
 }

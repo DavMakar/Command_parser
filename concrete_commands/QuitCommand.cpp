@@ -2,7 +2,7 @@
 
 #include "cstdlib"
 
-std::string QuitCommand::exec(Iterator argumentBegin , Iterator argumentEnd, ItemList& items){
+std::string QuitCommand::exec(ItemList& items){
     std::exit(0);
 }
 

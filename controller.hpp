@@ -1,7 +1,8 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "command_parser.hpp"
+//#include "command_parser.hpp"
+#include "commandCreator.hpp"
 #include "ioInterface.hpp"
 #include "item.hpp"
 
@@ -23,7 +24,8 @@ private:
 private:
     ItemList items;
     IOInterface& IOStrategy_;
-    CommandParser inputParser;
+    CommandCreator creator;
+    //CommandParser inputParser;
 };
 
 #endif //CONTROLLER_HPP

@@ -1,11 +1,8 @@
 #include "DisplayCommand.hpp"
 
-std::string DisplayCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList& items)
+std::string DisplayCommand::exec(ItemList& items)
 {
-    if(args.find(*argumentBegin) == args.end()){
-        throw std::runtime_error("to display item write -id [Item id]");
-    }
-    auto id = *std::next(argumentBegin);
+    auto id = *std::next(arguments_.begin());
     return items[id]->info();
 }
 

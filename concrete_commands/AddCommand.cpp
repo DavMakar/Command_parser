@@ -7,14 +7,10 @@ AddCommand::AddCommand()
     registerItems();
 }
 
-std::string AddCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList &items)
+std::string AddCommand::exec(ItemList &items)
 {
-    if(args.find(*argumentBegin) == args.end()){
-        throw std::runtime_error("to add item write -name [Item name]");
-    }
- 
-    auto newItem = register_.findEntry(*std::next(argumentBegin));
-    newItem->init(std::next(argumentBegin,2),argumentEnd);
+    auto newItem = register_.findEntry(*std::next(arguments_.begin()));
+    newItem->init(std::next(arguments_.begin(),2),arguments_.end());
     auto newItemId = std::to_string(newItem->getId());
     items[newItemId] = std::move(newItem);
 

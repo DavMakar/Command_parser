@@ -1,6 +1,6 @@
 #include "ListCommand.hpp"
 
-std::string ListCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList &items)
+std::string ListCommand::exec(ItemList &items)
 {
     std::string result;
     for(const auto& [id , item] : items){

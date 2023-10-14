@@ -1,15 +1,13 @@
 #include "SaveCommand.hpp"
 #include <fstream>
 
-std::string SaveCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList &items)
+std::string SaveCommand::exec(ItemList &items)
 {
-    if(args.find(*argumentBegin) == args.end()){
-        throw std::runtime_error("write -file [path]");
-    }
+   
     //auto filePath = *std::next(argumentBegin);
     //std::string filename = filePath + "items.txt";
 
-    std::string filename = *std::next(argumentBegin);
+    std::string filename = *std::next(arguments_.begin());
     std::ofstream itemsFile(filename);
 
     for(const auto& [id,item] : items){

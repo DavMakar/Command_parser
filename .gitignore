@@ -9,5 +9,6 @@ build/
 tasks.json
 settings.json
 
+test.cpp
 #registry.hpp
 #registry.impl.hpp

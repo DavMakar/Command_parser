@@ -1,11 +1,8 @@
 #include "RemoveCommand.hpp"
 
-std::string RemoveCommand::exec(Iterator argumentBegin, Iterator argumentEnd, ItemList &items)
-{
-    if(args.find(*argumentBegin) == args.end()){
-        throw std::runtime_error("to remove item write -id [Item id]");
-    }
-    auto id = *std::next(argumentBegin);
+std::string RemoveCommand::exec(ItemList &items)
+{ 
+    auto id = *std::next(arguments_.begin());
     items.erase(id);
     return "erased";
 }

@@ -10,12 +10,12 @@
 class AddCommand: public Command{
 public:
     AddCommand();
-    virtual std::string exec(Iterator argumentBegin, Iterator argumentEnd, ItemList& items);
-    virtual std::unique_ptr<Command> clone() const;
+    std::string exec(ItemList& items) override;
+    std::unique_ptr<Command> clone() const override;
 private:
     void registerItems();
     TRegistry<Item> register_;
-    std::unordered_set<std::string> args = {"-name"};
+    std::unordered_set<std::string> validOptions = {"-name"};
 };
 
 #endif //ADD_COMMADN_HPP

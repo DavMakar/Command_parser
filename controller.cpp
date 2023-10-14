@@ -26,9 +26,10 @@ auto Controller::readInput(){
 
 void Controller::run(){
     auto input = readInput();
-    auto command = inputParser.parse(input[0]);
-
-    auto result = command->exec(std::next(input.begin()) , input.end(), items);
+    std::string commandName = input[0];
+    // auto command = commandFactory::createCommand
+    auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
+    auto result = command->exec(items);
     // FIX 
     IOStrategy_.printOutput(result);
 }
