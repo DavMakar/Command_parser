@@ -7,7 +7,7 @@ Controller::Controller(IOInterface& io):
 }
 
 void Controller::exec(){
-    while (true)
+    while (isRunning)
     {
         try
         {
@@ -19,17 +19,19 @@ void Controller::exec(){
         }
     }
 }
-
-auto Controller::readInput(){
+std::vector<std::string> Controller::readInput()
+{
     return IOStrategy_.getInput("Enter command : ");
 }
 
 void Controller::run(){
     auto input = readInput();
     std::string commandName = input[0];
-    // auto command = commandFactory::createCommand
     auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
-    auto result = command->exec(items);
+    auto result = command->exec(doc);
     // FIX 
     IOStrategy_.printOutput(result);
 }
+
+
+

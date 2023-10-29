@@ -6,7 +6,7 @@
 
 class DisplayCommand: public Command{
 public:
-    std::string exec(ItemList& items) override;
+    std::string exec(Document& doc) override;
     std::unique_ptr<Command> clone() const override;
 };
 

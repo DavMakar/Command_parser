@@ -3,17 +3,14 @@
 
 #include "concrete_factories/commandFactory.hpp"
 #include "concrete_commands/command.hpp"
-#include "registry.hpp"
-
+#include "factoryRegistry.hpp"
 
 class CommandCreator{
 public:
-    CommandCreator();
     std::unique_ptr<Command> createCommand(const std::string& commandName, const std::vector<std::string>& args);
 
 private:
-    TRegistry<CommandFactory> factoryRegistry_;
-    //TODO try CommandFactory::createCommand
+    FactoryRegistry factoryRegistry_;
 };
 
 #endif  //COMMAND_CREATOR_HPP

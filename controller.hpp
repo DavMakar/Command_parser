@@ -1,31 +1,27 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-//#include "command_parser.hpp"
-#include "commandCreator.hpp"
 #include "ioInterface.hpp"
-#include "item.hpp"
+#include "document.hpp"
+#include "commandCreator.hpp"
 
-#include <memory>
-#include <unordered_map>
-#include <string>
-#include <vector>
 
 class Controller{
-    using ItemList = std::unordered_map<std::string , std::unique_ptr<Item>>;
 public:    
     Controller(IOInterface& io);
     void exec();
 
 private:
     void run();
-    auto readInput();
+    std::vector<std::string> readInput();
 
 private:
-    ItemList items;
+    bool isRunning = true;
+
+private:
+    Document doc;
     IOInterface& IOStrategy_;
     CommandCreator creator;
-    //CommandParser inputParser;
 };
 
 #endif //CONTROLLER_HPP

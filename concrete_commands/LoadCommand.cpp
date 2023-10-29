@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iterator>
 
-std::string LoadCommand::exec(ItemList& items)
+std::string LoadCommand::exec(Document& slides)
 {
     std::ifstream itemsFile{*std::next(arguments_.begin())};
     std::string itemLine;
@@ -11,7 +11,7 @@ std::string LoadCommand::exec(ItemList& items)
         std::istringstream iss{itemLine};
         std::vector<std::string> arguments(std::istream_iterator<std::string>{iss} , {});
         auto addCommand = factory.makeCommand(arguments);
-        addCommand->exec(items);
+        addCommand->exec(slides);
     }
     return "loaded";
 }

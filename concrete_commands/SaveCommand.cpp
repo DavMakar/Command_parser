@@ -1,18 +1,14 @@
 #include "SaveCommand.hpp"
 #include <fstream>
 
-std::string SaveCommand::exec(ItemList &items)
+std::string SaveCommand::exec(Document& doc)
 {
    
     //auto filePath = *std::next(argumentBegin);
     //std::string filename = filePath + "items.txt";
 
     std::string filename = *std::next(arguments_.begin());
-    std::ofstream itemsFile(filename);
-
-    for(const auto& [id,item] : items){
-        itemsFile<<"-name "<< item->info() << "\n";
-    }
+    doc.save(filename);
     return "saved";
 }
 

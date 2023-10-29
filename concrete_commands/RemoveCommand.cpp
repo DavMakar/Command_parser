@@ -1,9 +1,9 @@
 #include "RemoveCommand.hpp"
 
-std::string RemoveCommand::exec(ItemList &items)
+std::string RemoveCommand::exec(Document& doc)
 { 
-    auto id = *std::next(arguments_.begin());
-    items.erase(id);
+    auto id = *std::next(arguments_.begin()); 
+    doc.removeItemFromSlide(std::stoi(id)); 
     return "erased";
 }
 

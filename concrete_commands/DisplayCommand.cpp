@@ -1,9 +1,9 @@
 #include "DisplayCommand.hpp"
 
-std::string DisplayCommand::exec(ItemList& items)
+std::string DisplayCommand::exec(Document& doc)
 {
     auto id = *std::next(arguments_.begin());
-    return items[id]->info();
+    return doc.displaySlideItem(std::stoi(id));
 }
 
 std::unique_ptr<Command> DisplayCommand::clone() const

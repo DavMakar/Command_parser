@@ -10,7 +10,7 @@ Rect::Rect()
 
 std::string Rect::type()
 {
-    return std::string("Rect ");
+    return std::string("Rect");
 }
 
 std::string Rect::info()
