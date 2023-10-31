@@ -1,6 +1,8 @@
 #include "factoryRegistry.hpp"
 
 #include "concrete_factories/AddFactory.hpp"
+#include "concrete_factories/ChangeFactory.hpp"
+#include "concrete_factories/CreateFactory.hpp"
 #include "concrete_factories/DisplayFactory.hpp"
 #include "concrete_factories/ListFactory.hpp"
 #include "concrete_factories/LoadFactory.hpp"
@@ -11,6 +13,8 @@
 FactoryRegistry::FactoryRegistry()
 {
     registerFactory("add",std::make_unique<AddFactory>());
+    registerFactory("create",std::make_unique<CreateFactory>());
+    registerFactory("change",std::make_unique<ChangeFactory>());
     registerFactory("display",std::make_unique<DisplayFactory>());
     registerFactory("list",std::make_unique<ListFactory>());
     registerFactory("load",std::make_unique<LoadFactory>());
@@ -21,11 +25,14 @@ FactoryRegistry::FactoryRegistry()
 
 std::unique_ptr<CommandFactory> FactoryRegistry::findFactory(const std::string& factoryName)
 {
-    auto factoryIter = registry_.find(factoryName);    
-    if(factoryIter == registry_.end()){
-        throw std::runtime_error("not such a factory "+ factoryName);
+    try{
+        auto& factory = registry_.at(factoryName);
+        return factory->clone();
     }
-    return factoryIter->second->clone();
+    catch(const std::out_of_range& e) {
+        std::string errorMessage = "Factory not found: " + factoryName;
+        throw std::out_of_range(errorMessage);
+    }
 }
 
 void FactoryRegistry::registerFactory(const std::string &factoryName, std::unique_ptr<CommandFactory> factory)

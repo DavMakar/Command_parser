@@ -2,7 +2,7 @@
 
 void Slide::addItem(std::unique_ptr<Item> new_item)
 {
-    items_[id_++] = std::move(new_item);
+    items_[item_id++] = std::move(new_item);
 }
 
 void Slide::changeItem(int id)
@@ -26,10 +26,10 @@ std::string Slide::getAllItems()
     return result;
 }
 
-std::string Slide::getItemById(int id)
+std::shared_ptr<Item> Slide::getItemById(int id)
 {
     auto item = findItem(id);
-    return item->second->info();
+    return item->second;
 }
 
 // ItemStore::iterator Slide::begin()

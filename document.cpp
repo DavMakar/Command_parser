@@ -3,48 +3,57 @@
 #include <sstream>
 #include <iterator>
 
-Document::Document():currentSlide(0)
+Document::Document():currentSlideId(0)
 {
-    slides.push_back(std::make_unique<Slide>());
+    addSlide();
+    currentSlide = slides[currentSlideId];
 }
 
-std::unique_ptr<Slide>& Document::getCurrentSlide()
+std::shared_ptr<Slide> Document::getCurrentSlide()
 {
-    return slides[currentSlide];
+    return slides[currentSlideId];
 }
 
 int Document::getCurrentSlideIndex()
 {
-    return currentSlide;
+    return currentSlideId;
+}
+
+void Document::addSlide()
+{
+    slides.push_back(std::make_unique<Slide>());
 }
 
 void Document::changeCurrentSlide(int n)
 {
-    currentSlide = n;
+    currentSlideId = n;
+    currentSlide = slides[currentSlideId];
 }
 
 void Document::addItemToSlide(std::unique_ptr<Item> newItem)
 {
-    auto& currentSlide = getCurrentSlide();
-    currentSlide->addItem(std::move(newItem));
+    addItemToSlide(std::move(newItem),currentSlideId);
 }
+
+void Document::addItemToSlide(std::unique_ptr<Item> newItem, int slideId)
+{
+    slides.at(slideId)->addItem(std::move(newItem));
+}
+
 
 void Document::removeItemFromSlide(int itemId)
 {
-    auto& currentSlide = getCurrentSlide();
     currentSlide->removeItem(itemId);
 }
 
 std::string Document::displayCurrentSlide()
 {
-    auto& currentSlide = getCurrentSlide();
     return currentSlide->getAllItems();
 }
 
 std::string Document::displaySlideItem(int itemId)
 {
-    auto& currentSlide = getCurrentSlide();
-    return currentSlide->getItemById(itemId);
+    return currentSlide->getItemById(itemId)->info();
 }
 
 std::string Document::displayAllSlides()
@@ -63,17 +72,16 @@ std::string Document::displayAllSlides()
 
 void Document::save(std::string fileName)
 {
-    std::ofstream documentFile(fileName);
+    std::ofstream documentFile("../save/"+fileName);
 
     int slideIndex{};
 
     for(auto& slide : slides){
-        documentFile<<"-name "<< "slide" << "\n";        
+        documentFile<< *slide <<" "<< slideIndex++ << "\n";        
         for(const auto& [id,item] : *slide){
             documentFile<<"-name "<< item->info() <<"\n";
         }
     }
-
 }
 
 void Document::load(std::string filename)
@@ -87,10 +95,5 @@ void Document::load(std::string filename)
     }   
 }
 
-void Document::addItemToSlide(std::unique_ptr<Item> newItem, int slideId)
-{
-    slides[slideId]->addItem(std::move(newItem));
-    // FIX miguce currentSlide poxenq?
-}
 
 //TODO CurrentSlide make member

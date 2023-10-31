@@ -3,6 +3,6 @@
 
 int main(){
     ConsoleIO io;
-    Controller calc(io);
-    calc.exec();
+    Controller controller(io);
+    controller.exec();
 }

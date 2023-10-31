@@ -12,7 +12,6 @@ public:
     std::unique_ptr<Command> clone() const override;
 private:
     ItemRegistry register_;
-    std::unordered_set<std::string> validOptions = {"-name"};
 };
 
 #endif //ADD_COMMADN_HPP

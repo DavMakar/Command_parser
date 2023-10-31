@@ -3,9 +3,10 @@
 
 #include <unordered_map>
 #include <vector>
+#include <ostream>
 #include "item.hpp"
 
-using ItemStore = std::unordered_map<int , std::unique_ptr<Item>>;
+using ItemStore = std::unordered_map<int , std::shared_ptr<Item>>;
 
 class Slide{
 public:
@@ -13,8 +14,8 @@ public:
     void changeItem(int id);
     void removeItem(int id);
     std::string getAllItems();
-    std::string getItemById(int id);
-
+    std::shared_ptr<Item> getItemById(int id);
+    
     // ItemStore::iterator begin() ;
     // ItemStore::iterator end();
     ItemStore::const_iterator begin() const;
@@ -22,10 +23,15 @@ public:
     ItemStore::const_iterator cbegin() const;
     ItemStore::const_iterator cend() const;
 
+    friend std::ostream& operator<<(std::ostream& os ,const Slide& slide){
+        os << "-name " << "slide";
+        return os;
+    }
+
 private:
     ItemStore::iterator findItem(int id);
 private:
-    int id_ = 0;
+    int item_id = 0;
     ItemStore items_;
 };
 
