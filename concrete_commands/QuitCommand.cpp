@@ -2,7 +2,7 @@
 
 #include "cstdlib"
 
-std::string QuitCommand::exec(Document& slides){
+std::string QuitCommand::exec(IDocument& slides){
     std::exit(0);
 }
 

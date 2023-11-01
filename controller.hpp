@@ -2,7 +2,7 @@
 #define CONTROLLER_HPP
 
 #include "ioInterface.hpp"
-#include "document.hpp"
+#include "./document/document.hpp"
 #include "commandCreator.hpp"
 
 

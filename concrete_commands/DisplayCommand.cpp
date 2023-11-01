@@ -1,6 +1,6 @@
 #include "DisplayCommand.hpp"
 
-std::string DisplayCommand::exec(Document& doc)
+std::string DisplayCommand::exec(IDocument& doc)
 {
     auto id = *std::next(arguments_.begin());
     return doc.displaySlideItem(std::stoi(id));

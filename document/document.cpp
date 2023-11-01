@@ -5,7 +5,7 @@
 
 Document::Document():currentSlideId(0)
 {
-    addSlide();
+    slides.push_back(std::make_shared<Slide>());
     currentSlide = slides[currentSlideId];
 }
 
@@ -14,36 +14,14 @@ std::shared_ptr<Slide> Document::getCurrentSlide()
     return slides[currentSlideId];
 }
 
+SlideVector& Document::getSlides()
+{
+    return slides;
+}
+
 int Document::getCurrentSlideIndex()
 {
     return currentSlideId;
-}
-
-void Document::addSlide()
-{
-    slides.push_back(std::make_unique<Slide>());
-}
-
-void Document::changeCurrentSlide(int n)
-{
-    currentSlideId = n;
-    currentSlide = slides[currentSlideId];
-}
-
-void Document::addItemToSlide(std::unique_ptr<Item> newItem)
-{
-    addItemToSlide(std::move(newItem),currentSlideId);
-}
-
-void Document::addItemToSlide(std::unique_ptr<Item> newItem, int slideId)
-{
-    slides.at(slideId)->addItem(std::move(newItem));
-}
-
-
-void Document::removeItemFromSlide(int itemId)
-{
-    currentSlide->removeItem(itemId);
 }
 
 std::string Document::displayCurrentSlide()
@@ -95,5 +73,10 @@ void Document::load(std::string filename)
     }   
 }
 
+void Document::setCurrentSlide(int id)
+{
+    currentSlideId = id;
+    currentSlide = slides[currentSlideId];
+}
 
 //TODO CurrentSlide make member

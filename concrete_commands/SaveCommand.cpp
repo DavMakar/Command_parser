@@ -1,7 +1,7 @@
 #include "SaveCommand.hpp"
 #include <fstream>
 
-std::string SaveCommand::exec(Document& doc)
+std::string SaveCommand::exec(IDocument& doc)
 {
    
     //auto filePath = *std::next(argumentBegin);

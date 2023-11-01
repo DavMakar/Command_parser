@@ -1,5 +1,12 @@
 # PowerPoint
-
+## How to run
+```
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ./powerPoint
+```
 ## Commands
 ### add -name [item type] [-argument] [value]
 >add item to current slide <br />

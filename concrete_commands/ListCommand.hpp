@@ -5,7 +5,7 @@
 
 class ListCommand: public Command{
 public:
-    std::string exec(Document& doc) override;
+    std::string exec(IDocument& doc) override;
     std::unique_ptr<Command> clone() const override; 
 };
 

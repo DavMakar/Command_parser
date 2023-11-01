@@ -7,13 +7,13 @@
 #include <unordered_map>
 
 #include "../item.hpp"
-#include "../document.hpp"
+#include "../document/idocument.hpp"
 
 using Iterator = std::vector<std::string>::iterator;
 
 class Command{
 public:
-    virtual std::string exec(Document& slides) = 0;
+    virtual std::string exec(IDocument& doc) = 0;
     virtual std::unique_ptr<Command> clone() const = 0;
     void setArguments(const std::vector<std::string>& args){
         arguments_ = std::move(args);        

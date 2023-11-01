@@ -1,9 +1,9 @@
 #include "ChangeSlideCommand.hpp"
 
-std::string ChangeSlideCommand::exec(Document &doc)
+std::string ChangeSlideCommand::exec(IDocument &doc)
 {
     auto id = *std::next(arguments_.begin());
-    doc.changeCurrentSlide(std::stoi(id));
+    documentDirector_.changeCurrentSlide(doc,std::stoi(id));
     return "slide changed"; //TODO return from changeCurrentSlide
 }
 

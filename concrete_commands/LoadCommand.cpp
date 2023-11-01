@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iterator>
 
-std::string LoadCommand::exec(Document& slides)
+std::string LoadCommand::exec(IDocument& slides)
 {
     std::ifstream itemsFile{*std::next(arguments_.begin())};
     std::string itemLine;

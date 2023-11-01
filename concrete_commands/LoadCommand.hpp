@@ -6,7 +6,7 @@
 
 class LoadCommand:public Command{
 public:
-    std::string exec(Document& slides) override;
+    std::string exec(IDocument& slides) override;
     std::unique_ptr<Command> clone() const override; 
 private:
     AddFactory factory;    

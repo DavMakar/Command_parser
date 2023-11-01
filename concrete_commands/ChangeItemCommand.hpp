@@ -4,7 +4,7 @@
 #include "command.hpp"
 
 class ChangeItemCommand:public Command{
-    std::string exec(Document& doc);
+    std::string exec(IDocument& doc);
     std::unique_ptr<Command> clone() const;
 };
 

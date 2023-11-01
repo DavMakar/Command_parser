@@ -10,14 +10,14 @@ set(SOURCES
     commandCreator.cpp 
     itemRegistry.cpp 
     factoryRegistry.cpp 
-    slide.cpp 
-    document.cpp 
-    consoleIO.cpp 
+    consoleIO.cpp
+    director.cpp
     item.cpp 
     Rect.cpp
 )
 
-file(GLOB COMMAND_SOURCES "concrete_commands/*.cpp" "concrete_factories/*.cpp")
+
+file(GLOB COMMAND_SOURCES "concrete_commands/*.cpp" "concrete_factories/*.cpp" "document/*.cpp")
 
 add_executable(powerPoint ${SOURCES} ${COMMAND_SOURCES})
 
