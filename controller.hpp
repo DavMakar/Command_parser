@@ -18,7 +18,7 @@ private:
     bool isRunning = true;
 
 private:
-    Document doc; //FIX
+    Document doc; 
     IOInterface& IOStrategy_;
     CommandCreator creator;
 };

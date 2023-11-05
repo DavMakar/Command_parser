@@ -3,6 +3,7 @@
 Controller::Controller(IOInterface& io): 
     IOStrategy_{io}
 {
+    doc.init();
 }
 
 void Controller::exec(){
@@ -29,7 +30,6 @@ void Controller::run(){
     std::string commandName = input.front();
     auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
     auto result = command->exec(doc);
-    // FIX 
     IOStrategy_.printOutput(result);
 }
 

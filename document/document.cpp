@@ -5,6 +5,10 @@
 
 Document::Document():currentSlideId(0)
 {
+}
+
+void Document::init()
+{
     slides.push_back(std::make_shared<Slide>());
     currentSlide = slides[currentSlideId];
 }
@@ -57,8 +61,6 @@ void Document::swap(Document &doc)
 
 void Document::setCurrentSlide(int id)
 {
-    currentSlideId = id;
+    currentSlideId = id - 1;
     currentSlide = slides[currentSlideId];
 }
-
-//TODO CurrentSlide make member

@@ -3,21 +3,25 @@
 
 #include <unordered_map>
 #include <vector>
-#include "idocument.hpp"
+#include "slide.hpp"
 
-class Document : public IDocument{
+using SlideVector = std::vector<std::shared_ptr<Slide>>;
+
+class Document{
 public:
     Document();
-    std::shared_ptr<Slide> getCurrentSlide() override;
-    SlideVector& getSlides() override;
-    int getCurrentSlideIndex() override;
-    void setCurrentSlide(int id) override;
     
-    std::string displayCurrentSlide() override;
-    std::string displaySlideItem(int itemId) override;
-    std::string displayAllSlides() override;
+    std::shared_ptr<Slide> getCurrentSlide();
+    SlideVector& getSlides();
+    int getCurrentSlideIndex();
+    void setCurrentSlide(int id);
+
+    std::string displayCurrentSlide();
+    std::string displaySlideItem(int itemId);
+    std::string displayAllSlides();
     
     void swap(Document& doc);
+    void init();
 
     auto begin(){ return slides.begin();}
     auto end(){ return slides.end();}

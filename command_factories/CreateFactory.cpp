@@ -4,7 +4,7 @@
 
 std::unique_ptr<Command> CreateFactory::makeCommand(const std::vector<std::string> &args)
 {
-    validateArgs(args);
+//    validateArgs(args);
 
     auto command = std::make_unique<CreateCommand>();
     command->setArguments(args);

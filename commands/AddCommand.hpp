@@ -9,7 +9,7 @@
 
 class AddCommand: public Command{
 public:
-    std::string exec(IDocument& doc) override;
+    std::string exec(Document& doc) override;
     std::unique_ptr<Command> clone() const override;
 private:
     Director documentDirector_;

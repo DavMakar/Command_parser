@@ -1,6 +1,6 @@
 #include "ListCommand.hpp"
 
-std::string ListCommand::exec(IDocument& doc)
+std::string ListCommand::exec(Document& doc)
 {
     return doc.displayAllSlides();
 }

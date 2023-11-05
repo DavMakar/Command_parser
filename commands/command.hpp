@@ -7,11 +7,11 @@
 #include <unordered_map>
 
 #include "../item.hpp"
-#include "../document/idocument.hpp"
+#include "../document/document.hpp"
 
 class Command{
 public:
-    virtual std::string exec(IDocument& doc) = 0;
+    virtual std::string exec(Document& doc) = 0;
     virtual std::unique_ptr<Command> clone() const = 0;
     void setArguments(const std::vector<std::string>& args){
         arguments_ = std::move(args);        

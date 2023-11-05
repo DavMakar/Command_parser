@@ -1,6 +1,6 @@
 #include "RemoveCommand.hpp"
 
-std::string RemoveCommand::exec(IDocument& doc)
+std::string RemoveCommand::exec(Document& doc)
 { 
     auto id = *std::next(arguments_.begin()); 
     documentDirector_.removeItemFromSlide(doc,std::stoi(id));

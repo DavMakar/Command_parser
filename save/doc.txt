@@ -1,5 +1,5 @@
--name slide 0
--name Rect-x2 4 -y1 2 -y2 4 -x1 2 
--name Rect-x2 55 -y1 5 -y2 20 -x1 10 
--name slide 1
--name Rect-x2 10 -y1 15 -y2 25 -x1 5 
+-name Slide 
+-name Rect -x2 4 -y1 2 -y2 4 -x1 2 
+-name Rect -x2 55 -y1 5 -y2 20 -x1 10 
+-name Slide 
+-name Rect -x2 10 -y1 15 -y2 25 -x1 5 
