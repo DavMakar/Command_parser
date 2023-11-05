@@ -1,7 +1,7 @@
 #ifndef COMMAND_FACTORY_HPP
 #define COMMAND_FACTORY_HPP
 
-#include "../concrete_commands/command.hpp"
+#include "../commands/command.hpp"
 #include <memory>
 
 class CommandFactory{

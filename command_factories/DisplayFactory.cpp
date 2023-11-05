@@ -1,5 +1,5 @@
 #include "DisplayFactory.hpp"
-#include "../concrete_commands/DisplayCommand.hpp"
+#include "../commands/DisplayCommand.hpp"
 
 std::unique_ptr<Command> DisplayFactory::makeCommand(const std::vector<std::string> &args)
 {   

@@ -1,5 +1,5 @@
 #include "LoadFactory.hpp"
-#include "../concrete_commands/LoadCommand.hpp"
+#include "../commands/LoadCommand.hpp"
 
 std::unique_ptr<Command> LoadFactory::makeCommand(const std::vector<std::string> &args)
 {

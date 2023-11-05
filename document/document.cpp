@@ -48,29 +48,11 @@ std::string Document::displayAllSlides()
     return result;
 }
 
-void Document::save(std::string fileName)
+void Document::swap(Document &doc)
 {
-    std::ofstream documentFile("../save/"+fileName);
-
-    int slideIndex{};
-
-    for(auto& slide : slides){
-        documentFile<< *slide <<" "<< slideIndex++ << "\n";        
-        for(const auto& [id,item] : *slide){
-            documentFile<<"-name "<< item->info() <<"\n";
-        }
-    }
-}
-
-void Document::load(std::string filename)
-{
-    std::ifstream documentFlie(filename);
-    std::string line;
-    while (getline(documentFlie,line)){
-        std::istringstream iss{line};
-        std::vector<std::string> arguments(std::istream_iterator<std::string>{iss},{});
-        //TODO
-    }   
+    std::swap(this->currentSlide , doc.currentSlide);
+    std::swap(this->currentSlideId, doc.currentSlideId);
+    std::swap(this->slides , doc.slides);
 }
 
 void Document::setCurrentSlide(int id)

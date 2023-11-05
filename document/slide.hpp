@@ -24,7 +24,7 @@ public:
     ItemStore::const_iterator cend() const;
 
     friend std::ostream& operator<<(std::ostream& os ,const Slide& slide){
-        os << "-name " << "slide";
+        os << "-name " << "Slide";
         return os;
     }
 

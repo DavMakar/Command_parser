@@ -2,14 +2,15 @@
 #define LOAD_COMMAND_HPP
 
 #include "command.hpp"
-#include "../concrete_factories/AddFactory.hpp"
+#include "../command_factories/AddFactory.hpp"
+#include "../director.hpp"
 
 class LoadCommand:public Command{
 public:
     std::string exec(IDocument& slides) override;
     std::unique_ptr<Command> clone() const override; 
 private:
-    AddFactory factory;    
+    Director documentDirector_;
 };
 
 #endif //LOAD_COMMAND_HPP

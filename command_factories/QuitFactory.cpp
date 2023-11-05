@@ -1,5 +1,5 @@
 #include "QuitFactory.hpp"
-#include "../concrete_commands/QuitCommand.hpp"
+#include "../commands/QuitCommand.hpp"
 
 std::unique_ptr<Command> QuitFactory::makeCommand(const std::vector<std::string> &args)
 {

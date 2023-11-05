@@ -1,5 +1,6 @@
 #include "CreateFactory.hpp"
-#include "../concrete_commands/CreateCommand.hpp"
+#include "../commands/CreateCommand.hpp"
+#include <algorithm>
 
 std::unique_ptr<Command> CreateFactory::makeCommand(const std::vector<std::string> &args)
 {
@@ -12,8 +13,10 @@ std::unique_ptr<Command> CreateFactory::makeCommand(const std::vector<std::strin
 
 void CreateFactory::validateArgs(const std::vector<std::string> &args)
 {
-    if(validOptions.find(*args.begin()) == validOptions.end()){
-        throw std::runtime_error("to create slide write -slide");
+    for(auto& validOpt : validOptions){
+        if(std::find(args.begin(),args.end(),validOpt) == args.end()){
+            throw std::runtime_error("to create slide write [-name Slide]");
+        }
     }
 }
 

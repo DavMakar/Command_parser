@@ -1,6 +1,5 @@
 #include "controller.hpp"
 
-
 Controller::Controller(IOInterface& io): 
     IOStrategy_{io}
 {
@@ -19,6 +18,7 @@ void Controller::exec(){
         }
     }
 }
+
 std::vector<std::string> Controller::readInput()
 {
     return IOStrategy_.getInput("Enter command : ");
@@ -26,7 +26,7 @@ std::vector<std::string> Controller::readInput()
 
 void Controller::run(){
     auto input = readInput();
-    std::string commandName = input[0];
+    std::string commandName = input.front();
     auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
     auto result = command->exec(doc);
     // FIX 

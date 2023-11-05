@@ -9,8 +9,6 @@
 #include "../item.hpp"
 #include "../document/idocument.hpp"
 
-using Iterator = std::vector<std::string>::iterator;
-
 class Command{
 public:
     virtual std::string exec(IDocument& doc) = 0;

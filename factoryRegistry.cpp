@@ -1,14 +1,14 @@
 #include "factoryRegistry.hpp"
 
-#include "concrete_factories/AddFactory.hpp"
-#include "concrete_factories/ChangeFactory.hpp"
-#include "concrete_factories/CreateFactory.hpp"
-#include "concrete_factories/DisplayFactory.hpp"
-#include "concrete_factories/ListFactory.hpp"
-#include "concrete_factories/LoadFactory.hpp"
-#include "concrete_factories/QuitFactory.hpp"
-#include "concrete_factories/RemoveFactory.hpp"
-#include "concrete_factories/SaveFactory.hpp"
+#include "command_factories/AddFactory.hpp"
+#include "command_factories/ChangeFactory.hpp"
+#include "command_factories/CreateFactory.hpp"
+#include "command_factories/DisplayFactory.hpp"
+#include "command_factories/ListFactory.hpp"
+#include "command_factories/LoadFactory.hpp"
+#include "command_factories/QuitFactory.hpp"
+#include "command_factories/RemoveFactory.hpp"
+#include "command_factories/SaveFactory.hpp"
 
 FactoryRegistry::FactoryRegistry()
 {

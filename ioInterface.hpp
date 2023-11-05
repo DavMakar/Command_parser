@@ -5,10 +5,13 @@
 #include <vector>
 #include <string>
 
+using Token = std::string;
+using TokenVector = std::vector<Token>;
+
 class IOInterface
 {
 public:
-    virtual std::vector<std::string> getInput(std::string_view input) = 0;
+    virtual TokenVector getInput(std::string_view input) = 0;
     virtual void printOutput(std::string_view output) = 0;
     virtual ~IOInterface(){};
 };

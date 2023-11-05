@@ -1,10 +1,7 @@
 #include "consoleIO.hpp"
 #include <iostream>
 #include <iterator>
-#include <string>
 #include <sstream>
-#include <limits>
-#include <algorithm>
 
 void ConsoleIO::printOutput(std::string_view output){
     std::cout << output << std::endl;
@@ -12,7 +9,7 @@ void ConsoleIO::printOutput(std::string_view output){
 
 TokenVector ConsoleIO::getInput(std::string_view msg){
     std::cout<< msg;
-    std::string input;
+    Token input;
     std::getline(std::cin, input);
     std::istringstream iss{input};
     TokenVector tokens(std::istream_iterator<std::string>{iss} , {});

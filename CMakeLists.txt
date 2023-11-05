@@ -17,7 +17,7 @@ set(SOURCES
 )
 
 
-file(GLOB COMMAND_SOURCES "concrete_commands/*.cpp" "concrete_factories/*.cpp" "document/*.cpp")
+file(GLOB COMMAND_SOURCES "commands/*.cpp" "command_factories/*.cpp" "document/*.cpp" "serializer/*.cpp")
 
 add_executable(powerPoint ${SOURCES} ${COMMAND_SOURCES})
 

@@ -1,24 +1,29 @@
 #include "ChangeFactory.hpp"
 
-#include "../concrete_commands/ChangeSlideCommand.hpp"
-#include "../concrete_commands/ChangeItemCommand.hpp"
+#include "../commands/ChangeSlideCommand.hpp"
+#include "../commands/ChangeItemCommand.hpp"
 
 
 std::unique_ptr<Command> ChangeFactory::makeCommand(const std::vector<std::string> &args)
 {
     validateArgs(args);
-    std::unique_ptr<Command> newCommand;
-    if (args.front() == "-slide"){
-        newCommand = std::make_unique<ChangeSlideCommand>();
-    } 
-    else if(args.front() == "-item"){
-        newCommand = std::make_unique<ChangeItemCommand>();
-    }else{
-        throw std::runtime_error("ask what to change [-slide] or [-item]");
-    }
+    std::unique_ptr<Command> newCommand = selectCommand(args.front());
+    
     std::vector<std::string> commandArgs(std::next(args.begin()),args.end());
     newCommand -> setArguments(std::move(commandArgs));
     return newCommand;
+}
+
+std::unique_ptr<Command> ChangeFactory::selectCommand(const std::string &arg)
+{
+    if(arg != "-slide" && arg != "-item"){
+        throw std::runtime_error("ask what to change [-slide] or [-item]");
+    }
+
+    if (arg == "-slide"){
+       return std::make_unique<ChangeSlideCommand>();
+    } 
+    return std::make_unique<ChangeItemCommand>();
 }
 
 void ChangeFactory::validateArgs(const std::vector<std::string> &args)

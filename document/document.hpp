@@ -16,9 +16,8 @@ public:
     std::string displayCurrentSlide() override;
     std::string displaySlideItem(int itemId) override;
     std::string displayAllSlides() override;
-
-    void save(std::string fileName) override;
-    void load(std::string fileName) override;
+    
+    void swap(Document& doc);
 
     auto begin(){ return slides.begin();}
     auto end(){ return slides.end();}

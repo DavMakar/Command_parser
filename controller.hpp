@@ -5,7 +5,6 @@
 #include "./document/document.hpp"
 #include "commandCreator.hpp"
 
-
 class Controller{
 public:    
     Controller(IOInterface& io);
@@ -19,7 +18,7 @@ private:
     bool isRunning = true;
 
 private:
-    Document doc;
+    Document doc; //FIX
     IOInterface& IOStrategy_;
     CommandCreator creator;
 };

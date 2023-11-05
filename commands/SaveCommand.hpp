@@ -2,13 +2,14 @@
 #define SAVE_COMMAND_HPP
 
 #include "command.hpp"
+#include "../director.hpp"
 
 class SaveCommand:public Command{
 public:
     std::string exec(IDocument& doc) override;
     std::unique_ptr<Command> clone() const override; 
 private:
-    std::unordered_set<std::string> args = {"-file"};
+    Director documentDirector_;
 };
 
 #endif //SAVE_COMMAND_HPP

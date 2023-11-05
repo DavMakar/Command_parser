@@ -3,12 +3,8 @@
 
 std::string SaveCommand::exec(IDocument& doc)
 {
-   
-    //auto filePath = *std::next(argumentBegin);
-    //std::string filename = filePath + "items.txt";
-
     std::string filename = *std::next(arguments_.begin());
-    doc.save(filename);
+    documentDirector_.saveDocument(doc,filename);
     return "saved";
 }
 

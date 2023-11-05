@@ -1,5 +1,5 @@
 #include "RemoveFactory.hpp"
-#include "../concrete_commands/RemoveCommand.hpp"
+#include "../commands/RemoveCommand.hpp"
 
 std::unique_ptr<Command> RemoveFactory::makeCommand(const std::vector<std::string> &args)
 {

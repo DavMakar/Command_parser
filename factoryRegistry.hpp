@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <memory>
-#include "concrete_factories/commandFactory.hpp"
+#include "command_factories/commandFactory.hpp"
 
 class FactoryRegistry{
 

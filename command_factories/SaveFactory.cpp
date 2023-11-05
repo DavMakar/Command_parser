@@ -1,5 +1,5 @@
 #include "SaveFactory.hpp"
-#include "../concrete_commands/SaveCommand.hpp"
+#include "../commands/SaveCommand.hpp"
 
 std::unique_ptr<Command> SaveFactory::makeCommand(const std::vector<std::string> &args)
 {
