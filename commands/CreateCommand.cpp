@@ -1,6 +1,6 @@
 #include "CreateCommand.hpp"
 
-std::string CreateCommand::exec(IDocument &doc)
+std::string CreateCommand::exec(Document &doc)
 {
     documentDirector_.addSlide(doc);
     return "created slide";

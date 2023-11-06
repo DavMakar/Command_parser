@@ -1,6 +1,6 @@
 #include "AddCommand.hpp"
 
-std::string AddCommand::exec(IDocument& doc)
+std::string AddCommand::exec(Document& doc)
 {
     auto newItem = register_.findItem(*std::next(arguments_.begin()));
     newItem->init(std::next(arguments_.begin(),2),arguments_.end());

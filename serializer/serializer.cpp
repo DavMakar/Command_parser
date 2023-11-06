@@ -6,9 +6,9 @@
 #include "../command_factories/CreateFactory.hpp"
 
 
-void Serializer::save(IDocument& doc, const std::string &filename)
+void Serializer::save(Document& doc, const std::string& filename)
 {
-    std::ofstream documnetFile("./save/"+filename);
+    std::ofstream documnetFile("../save/"+filename);
 
     for(auto& slide : doc.getSlides()){
         documnetFile<< *slide << "\n";
@@ -18,16 +18,18 @@ void Serializer::save(IDocument& doc, const std::string &filename)
     }
 }
 
-void Serializer::load(IDocument& doc, const std::string& filename)
+void Serializer::load(Document& doc, const std::string& filename)
 {
-    std::ifstream documentFile(filename);
+    std::ifstream documentFile("../save/" + filename);
     std::string line;
     
     while(getline(documentFile,line)){
         std::istringstream iss{line};
         std::vector<std::string> arguments(std::istream_iterator<std::string>{iss}, {});
+        auto factory = selectFactory(*std::next(arguments.begin()));
+        auto command = factory->makeCommand(arguments);
+        command->exec(doc);
     }
-    //FIX
 }
 
 std::unique_ptr<CommandFactory> Serializer::selectFactory(const std::string &arg)

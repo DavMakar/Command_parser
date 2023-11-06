@@ -1,6 +1,6 @@
 #include "ChangeItemCommand.hpp"
 
-std::string ChangeItemCommand::exec(IDocument &doc)
+std::string ChangeItemCommand::exec(Document &doc)
 {
     auto id = *std::next(arguments_.begin());
     auto item = doc.getCurrentSlide()->getItemById(std::stoi(id));

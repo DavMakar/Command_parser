@@ -1,7 +1,7 @@
 #include "SaveCommand.hpp"
 #include <fstream>
 
-std::string SaveCommand::exec(IDocument& doc)
+std::string SaveCommand::exec(Document& doc)
 {
     std::string filename = *std::next(arguments_.begin());
     documentDirector_.saveDocument(doc,filename);
