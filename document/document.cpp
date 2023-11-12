@@ -28,30 +28,6 @@ int Document::getCurrentSlideIndex()
     return currentSlideId;
 }
 
-std::string Document::displayCurrentSlide()
-{
-    return currentSlide->getAllItems();
-}
-
-std::string Document::displaySlideItem(int itemId)
-{
-    return currentSlide->getItemById(itemId)->info();
-}
-
-std::string Document::displayAllSlides()
-{
-    std::string result;
-    int slideIdx{};
-    for(auto& slide:slides){
-        result+= "slide " + std::to_string(slideIdx) + "\n";    
-        for(const auto& [id,item]: *slide){
-            result += std::to_string(id) + " " + item->type() + "\n";
-        }
-        ++slideIdx;
-    }
-    return result;
-}
-
 void Document::swap(Document &doc)
 {
     std::swap(this->currentSlide , doc.currentSlide);

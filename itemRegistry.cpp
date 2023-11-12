@@ -1,5 +1,5 @@
 #include "itemRegistry.hpp"
-#include "Rect.hpp"
+#include "document/Rect.hpp"
 
 ItemRegistry::ItemRegistry()
 {

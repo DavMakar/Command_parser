@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include <ostream>
-#include "../item.hpp"
+#include "item.hpp"
 
 using ItemStore = std::unordered_map<int , std::shared_ptr<Item>>;
 

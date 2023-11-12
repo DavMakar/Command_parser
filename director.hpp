@@ -1,21 +1,40 @@
 #ifndef DOCUMENT_DIRECTOR_HPP
 #define DOCUMENT_DIRECTOR_HPP
 
-#include "item.hpp"
-#include "./document/document.hpp"
-#include "./serializer/serializer.hpp"
+#include "document/document.hpp"
+#include <memory>
 
-class Director{
+class Serializer;
+
+class Director {
 public:
-    void addSlide(Document& doc);
-    void addItemToSlide(Document& doc , std::unique_ptr<Item> newItem);
-    void addItemToSlide(Document& doc , std::unique_ptr<Item> newItem , int slideId);
-    void removeItemFromSlide(Document& doc , int itemId);
-    void changeCurrentSlide(Document& doc ,int n);
-    void saveDocument(Document& doc, const std::string& filename);
-    void loadDocument(Document& doc, const std::string& filename);
+    static Director& getInstance() {
+        static Director instance;
+        return instance;
+    }
+
+    Document& getDocument();
+    
+    void addSlide();
+    void addItemToSlide(std::unique_ptr<Item> newItem);
+    void addItemToSlide(std::unique_ptr<Item> newItem, int slideId);
+    void removeItemFromSlide(int itemId);
+    void changeItem(int itemId, const std::vector<std::string>& arguments);
+    void changeCurrentSlide(int n);
+    
+    void saveDocument(Serializer& saver, const std::string& filename);
+    void loadDocument(Serializer& loader, const std::string& filename);
+
+    std::string displayCurrentSlide();
+    std::string displaySlideItem(int itemId);
+    std::string displayAllSlides();
+
 private:
-    Serializer serialzer_;
+    Director();  
+    Director(const Director&) = delete;
+    Director& operator=(const Director&) = delete;
+private:
+    Document doc;
 };
 
-#endif //DOCUMENT_DIRECTOR_HPP
+#endif  // DOCUMENT_DIRECTOR_HPP

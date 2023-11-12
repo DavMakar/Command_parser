@@ -2,15 +2,18 @@
 #include <fstream>
 #include <iterator>
 #include <sstream>
-#include "../command_factories/AddFactory.hpp"
-#include "../command_factories/CreateFactory.hpp"
+
+#include "../cli/command_factories/AddFactory.hpp"
+#include "../cli/command_factories/CreateFactory.hpp"
+
+#include "../director.hpp"
 
 
-void Serializer::save(Document& doc, const std::string& filename)
+void Serializer::save(const std::string& filename)
 {
     std::ofstream documnetFile("../save/"+filename);
 
-    for(auto& slide : doc.getSlides()){
+    for(auto& slide : Director::getInstance().getDocument()){
         documnetFile<< *slide << "\n";
         for(const auto& [id,item] : *slide){
             documnetFile << "-name "<< item->info() << "\n";
@@ -18,7 +21,7 @@ void Serializer::save(Document& doc, const std::string& filename)
     }
 }
 
-void Serializer::load(Document& doc, const std::string& filename)
+void Serializer::load(const std::string& filename)
 {
     std::ifstream documentFile("../save/" + filename);
     std::string line;
@@ -28,7 +31,7 @@ void Serializer::load(Document& doc, const std::string& filename)
         std::vector<std::string> arguments(std::istream_iterator<std::string>{iss}, {});
         auto factory = selectFactory(*std::next(arguments.begin()));
         auto command = factory->makeCommand(arguments);
-        command->exec(doc);
+        command->exec();
     }
 }
 

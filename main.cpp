@@ -1,8 +1,8 @@
-#include "controller.hpp"
+#include "Application.hpp"
 #include "consoleIO.hpp"
 
 int main(){
     ConsoleIO io;
-    Controller controller(io);
-    controller.exec();
+    Application app(io);
+    app.exec();
 }

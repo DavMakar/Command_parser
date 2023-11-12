@@ -15,10 +15,6 @@ public:
     SlideVector& getSlides();
     int getCurrentSlideIndex();
     void setCurrentSlide(int id);
-
-    std::string displayCurrentSlide();
-    std::string displaySlideItem(int itemId);
-    std::string displayAllSlides();
     
     void swap(Document& doc);
     void init();

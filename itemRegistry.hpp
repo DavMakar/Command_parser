@@ -1,8 +1,8 @@
 #ifndef ITEM_REGISTRY_HPP
 #define ITEM_REGISTRY_HPP
 
-#include  "item.hpp"
 #include <unordered_map>
+#include "document/item.hpp"
 
 class ItemRegistry{
 
