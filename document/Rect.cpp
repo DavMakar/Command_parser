@@ -1,4 +1,5 @@
 #include "Rect.hpp"
+#include "Visitor.hpp"
 
 Rect::Rect()
 {
@@ -8,6 +9,16 @@ Rect::Rect()
     validArguments.insert("-y2");
 }
 
+Rect::Rect(Point p1, Point p2)
+    :p1_(p1), p2_(p2)
+{
+}
+
+void Rect::accept(Visitor& vi){
+    vi.visit(p1_);
+    vi.visit(p2_);
+}
+
 std::string Rect::type()
 {
     return std::string("Rect");
@@ -15,24 +26,22 @@ std::string Rect::type()
 
 std::string Rect::info()
 {
-    std::string objInfo = type();
-    for(const auto& [key , value] : attributes_){
-        objInfo += " " + key + " " + value;
-    }
+    std::string objInfo = type() + " " + p1_.info() +" "+ p2_.info();
     return objInfo;
 }
 
-std::string Rect::getAttrbute(std::string key)
-{
-    return attributes_[key];
-}
-
-void Rect::setAttribute(std::string key, std::string value)
-{
-    attributes_[key] = value;
-}
-
-std::unique_ptr<Item> Rect::clone()
-{
-    return std::make_unique<Rect>();
-}
+// void Rect::setAttribute(std::string key, std::string value)
+// {
+//     if(key == "-x1"){
+//         p1.setX(std::stod(value));
+//     } 
+//     if(key == "-y1"){
+//         p1.setY(std::stod(value));
+//     }
+//     if(key == "-x2"){
+//         p2.setX(std::stod(value));
+//     }
+//     if(key == "-y2"){
+//         p2.setY(std::stod(value));
+//     }
+// }

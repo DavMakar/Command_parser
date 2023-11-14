@@ -9,6 +9,7 @@
 #include "command_factories/QuitFactory.hpp"
 #include "command_factories/RemoveFactory.hpp"
 #include "command_factories/SaveFactory.hpp"
+#include <stdexcept>
 
 FactoryRegistry::FactoryRegistry()
 {

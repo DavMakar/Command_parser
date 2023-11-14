@@ -1,5 +1,6 @@
 #include "AddFactory.hpp"
 #include "../commands/AddCommand.hpp"
+#include <stdexcept>
 
 std::unique_ptr<Command> AddFactory::makeCommand(const std::vector<std::string> &args)
 {   

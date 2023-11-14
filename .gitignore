@@ -10,5 +10,10 @@ tasks.json
 settings.json
 
 test.cpp
+itemFactory.hpp
+rectFactory.cpp
+rectFactory.hpp
+itemRegistry.hpp
+itemRegistry.cpp
 #registry.hpp
 #registry.impl.hpp

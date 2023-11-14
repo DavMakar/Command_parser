@@ -3,6 +3,7 @@
 #include "../commands/ChangeSlideCommand.hpp"
 #include "../commands/ChangeItemCommand.hpp"
 
+#include <stdexcept>
 
 std::unique_ptr<Command> ChangeFactory::makeCommand(const std::vector<std::string> &args)
 {

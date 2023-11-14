@@ -1,9 +1,11 @@
 #include "itemRegistry.hpp"
-#include "document/Rect.hpp"
+#include "Rect.hpp"
+#include "Point.hpp"
 
 ItemRegistry::ItemRegistry()
 {
     registerItem("Rect", std::make_unique<Rect>());
+    registerItem("Point", std::make_unique<Point>());
 }
 
 void ItemRegistry::registerItem(const std::string &itemName, std::unique_ptr<Item> item)

@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/PowerPoint.dir/Application.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commandCreator.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/AddFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/ChangeFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/CreateFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/DisplayFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/ListFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/LoadFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/QuitFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/RemoveFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/command_factories/SaveFactory.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/AddCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/ChangeItemCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/ChangeSlideCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/CreateCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/DisplayCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/ListCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/LoadCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/QuitCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/RemoveCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/commands/SaveCommand.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/controller.cpp.o"
+  "CMakeFiles/PowerPoint.dir/cli/factoryRegistry.cpp.o"
+  "CMakeFiles/PowerPoint.dir/consoleIO.cpp.o"
+  "CMakeFiles/PowerPoint.dir/director.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/ItemVisitor.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/Point.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/Rect.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/Visitor.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/document.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/item.cpp.o"
+  "CMakeFiles/PowerPoint.dir/document/slide.cpp.o"
+  "CMakeFiles/PowerPoint.dir/main.cpp.o"
+  "CMakeFiles/PowerPoint.dir/serializer/serializer.cpp.o"
+  "PowerPoint"
+  "PowerPoint.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/PowerPoint.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -35,10 +35,10 @@ void Director::removeItemFromSlide(int itemId)
 
 void Director::changeItem(int itemId, const std::vector<std::string>& arguments)
 {
-    auto item = doc.getCurrentSlide()->getItemById(itemId);
-    for(auto it =  std::next(arguments.begin(),2); it != arguments.end(); it+=2){
-        item->setAttribute(*it,*std::next(it));
-    }    
+    // auto item = doc.getCurrentSlide()->getItemById(itemId);
+    // for(auto it =  std::next(arguments.begin(),2); it != arguments.end(); it+=2){
+    //     item->setAttribute(*it,*std::next(it));
+    // }    
 }
 
 void Director::changeCurrentSlide(int n)

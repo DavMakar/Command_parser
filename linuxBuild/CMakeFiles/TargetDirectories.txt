@@ -1,0 +1,3 @@
+/mnt/c/Users/Davit/Desktop/Command_parser/linuxBuild/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Davit/Desktop/Command_parser/linuxBuild/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Davit/Desktop/Command_parser/linuxBuild/CMakeFiles/PowerPoint.dir
