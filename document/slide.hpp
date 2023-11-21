@@ -10,9 +10,14 @@ using ItemStore = std::unordered_map<int , std::shared_ptr<Item>>;
 
 class Slide{
 public:
+    Slide();
     void addItem(std::unique_ptr<Item>);
     void changeItem(int id);
     void removeItem(int id);
+    void accept(Visitor& vi);
+    //void accept(SerializerVisitor& sv);
+    //void accept(DeserializerVisitor& dv);
+
     std::string getAllItems();
     std::shared_ptr<Item> getItemById(int id);
     
@@ -31,7 +36,8 @@ public:
 private:
     ItemStore::iterator findItem(int id);
 private:
-    int item_id = 0;
+    size_t itemId = 0;
+    size_t itemCount = 0;
     ItemStore items_;
 };
 

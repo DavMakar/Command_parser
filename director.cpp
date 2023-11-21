@@ -1,8 +1,10 @@
 #include "director.hpp"
 
-#include "serializer/serializer.hpp"
+#include "serializer/SerializerVisitor.hpp"
 
-Director::Director()
+#include "serializer/DeserializerVisitor.hpp"
+
+Director::Director():currentSlide(0)
 {
     doc.init();
 }
@@ -14,28 +16,28 @@ Document& Director::getDocument()
 
 void Director::addSlide()
 {
-    doc.getSlides().push_back(std::make_shared<Slide>());
-    doc.setCurrentSlide(doc.getCurrentSlideIndex()+1);
+    doc.addSlide();
+    ++currentSlide;
 }
 
 void Director::addItemToSlide(std::unique_ptr<Item> newItem)
 {
-    addItemToSlide(std::move(newItem), doc.getCurrentSlideIndex());
+    addItemToSlide(std::move(newItem),currentSlide);
 }
 
 void Director::addItemToSlide(std::unique_ptr<Item> newItem, int slideId)
 {
-    doc.getSlides().at(slideId)->addItem(std::move(newItem));
+    doc.getSlide(slideId)->addItem(std::move(newItem));
 }
 
 void Director::removeItemFromSlide(int itemId)
 {
-    doc.getCurrentSlide()->removeItem(itemId);
+    doc.getSlide(currentSlide)->removeItem(itemId);
 }
 
 void Director::changeItem(int itemId, const std::vector<std::string>& arguments)
 {
-    auto item = doc.getCurrentSlide()->getItemById(itemId);
+    auto item = doc.getSlide(currentSlide)->getItemById(itemId);
     for(auto it =  std::next(arguments.begin(),2); it != arguments.end(); it+=2){
         item->setAttribute(*it,*std::next(it));
     }    
@@ -43,17 +45,19 @@ void Director::changeItem(int itemId, const std::vector<std::string>& arguments)
 
 void Director::changeCurrentSlide(int n)
 {
-    doc.setCurrentSlide(n);
+    currentSlide = n;
 }
 
-void Director::saveDocument(Serializer &saver, const std::string &filename)
+void Director::saveDocument(SerializerVisitor& vi)
 {
-    saver.save(filename);
+    vi.visit(doc);
 }
 
-void Director::loadDocument(Serializer& loader,const std::string &filename)
+void Director::loadDocument(DeserializerVisitor& vi)
 {
-    loader.load(filename);
+    Document newDoc;
+    vi.visit(newDoc);
+    std::swap(doc,newDoc);
 }
 
 std::string Director::displayAllSlides()
@@ -72,11 +76,11 @@ std::string Director::displayAllSlides()
 
 std::string Director::displayCurrentSlide()
 {
-    return doc.getCurrentSlide()->getAllItems();
+    return doc.getSlide(currentSlide)->getAllItems();
 }
 
 std::string Director::displaySlideItem(int itemId)
 {
-    return doc.getCurrentSlide()->getItemById(itemId)->info();
+    return doc.getSlide(currentSlide)->getItemById(itemId)->info();
 }
 

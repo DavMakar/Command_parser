@@ -11,10 +11,11 @@ class Document{
 public:
     Document();
     
-    std::shared_ptr<Slide> getCurrentSlide();
+    void addSlide();
     SlideVector& getSlides();
-    int getCurrentSlideIndex();
-    void setCurrentSlide(int id);
+    std::shared_ptr<Slide> getSlide(int i);
+
+    void accept(Visitor& vi) ;
     
     void swap(Document& doc);
     void init();
@@ -29,9 +30,8 @@ public:
     auto cend() const {return slides.cend();}
 
 private:
-    int currentSlideId;
-    std::shared_ptr<Slide> currentSlide;
-    SlideVector slides; 
+    SlideVector slides;
+    size_t slidesCount = 0; 
 };
 
 #endif //DOCUMENT_HPP

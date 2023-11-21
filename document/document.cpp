@@ -1,42 +1,49 @@
 #include "document.hpp"
+#include "../serializer/Visitor.hpp"
 #include <fstream>
 #include <sstream>
 #include <iterator>
 
-Document::Document():currentSlideId(0)
+Document::Document()
 {
 }
 
 void Document::init()
 {
-    slides.push_back(std::make_shared<Slide>());
-    currentSlide = slides[currentSlideId];
+    addSlide();
 }
 
-std::shared_ptr<Slide> Document::getCurrentSlide()
+void Document::addSlide()
 {
-    return slides[currentSlideId];
+    slides.push_back(std::make_shared<Slide>());
+    ++slidesCount;
 }
 
-SlideVector& Document::getSlides()
+SlideVector &Document::getSlides()
 {
     return slides;
 }
 
-int Document::getCurrentSlideIndex()
+std::shared_ptr<Slide> Document::getSlide(int i)
 {
-    return currentSlideId;
+    return slides[i];
+}
+
+void Document::accept(Visitor &vi)
+{
+    std::string type("Document");
+    vi.visit(type);
+    vi.visit(slidesCount);
+    slides.resize(slidesCount);
+    for(auto& slide : slides){
+        if(!slide){
+            slide = std::make_unique<Slide>();
+        }
+        vi.visit(*slide);
+    }
 }
 
 void Document::swap(Document &doc)
 {
-    std::swap(this->currentSlide , doc.currentSlide);
-    std::swap(this->currentSlideId, doc.currentSlideId);
     std::swap(this->slides , doc.slides);
-}
-
-void Document::setCurrentSlide(int id)
-{
-    currentSlideId = id - 1;
-    currentSlide = slides[currentSlideId];
 }

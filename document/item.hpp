@@ -7,18 +7,23 @@
 #include <memory>
 #include <stdexcept>
 
+class Visitor;
+
 class Item
 { 
 public:
+    enum class Item_tag : size_t { Rect};    
     Item();
     virtual ~Item();
     int getId();
     template<typename It>
     void init(It begin , It end);
 
+    virtual void accept(Visitor& vi) = 0;
     virtual std::string type() = 0;
     virtual std::string info() = 0;
-    virtual std::string getAttrbute(std::string key) = 0;
+    virtual Item_tag tag() = 0;
+    //virtual std::string getAttrbute(std::string key) = 0;
     virtual void setAttribute(std::string key , std::string value) = 0;
     virtual std::unique_ptr<Item> clone() = 0;  
 private:
@@ -26,7 +31,6 @@ private:
     static int counter;
 
 protected:
-    std::unordered_map<std::string, std::string> attributes_;
     std::unordered_set<std::string> validArguments;
 };
 

@@ -1,4 +1,5 @@
 #include "Rect.hpp"
+#include "../serializer/Visitor.hpp"
 
 Rect::Rect()
 {
@@ -15,21 +16,42 @@ std::string Rect::type()
 
 std::string Rect::info()
 {
-    std::string objInfo = type();
-    for(const auto& [key , value] : attributes_){
-        objInfo += " " + key + " " + value;
-    }
+    std::string objInfo = type() + " " + p1.info() + " " + p2.info();
     return objInfo;
 }
 
-std::string Rect::getAttrbute(std::string key)
+Item::Item_tag Rect::tag()
 {
-    return attributes_[key];
+    return Item_tag::Rect;
 }
+
+void Rect::accept(Visitor &vi)
+{
+    auto rect_tag = tag();
+    vi.visit(rect_tag);
+    vi.visit(p1);
+    vi.visit(p2);
+}
+
+// std::string Rect::getAttrbute(std::string key)
+// {
+//     return attributes_[key];
+// }
 
 void Rect::setAttribute(std::string key, std::string value)
 {
-    attributes_[key] = value;
+    if(key == "-x1"){
+        p1.setX(std::stod(value));
+    }
+    if(key == "-y1"){
+        p1.setY(std::stod(value));
+    }
+    if(key == "-x2"){
+        p2.setX(std::stod(value));
+    }
+    if(key == "-y2"){
+        p2.setY(std::stod(value));
+    }
 }
 
 std::unique_ptr<Item> Rect::clone()

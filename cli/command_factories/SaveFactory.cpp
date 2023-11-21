@@ -3,6 +3,8 @@
 
 std::unique_ptr<Command> SaveFactory::makeCommand(const std::vector<std::string> &args)
 {
+    validateArgs(args);
+
     auto command = std::make_unique<SaveCommand>();
     command->setArguments(args);
     return command;

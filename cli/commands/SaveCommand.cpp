@@ -2,11 +2,15 @@
 #include <fstream>
 
 #include "../../director.hpp"
+#include "../../serializer/SerializerVisitor.hpp"
 
 std::string SaveCommand::exec()
 {
     std::string filename = *std::next(arguments_.begin());
-    Director::getInstance().saveDocument(saver, filename);
+    std::ofstream file(filename);
+
+    SerializerVisitor serialVisitor(file);
+    Director::getInstance().saveDocument(serialVisitor);
     return "saved";
 }
 
