@@ -1,8 +1,5 @@
 #include "director.hpp"
-
-#include "serializer/SerializerVisitor.hpp"
-
-#include "serializer/DeserializerVisitor.hpp"
+#include "serializer/Visitor.hpp"
 
 Director::Director():currentSlide(0)
 {
@@ -48,12 +45,12 @@ void Director::changeCurrentSlide(int n)
     currentSlide = n;
 }
 
-void Director::saveDocument(SerializerVisitor& vi)
+void Director::saveDocument(Visitor& vi)
 {
     vi.visit(doc);
 }
 
-void Director::loadDocument(DeserializerVisitor& vi)
+void Director::loadDocument(Visitor& vi)
 {
     Document newDoc;
     vi.visit(newDoc);

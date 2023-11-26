@@ -1,4 +1,5 @@
 #include "factoryRegistry.hpp"
+#include <stdexcept>
 
 #include "command_factories/AddFactory.hpp"
 #include "command_factories/ChangeFactory.hpp"

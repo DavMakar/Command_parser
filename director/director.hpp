@@ -4,8 +4,7 @@
 #include "document/document.hpp"
 #include <memory>
 
-class SerializerVisitor;
-class DeserializerVisitor;
+class Visitor;
 
 class Director {
 public:
@@ -23,8 +22,8 @@ public:
     void changeItem(int itemId, const std::vector<std::string>& arguments);
     void changeCurrentSlide(int n);
     
-    void saveDocument(SerializerVisitor& vi);
-    void loadDocument(DeserializerVisitor& vi);
+    void saveDocument(Visitor& vi);
+    void loadDocument(Visitor& vi);
 
     std::string displayCurrentSlide();
     std::string displaySlideItem(int itemId);

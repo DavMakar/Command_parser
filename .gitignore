@@ -10,5 +10,6 @@ tasks.json
 settings.json
 
 test.cpp
+PowerPoint.pro.user
 #registry.hpp
 #registry.impl.hpp

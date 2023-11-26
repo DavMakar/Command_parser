@@ -2,7 +2,7 @@
 #define ADD_COMMAND_HPP
 
 #include "command.hpp"
-#include "../../itemRegistry.hpp"
+#include "../itemRegistry.hpp"
 #include <unordered_set>
 
 class Director;

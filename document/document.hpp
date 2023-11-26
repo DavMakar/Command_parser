@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 #include <vector>
-#include "slide.hpp"
+#include "Slide.hpp"
 
 using SlideVector = std::vector<std::shared_ptr<Slide>>;
 

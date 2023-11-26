@@ -5,12 +5,10 @@
 #include "commands/command.hpp"
 #include "factoryRegistry.hpp"
 
-class Director;
-
 class CommandCreator{
 public:
     std::unique_ptr<Command> createCommand(const std::string& commandName, 
-                             const std::vector<std::string>& args);
+                                    const std::vector<std::string>& args);
 private:
     FactoryRegistry factoryRegistry_;
 };

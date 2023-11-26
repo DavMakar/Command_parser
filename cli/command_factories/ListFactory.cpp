@@ -1,5 +1,6 @@
 #include "ListFactory.hpp"
 #include "../commands/ListCommand.hpp"
+#include <stdexcept>
 
 std::unique_ptr<Command> ListFactory::makeCommand(const std::vector<std::string> &args )
 {

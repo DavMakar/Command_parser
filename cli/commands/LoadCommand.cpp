@@ -2,14 +2,14 @@
 #include <fstream>
 
 #include "../../director.hpp"
-#include "../../serializer/DeserializerVisitor.hpp"
+#include "../../serializer/TxtDeserializer.hpp"
 
 std::string LoadCommand::exec()
 {
     std::string filename = *std::next(arguments_.begin());
     std::ifstream file(filename);
-    DeserializerVisitor deserialVisitor(file);
-    Director::getInstance().loadDocument(deserialVisitor);
+    TxtDeserializer deserializer(file);
+    Director::getInstance().loadDocument(deserializer);
     return "loaded";
 }
 

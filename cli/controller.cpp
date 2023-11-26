@@ -1,20 +1,15 @@
 #include "controller.hpp"
 
-Controller::Controller(IOInterface& io): 
-    IOStrategy_{io}
-{
-}
-
-std::vector<std::string> Controller::readInput()
-{
-    return IOStrategy_.getInput("Enter command : ");
-}
-
-void Controller::run(){
-    auto input = readInput();
-    std::string commandName = input.front();
-    auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
+void Controller::run(const QString& input){
+    auto inputTokens = tokenizer.splitInput(input);
+    std::string commandName = inputTokens.front();
+    auto command = creator.createCommand(commandName,
+                                        {std::next(inputTokens.begin()),inputTokens.end()});
     auto result = command->exec();
-    IOStrategy_.printOutput(result);
+    logOutput(result);
 }
 
+void Controller::logOutput(const std::string& output)
+{
+    emit outputLoged(output);
+}

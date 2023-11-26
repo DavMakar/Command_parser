@@ -1,4 +1,4 @@
-#include "slide.hpp"
+#include "Slide.hpp"
 #include "../serializer/Visitor.hpp"
 
 Slide::Slide()

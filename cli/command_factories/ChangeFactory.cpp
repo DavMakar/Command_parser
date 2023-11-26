@@ -1,5 +1,5 @@
 #include "ChangeFactory.hpp"
-
+#include <stdexcept>
 #include "../commands/ChangeSlideCommand.hpp"
 #include "../commands/ChangeItemCommand.hpp"
 
