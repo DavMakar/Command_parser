@@ -1,18 +1,17 @@
 #ifndef COMMAND_CREATOR_HPP
 #define COMMAND_CREATOR_HPP
 
-#include "command_factories/commandFactory.hpp"
 #include "commands/command.hpp"
-#include "factoryRegistry.hpp"
-
-class Director;
+#include "commandRegistry.hpp"
 
 class CommandCreator{
 public:
-    std::unique_ptr<Command> createCommand(const std::string& commandName, 
-                             const std::vector<std::string>& args);
+    std::unique_ptr<Command> createCommand(std::istream& stream);
+    void parseArguments(std::istream& stream , Command& command);
 private:
-    FactoryRegistry factoryRegistry_;
+    CommandRegistry commandRegistry_;
 };
 
 #endif  //COMMAND_CREATOR_HPP
+
+

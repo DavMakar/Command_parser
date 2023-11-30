@@ -1,10 +1,9 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "../ioInterface.hpp"
+#include "../io/ioInterface.hpp"
 #include "commandCreator.hpp"
-
-class Director;
+#include <sstream>
 
 class Controller{
 public:    
@@ -12,7 +11,7 @@ public:
     void run();
     
 private:
-    std::vector<std::string> readInput();
+    std::istringstream readInput();
 
 private:
     IOInterface& IOStrategy_;

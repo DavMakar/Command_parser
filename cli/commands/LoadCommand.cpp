@@ -1,12 +1,17 @@
 #include "LoadCommand.hpp"
 #include <fstream>
 
-#include "../../director.hpp"
-#include "../../serializer/DeserializerVisitor.hpp"
+#include "../../director/Director.hpp"
+#include "../../serializer/TxtDeserializer.hpp"
+
+LoadCommand::LoadCommand()
+{
+    arguments_.initArgument("-file", "new.txt");
+}
 
 std::string LoadCommand::exec()
 {
-    std::string filename = *std::next(arguments_.begin());
+    auto filename = arguments_.getArgument<std::string>("-file");
     std::ifstream file(filename);
     DeserializerVisitor deserialVisitor(file);
     Director::getInstance().loadDocument(deserialVisitor);

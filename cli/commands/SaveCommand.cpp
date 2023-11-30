@@ -1,14 +1,18 @@
 #include "SaveCommand.hpp"
 #include <fstream>
 
-#include "../../director.hpp"
-#include "../../serializer/SerializerVisitor.hpp"
+#include "../../director/Director.hpp"
+#include "../../serializer/TxtSerializer.hpp"
+
+SaveCommand::SaveCommand()
+{
+    arguments_.initArgument("-file","new.txt");
+}
 
 std::string SaveCommand::exec()
 {
-    std::string filename = *std::next(arguments_.begin());
+    auto filename = arguments_.getArgument<std::string>("-file");
     std::ofstream file(filename);
-
     SerializerVisitor serialVisitor(file);
     Director::getInstance().saveDocument(serialVisitor);
     return "saved";

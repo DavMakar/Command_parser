@@ -5,6 +5,7 @@
 
 class ChangeItemCommand:public Command{
 public:
+    ChangeItemCommand();
     std::string exec();
     std::unique_ptr<Command> clone() const;
 };

@@ -2,13 +2,12 @@
 #define ADD_COMMAND_HPP
 
 #include "command.hpp"
-#include "../../itemRegistry.hpp"
+#include "../../document/itemRegistry.hpp"
 #include <unordered_set>
-
-class Director;
 
 class AddCommand: public Command{
 public:
+    AddCommand();
     std::string exec() override;
     std::unique_ptr<Command> clone() const override;
 private:

@@ -5,6 +5,7 @@
 
 class RemoveCommand:public Command{
 public:
+    RemoveCommand();
     std::string exec() override;
     std::unique_ptr<Command> clone() const override;
 };

@@ -4,10 +4,6 @@
 #include <sstream>
 #include <iterator>
 
-Document::Document()
-{
-}
-
 void Document::init()
 {
     addSlide();

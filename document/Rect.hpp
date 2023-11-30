@@ -14,7 +14,7 @@ public:
     std::string info() override;
     Item::Item_tag tag() override;
     void accept(Visitor& vi) override;
-    void setAttribute(std::string key , std::string value) override;
+    void setAttribute(std::string key , std::any value) override;
     std::unique_ptr<Item> clone() override;
 private:
     Point p1;

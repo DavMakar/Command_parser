@@ -5,15 +5,15 @@ Controller::Controller(IOInterface& io):
 {
 }
 
-std::vector<std::string> Controller::readInput()
+std::istringstream Controller::readInput()
 {
     return IOStrategy_.getInput("Enter command : ");
 }
 
+
 void Controller::run(){
     auto input = readInput();
-    std::string commandName = input.front();
-    auto command = creator.createCommand(commandName, {std::next(input.begin()),input.end()});
+    auto command = creator.createCommand(input);
     auto result = command->exec();
     IOStrategy_.printOutput(result);
 }

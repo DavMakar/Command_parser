@@ -33,24 +33,19 @@ void Rect::accept(Visitor &vi)
     vi.visit(p2);
 }
 
-// std::string Rect::getAttrbute(std::string key)
-// {
-//     return attributes_[key];
-// }
-
-void Rect::setAttribute(std::string key, std::string value)
+void Rect::setAttribute(std::string key, std::any value)
 {
     if(key == "-x1"){
-        p1.setX(std::stod(value));
+        p1.setX(std::any_cast<double>(value));
     }
     if(key == "-y1"){
-        p1.setY(std::stod(value));
+        p1.setY(std::any_cast<double>(value));
     }
     if(key == "-x2"){
-        p2.setX(std::stod(value));
+        p2.setX(std::any_cast<double>(value));
     }
     if(key == "-y2"){
-        p2.setY(std::stod(value));
+        p2.setY(std::any_cast<double>(value));
     }
 }
 

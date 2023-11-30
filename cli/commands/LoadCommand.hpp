@@ -6,6 +6,7 @@
 
 class LoadCommand:public Command{
 public:
+    LoadCommand();
     std::string exec() override;
     std::unique_ptr<Command> clone() const override; 
 };

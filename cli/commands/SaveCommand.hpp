@@ -7,6 +7,7 @@ class Director;
 
 class SaveCommand:public Command{
 public:
+    SaveCommand();
     std::string exec() override;
     std::unique_ptr<Command> clone() const override; 
 };

@@ -1,13 +1,8 @@
 #include "Application.hpp"
 
-Application::Application(IOInterface &io): 
-    isRunning{true}, consoleLoger{io}, controller_{io}
-{
-}
-
 void Application::exec()
 {
-    while (isRunning)
+    while (isRunning())
     {
         try{
             controller_.run();
@@ -16,4 +11,19 @@ void Application::exec()
             consoleLoger.printOutput(e.what());
         }
     }
+}
+
+void Application::quit()
+{
+    running = false;
+}
+
+bool Application::isRunning()
+{
+    return running;
+}
+
+Application::Application()
+    :running(true) , controller_(consoleLoger)
+{
 }

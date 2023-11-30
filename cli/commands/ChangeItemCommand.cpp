@@ -1,5 +1,10 @@
 #include "ChangeItemCommand.hpp"
-#include "../../director.hpp"
+#include "../../director/Director.hpp"
+
+ChangeItemCommand::ChangeItemCommand()
+{
+    arguments_.initArgument("-id", 0);
+}
 
 std::string ChangeItemCommand::exec()
 {

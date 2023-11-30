@@ -16,6 +16,7 @@ public:
     virtual void visit(Document& doc) = 0;
     virtual void visit(double& d) = 0;
     virtual void visit(size_t& count) = 0;
+    virtual void visit(Point& p) = 0;
     virtual void visit(Slide& s) = 0;
     virtual void visit(std::shared_ptr<Item>& i) = 0;
 };

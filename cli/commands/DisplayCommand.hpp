@@ -6,6 +6,7 @@
 
 class DisplayCommand: public Command{
 public:
+    DisplayCommand();
     std::string exec() override;
     std::unique_ptr<Command> clone() const override;
 };

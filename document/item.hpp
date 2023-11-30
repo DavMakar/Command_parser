@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <memory>
 #include <stdexcept>
+#include <any>
 
 class Visitor;
 
@@ -24,7 +25,7 @@ public:
     virtual std::string info() = 0;
     virtual Item_tag tag() = 0;
     //virtual std::string getAttrbute(std::string key) = 0;
-    virtual void setAttribute(std::string key , std::string value) = 0;
+    virtual void setAttribute(std::string key , std::any value) = 0;
     virtual std::unique_ptr<Item> clone() = 0;  
 private:
     int id_;

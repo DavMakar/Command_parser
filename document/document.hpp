@@ -9,7 +9,7 @@ using SlideVector = std::vector<std::shared_ptr<Slide>>;
 
 class Document{
 public:
-    Document();
+    Document() = default;
     
     void addSlide();
     SlideVector& getSlides();

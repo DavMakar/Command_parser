@@ -1,20 +1,28 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include "io/consoleIO.hpp"
 #include "cli/controller.hpp"
-
-class IOInterface;
 
 class Application{
 public:
-    Application(IOInterface& io);
+    static Application& instance()
+    {
+        static Application instance;
+        return instance;
+    }
     void exec();
-
-public:
-    bool isRunning;
+    void quit();
+    bool isRunning();
 
 private:
-    IOInterface& consoleLoger;
+    Application();
+
+private:
+    bool running;
+
+private:
+    ConsoleIO consoleLoger;
     Controller controller_;
 };
 
