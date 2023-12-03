@@ -2,6 +2,7 @@
 #define ITEM_REGISTRY_HPP
 
 #include <unordered_map>
+#include <unordered_set>
 #include "item.hpp"
 
 class ItemRegistry{

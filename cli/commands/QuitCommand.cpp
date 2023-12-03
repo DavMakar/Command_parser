@@ -1,8 +1,9 @@
 #include "QuitCommand.hpp"
-#include "../../Application.hpp"
+#include <QApplication>
 
 std::string QuitCommand::exec(){
-    Application::instance().quit();
+    qApp->quit();
+    return "quit";
 }
 
 std::unique_ptr<Command> QuitCommand::clone() const

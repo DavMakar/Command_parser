@@ -3,10 +3,10 @@
 
 Rect::Rect()
 {
-    validArguments.insert("-x1");
-    validArguments.insert("-y1");
-    validArguments.insert("-x2");
-    validArguments.insert("-y2");
+    itemOptions.insert("-x1");
+    itemOptions.insert("-x2");
+    itemOptions.insert("-y1");
+    itemOptions.insert("-y2");
 }
 
 std::string Rect::type()

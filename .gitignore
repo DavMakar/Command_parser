@@ -6,9 +6,11 @@
 build/
 
 # Ignore user-specific settings files
+.vscode/
 tasks.json
 settings.json
 
 test.cpp
+commands.txt
 #registry.hpp
 #registry.impl.hpp

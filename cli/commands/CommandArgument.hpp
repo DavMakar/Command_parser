@@ -36,6 +36,10 @@ public:
         arguments_.insert(std::make_pair(key, value));
     }
 
+    std::any& operator[] (const std::string& key){
+        return arguments_[key];
+    }
+
 public:
     iterator begin();
     iterator end();

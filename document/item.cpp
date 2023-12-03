@@ -12,6 +12,11 @@ int Item::getId()
     return id_;
 }
 
+Item::Options &Item::getOptions()
+{
+    return itemOptions;
+}
+
 Item::~Item()
 {
 }

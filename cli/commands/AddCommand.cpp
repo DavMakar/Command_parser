@@ -22,10 +22,11 @@ AddCommand::AddCommand()
 
 std::string AddCommand::exec()
 {
-    auto newItem = register_.findItem(arguments_.getArgument<std::string>("-name"));
-    for(auto [argument, value] : arguments_){
-        newItem->setAttribute(argument, value);
-    }    
+    auto newItem = register_.findItem(arguments_.getArgument<std::string>("-name")); 
+
+    for(auto& option : newItem->getOptions()){
+        newItem->setAttribute(option , arguments_[option]);
+    }
     Director::getInstance().addItemToSlide(std::move(newItem));
 
     return "item added"; 

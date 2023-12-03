@@ -21,12 +21,12 @@ void CommandCreator::parseArguments(std::istream &stream, Command& command)
             command.arguments_.setArgument(key,itemType);
         }
         else if(key == "-x1" || key == "-x2" || key == "-y1" || key == "-y2" || 
-           key == "-x"  || key == "-y" || key == "-r"){
+           key == "-x"  || key == "-y" || key == "-r"){ 
             double value;
             stream >> value;
             command.arguments_.setArgument(key,value);
         }
-        else if(key == "-size" || key == "-id"){
+        else if(key == "-size" || key == "-id"){ 
             int value;
             stream >> value;       
             command.arguments_.setArgument(key,value);
