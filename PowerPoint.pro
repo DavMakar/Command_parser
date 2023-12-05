@@ -18,7 +18,7 @@ SOURCES += \
     cli/controller.cpp \
     cli/commandCreator.cpp \
     cli/commandRegistry.cpp \ 
-    cli/commands/CommandArgument.cpp \
+    cli/Argument.cpp \
     cli/commands/AddCommand.cpp \
 #    cli/commands/ChangeItemCommand.cpp \
     cli/commands/GoSlideCommand.cpp \
@@ -36,12 +36,13 @@ SOURCES += \
     document/item.cpp \ 
     document/Rect.cpp \ 
     document/Point.cpp \
-    serializer/Visitor.cpp \
+    serializer/iSerializer.cpp \
     serializer/TxtSerializer.cpp \
     serializer/TxtDeserializer.cpp \ 
 
 
 HEADERS += \
+    Application.hpp \
     PowerPoint.hpp \
     view/ItemsToolBar.hpp \
     view/CommandBar.hpp \
@@ -51,7 +52,7 @@ HEADERS += \
     cli/commandCreator.hpp \
     cli/commandRegistry.cpp \ 
     cli/commands/command.hpp \
-    cli/commands/CommandArgument.hpp \
+    cli/Argument.hpp \
     cli/commands/AddCommand.hpp \
 #    cli/commands/ChangeItemCommand.hpp \
     cli/commands/GoSlideCommand.hpp \
@@ -64,12 +65,12 @@ HEADERS += \
     cli/commands/SaveCommand.hpp \
     document/itemRegistry.hpp \
     director/director.hpp \
-    document/document.hpp \ 
+    document/Document.hpp \ 
     document/Slide.hpp \
     document/item.hpp \ 
     document/Rect.hpp \ 
     document/Point.hpp \
-    serializer/Visitor.hpp \
+    serializer/iSerializer.hpp \
     serializer/TxtSerializer.hpp \
     serializer/TxtDeserializer.hpp \ 
 

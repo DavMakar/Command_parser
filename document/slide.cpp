@@ -1,29 +1,28 @@
 #include "slide.hpp"
-#include "../serializer/Visitor.hpp"
+#include "../serializer/iSerializer.hpp"
 
 Slide::Slide()
 {
 }
 
-void Slide::addItem(std::unique_ptr<Item> new_item)
+size_t Slide::addItem(std::shared_ptr<Item> new_item)
 {
-    items_[itemId++] = std::move(new_item);
+    items_[itemId] = new_item;
     ++itemCount;
+    return itemId++;
 }
 
-void Slide::changeItem(int id)
+void Slide::changeItem(size_t id)
 {
     auto item = findItem(id);
 }
 
-void Slide::removeItem(int id)
+void Slide::removeItem(size_t id)
 {
-    auto item = findItem(id);
-    items_.erase(item);
-    //items.erase(item[id]);
+    items_.erase(id);
 }
 
-void Slide::accept(Visitor &vi)
+void Slide::accept(iSerializer &vi)
 {
     std::string type("Slide");
     vi.visit(type);
@@ -58,14 +57,14 @@ std::shared_ptr<Item> Slide::getItemById(int id)
     return item->second;
 }
 
-// ItemStore::iterator Slide::begin()
-// {
-//     return items_.begin();
-// }
-// ItemStore::iterator Slide::end() 
-// {
-//     return items_.end();
-// }
+ItemStore::iterator Slide::begin()
+{
+    return items_.begin();
+}
+ItemStore::iterator Slide::end()
+{
+    return items_.end();
+}
 
 ItemStore::const_iterator Slide::cbegin() const
 {

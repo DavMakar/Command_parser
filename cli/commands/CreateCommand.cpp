@@ -1,17 +1,17 @@
 #include "CreateCommand.hpp"
-#include "../../director/Director.hpp"
+#include "../../Application.hpp"
 
 using namespace std::literals;
 
 CreateCommand::CreateCommand()
 {
-    arguments_.initArgument("-name", ""s);
+    m_arguments.initArgument("-name", ""s);
 }
 
 std::string CreateCommand::exec()
 {
-    if(arguments_.getArgument<std::string>("-name") == "Slide"){
-        Director::getInstance().addSlide();
+    if(m_arguments.getArgument<std::string>("-name") == "Slide"){
+        Application::instance().getDirector().addSlide();
     }else{
         throw std::runtime_error("-name Slide");
     }

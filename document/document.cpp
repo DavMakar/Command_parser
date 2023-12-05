@@ -1,5 +1,5 @@
-#include "document.hpp"
-#include "../serializer/Visitor.hpp"
+#include "Document.hpp"
+#include "../serializer/iSerializer.hpp"
 #include <fstream>
 #include <sstream>
 #include <iterator>
@@ -9,10 +9,16 @@ void Document::init()
     addSlide();
 }
 
-void Document::addSlide()
+size_t Document::addSlide()
 {
     slides.push_back(std::make_shared<Slide>());
-    ++slidesCount;
+    return ++slidesCount;
+}
+
+void Document::deleteSlide(size_t idx)
+{
+    slides.erase(std::next(begin(),idx));
+    --slidesCount;
 }
 
 SlideVector &Document::getSlides()
@@ -25,7 +31,7 @@ std::shared_ptr<Slide> Document::getSlide(int i)
     return slides[i];
 }
 
-void Document::accept(Visitor &vi)
+void Document::accept(iSerializer &vi)
 {
     std::string type("Document");
     vi.visit(type);

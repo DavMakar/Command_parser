@@ -7,7 +7,7 @@ class ItemsToolBar : public QToolBar
 {
     Q_OBJECT
 public:
-    ItemsToolBar(QToolBar* parrent = nullptr);
+    ItemsToolBar(QToolBar* parent = nullptr);
 };
 
 #endif // ITEMSTOOLBAR_HPP

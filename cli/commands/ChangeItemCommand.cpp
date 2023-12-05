@@ -1,15 +1,15 @@
 #include "ChangeItemCommand.hpp"
-#include "../../director/Director.hpp"
+#include "../../Application.hpp"
 
 ChangeItemCommand::ChangeItemCommand()
 {
-    arguments_.initArgument("-id", 0);
+    m_arguments.initArgument("-id", 0);
 }
 
 std::string ChangeItemCommand::exec()
 {
-    auto id = std::stoi(*std::next(arguments_.begin()));
-    Director::getInstance().changeItem(id,std::move(arguments_));
+    auto id = std::stoi(*std::next(m_arguments.begin()));
+    Application::instance().getDirector().changeItem(id,std::move(m_arguments));
     return "changed";
 }
 

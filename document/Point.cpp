@@ -1,5 +1,5 @@
 #include "Point.hpp"
-#include "../serializer/Visitor.hpp"
+#include "../serializer/iSerializer.hpp"
 
 Point::Point(double x, double y)
     :x_(x),y_(y)
@@ -16,7 +16,7 @@ void Point::setY(double y)
     y_ = y;
 }
 
-void Point::accept(Visitor &vi)
+void Point::accept(iSerializer &vi)
 {
     vi.visit(x_);
     vi.visit(y_);

@@ -5,7 +5,7 @@
 #include "Point.hpp"
 #include <unordered_set>
 
-class Visitor;
+class iSerializer;
 
 class Rect: public Item{
 public:
@@ -13,7 +13,7 @@ public:
     std::string type() override;
     std::string info() override;
     Item::Item_tag tag() override;
-    void accept(Visitor& vi) override;
+    void accept(iSerializer& vi) override;
     void setAttribute(std::string key , std::any value) override;
     std::unique_ptr<Item> clone() override;
 private:

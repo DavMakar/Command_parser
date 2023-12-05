@@ -1,15 +1,15 @@
 #include "RemoveCommand.hpp"
-#include "../../director/Director.hpp"
+#include "../../Application.hpp"
 
 RemoveCommand::RemoveCommand()
 {
-    arguments_.initArgument("-id",0);
+    m_arguments.initArgument("-id",0);
 }
 
 std::string RemoveCommand::exec()
 { 
-    auto id = arguments_.getArgument<int>("-id"); 
-    Director::getInstance().removeItemFromSlide(id);
+    auto id = m_arguments.getArgument<int>("-id"); 
+    Application::instance().getDirector().removeItemFromSlide(id);
     return "erased";
 }
 

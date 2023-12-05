@@ -3,7 +3,7 @@
 
 #include <string>
 
-class Visitor;
+class iSerializer;
 
 class Point {
 public:
@@ -11,7 +11,7 @@ public:
     Point(double x, double y);
     void setX(double x);
     void setY(double y);
-    void accept(Visitor& vi);
+    void accept(iSerializer& vi);
 
     std::string info(); 
     std::string type();

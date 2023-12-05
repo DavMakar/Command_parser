@@ -2,7 +2,6 @@
 #define POWERPOINT_HPP
 
 #include <QMainWindow>
-#include "cli/controller.hpp"
 #include "view/CommandLog.hpp"
 #include "view/CommandBar.hpp"
 
@@ -24,7 +23,6 @@ private:
     QString command;
     ItemsToolBar* itemsTb;
     WorkingArea* workingArea;
-    Controller* controller;
 };
 
 #endif // POWERPOINT_HPP

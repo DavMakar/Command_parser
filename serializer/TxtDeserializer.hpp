@@ -1,12 +1,11 @@
-#ifndef DESERIALIZER_VISITOR_HPP
-#define DESERIALIZER_VISITOR_HPP
+#ifndef TXT_DESERIALIZER_HPP
+#define TXT_DESERIALIZER_HPP
 
-#include "Visitor.hpp"
+#include "iSerializer.hpp"
 
-class DeserializerVisitor: public Visitor{
+class TxtDeserializer: public iSerializer{
 public:
-    DeserializerVisitor(std::ifstream& file);
-    void readNextLine(std::string& line);
+    TxtDeserializer(std::ifstream& file);
     virtual void visit(std::string& str) override;
     virtual void visit(size_t& count) override;
     virtual void visit(std::shared_ptr<Item>& i) override ;
@@ -19,4 +18,4 @@ private:
     std::ifstream& file_;
 };
 
-#endif //DESERIALIZER_VISITOR_HPP
+#endif //TXT_DESERIALIZER_HPP

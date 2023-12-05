@@ -6,32 +6,28 @@
 #include <ostream>
 #include "item.hpp"
 
-using ItemStore = std::unordered_map<int , std::shared_ptr<Item>>;
+using ItemStore = std::unordered_map<size_t ,std::shared_ptr<Item>>;
 
 class Slide{
 public:
     Slide();
-    void addItem(std::unique_ptr<Item>);
-    void changeItem(int id);
-    void removeItem(int id);
-    void accept(Visitor& vi);
-    //void accept(SerializerVisitor& sv);
-    //void accept(DeserializerVisitor& dv);
+    void accept(iSerializer& vi);
+    size_t addItem(std::shared_ptr<Item>);
+    void removeItem(size_t id);
+    void changeItem(size_t id);
+    
+    //void accept(SerializeriSerializer& sv);
+    //void accept(DeserializeriSerializer& dv);
 
     std::string getAllItems();
     std::shared_ptr<Item> getItemById(int id);
     
-    // ItemStore::iterator begin() ;
-    // ItemStore::iterator end();
+    ItemStore::iterator begin();
+    ItemStore::iterator end();
     ItemStore::const_iterator begin() const;
     ItemStore::const_iterator end() const;
     ItemStore::const_iterator cbegin() const;
     ItemStore::const_iterator cend() const;
-
-    friend std::ostream& operator<<(std::ostream& os ,const Slide& slide){
-        os << "-name " << "Slide";
-        return os;
-    }
 
 private:
     ItemStore::iterator findItem(int id);

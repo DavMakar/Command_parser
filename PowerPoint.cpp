@@ -1,6 +1,8 @@
 #include "PowerPoint.hpp"
 #include "view/WorkingArea.hpp"
 #include "view/ItemsToolBar.hpp"
+#include "Application.hpp"
+
 #include <exception>
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -8,7 +10,7 @@
 #include <QMessageBox>
 
 PowerPoint::PowerPoint(QWidget *parent)
-    : QMainWindow{parent}, controller(new Controller)
+    : QMainWindow{parent}
 {
     setCentralWidget(new QWidget);
     itemsTb = new ItemsToolBar;
@@ -27,15 +29,15 @@ PowerPoint::PowerPoint(QWidget *parent)
     //connect(workingArea, &WorkingArea::clickedCoord,this, &PowerPoint::handlePoints);
     connect(itemsTb, &ItemsToolBar::actionTriggered, this, &PowerPoint::handleToolBarActions);
     connect(commandBar, &CommandBar::commandEntered, this, &PowerPoint::execute);
-    connect(controller,&Controller::outputLoged , commandLog, &CommandLog::logCommand);
+    connect(&Application::instance().getController(),&Controller::outputLoged , commandLog, &CommandLog::logCommand);
 }
 
 void PowerPoint::execute(std::istream& input)
 {
     try{
-        controller->run(input);
+        Application::instance().getController().run(input);
     }catch(const std::exception& e){
-        controller->logOutput(e.what());
+        Application::instance().getController().logOutput(e.what());
     }
 }
 

@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <any>
 
-class Visitor;
+class iSerializer;
 
 class Item
 { 
@@ -20,7 +20,7 @@ public:
     int getId();
     Options& getOptions();
     
-    virtual void accept(Visitor& vi) = 0;
+    virtual void accept(iSerializer& vi) = 0;
     virtual std::string type() = 0;
     virtual std::string info() = 0;
     virtual Item_tag tag() = 0;

@@ -11,11 +11,12 @@ class Document{
 public:
     Document() = default;
     
-    void addSlide();
+    size_t addSlide();
+    void deleteSlide(size_t idx);
     SlideVector& getSlides();
     std::shared_ptr<Slide> getSlide(int i);
 
-    void accept(Visitor& vi) ;
+    void accept(iSerializer& vi) ;
     
     void swap(Document& doc);
     void init();

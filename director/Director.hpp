@@ -1,42 +1,34 @@
 #ifndef DOCUMENT_DIRECTOR_HPP
 #define DOCUMENT_DIRECTOR_HPP
 
-#include "../document/document.hpp"
 #include <memory>
+#include <stack>
+#include "Action.hpp"
 
-class SerializerVisitor;
-class DeserializerVisitor;
+class TxtSerializer;
+class TxtDeserializer;
+class Document;
 
 class Director {
 public:
-    static Director& getInstance() {
-        static Director instance;
-        return instance;
-    }
+    void runAction(std::unique_ptr<Action> action);
+    //void changeItem(int itemId, const std::vector<std::string>& arguments);
+    //TODO change argumet type to Argument
+    void changeCurrentSlide(size_t n);
 
-    Document& getDocument();
-    
-    void addSlide();
-    void addItemToSlide(std::unique_ptr<Item> newItem);
-    void addItemToSlide(std::unique_ptr<Item> newItem, int slideId);
-    void removeItemFromSlide(int itemId);
-    void changeItem(int itemId, const std::vector<std::string>& arguments);
-    void changeCurrentSlide(int n);
-    
-    void saveDocument(SerializerVisitor& vi);
-    void loadDocument(DeserializerVisitor& vi);
+    void saveDocument(Document& doc ,TxtSerializer& se);
+    void loadDocument(Document& doc ,TxtDeserializer& de);
 
-    std::string displayCurrentSlide();
-    std::string displaySlideItem(int itemId);
-    std::string displayAllSlides();
+    //TODO deprecated
+    [[deprecated("rendering")]] std::string displayCurrentSlide();
+    [[deprecated("rendering")]] std::string displaySlideItem(int itemId);
+    [[deprecated("rendering")]] std::string displayAllSlides();
+
+    size_t& getCurrentSlideIndex();
 
 private:
-    Director();  
-    Director(const Director&) = delete;
-    Director& operator=(const Director&) = delete;
-private:
-    int currentSlide;
-    Document doc;
+    size_t currentSlideIdx = 0;
+    std::stack<std::unique_ptr<Action>> history;         
 };
 
 #endif  // DOCUMENT_DIRECTOR_HPP

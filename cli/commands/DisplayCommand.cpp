@@ -1,15 +1,15 @@
 #include "DisplayCommand.hpp"
-#include "../../director/Director.hpp"
+#include "../../Application.hpp"
 
 DisplayCommand::DisplayCommand()
 {
-    arguments_.initArgument("-id",0);
+    m_arguments.initArgument("-id",0);
 }
 
 std::string DisplayCommand::exec()
 {
-    auto id = arguments_.getArgument<int>("-id");
-    return Director::getInstance().displaySlideItem(id);
+    auto id = m_arguments.getArgument<int>("-id");
+    return Application::instance().getDirector().displaySlideItem(id);
 }
 
 std::unique_ptr<Command> DisplayCommand::clone() const

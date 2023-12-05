@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
-#include "CommandArgument.hpp"
+#include "../Argument.hpp"
 
 class Command{
 public:
@@ -13,7 +13,7 @@ public:
     virtual std::unique_ptr<Command> clone() const = 0;    
     virtual ~Command(){};
 public:
-    CommandArgument arguments_;    
+    Argument m_arguments;    
 };
 
 #endif //ABSTRACT_COMMAND_HPP

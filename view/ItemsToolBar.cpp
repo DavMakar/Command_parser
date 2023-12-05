@@ -2,8 +2,8 @@
 
 #include <QPixmap>
 
-ItemsToolBar::ItemsToolBar(QToolBar* parrent)
-    :QToolBar(parrent)
+ItemsToolBar::ItemsToolBar(QToolBar* parent)
+    :QToolBar(parent)
 {
     addAction(QPixmap(":/items/item_icons/rect.png"), "1");
     addAction(QPixmap(":/items/item_icons/circle.png"), "2");

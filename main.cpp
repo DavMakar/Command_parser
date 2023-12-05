@@ -1,11 +1,10 @@
-#include <QApplication>
+#include "Application.hpp"
 #include "PowerPoint.hpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("PowerPoint");
+    Application::instance(argc,argv);
     PowerPoint w;
     w.show();
-    return a.exec();
+    return Application::instance().exec();
 }

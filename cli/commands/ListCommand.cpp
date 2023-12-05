@@ -1,9 +1,9 @@
 #include "ListCommand.hpp"
-#include "../../director/Director.hpp"
+#include "../../Application.hpp"
 
 std::string ListCommand::exec()
 {
-    return Director::getInstance().displayAllSlides();
+    return Application::instance().getDirector().displayAllSlides();
 }
 
 std::unique_ptr<Command> ListCommand::clone() const

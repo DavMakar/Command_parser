@@ -1,5 +1,5 @@
 #include "Rect.hpp"
-#include "../serializer/Visitor.hpp"
+#include "../serializer/iSerializer.hpp"
 
 Rect::Rect()
 {
@@ -25,7 +25,7 @@ Item::Item_tag Rect::tag()
     return Item_tag::Rect;
 }
 
-void Rect::accept(Visitor &vi)
+void Rect::accept(iSerializer &vi)
 {
     auto rect_tag = tag();
     vi.visit(rect_tag);

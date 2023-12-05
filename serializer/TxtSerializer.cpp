@@ -1,52 +1,52 @@
 #include "TxtSerializer.hpp"
 #include <fstream>
 
-#include "../document/document.hpp"
+#include "../document/Document.hpp"
 #include "../document/Point.hpp"
 
-SerializerVisitor::SerializerVisitor(std::ofstream &file)
+TxtSerializer::TxtSerializer(std::ofstream &file)
     : file_(file)
 {
 }
 
-void SerializerVisitor::visit(std::string &str)
+void TxtSerializer::visit(std::string &str)
 {
     file_ << str << " ";
 }
 
-void SerializerVisitor::visit(size_t& count)
+void TxtSerializer::visit(size_t& count)
 {
     file_ << count << " " ;
 }
 
-void SerializerVisitor::visit(std::shared_ptr<Item> &i)
+void TxtSerializer::visit(std::shared_ptr<Item> &i)
 {
     file_ << std::endl;
     i->accept(*this);
 }
 
-void SerializerVisitor::visit(Point &p)
+void TxtSerializer::visit(Point &p)
 {
     p.accept(*this);
 }
 
-void SerializerVisitor::visit(Slide& s)
+void TxtSerializer::visit(Slide& s)
 {
     file_ << std::endl;
     s.accept(*this);
 }
 
-void SerializerVisitor::visit(Document &d)
+void TxtSerializer::visit(Document &d)
 {
     d.accept(*this);
 }
 
-void SerializerVisitor::visit(Item::Item_tag &s)
+void TxtSerializer::visit(Item::Item_tag &s)
 {
     file_ << static_cast<size_t>(s)  << " ";    
 }
 
-void SerializerVisitor::visit(double &d)
+void TxtSerializer::visit(double &d)
 {
     file_ << d << " ";
 }
