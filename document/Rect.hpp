@@ -14,11 +14,13 @@ public:
     std::string info() override;
     Item::Item_tag tag() override;
     void accept(iSerializer& vi) override;
+    Point getTopLeft();
+    Point getBottomRight();
     void setAttribute(std::string key , std::any value) override;
     std::unique_ptr<Item> clone() override;
 private:
-    Point p1;
-    Point p2;
+    Point m_topLeft;
+    Point m_bottomRight;
 };
 
 #endif //RECTANGLE_HPP

@@ -1,15 +1,18 @@
 #include "DisplayCommand.hpp"
 #include "../../Application.hpp"
 
+#include "../../rendering/Renderer.hpp"
+
 DisplayCommand::DisplayCommand()
 {
     m_arguments.initArgument("-id",0);
 }
 
-std::string DisplayCommand::exec()
+void DisplayCommand::exec()
 {
+    Renderer r;
     auto id = m_arguments.getArgument<int>("-id");
-    return Application::instance().getDirector().displaySlideItem(id);
+    r.display(Application::instance()->getDocument().getCurrentSlide()->getItemById(id));
 }
 
 std::unique_ptr<Command> DisplayCommand::clone() const

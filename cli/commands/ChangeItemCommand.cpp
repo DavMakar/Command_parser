@@ -6,11 +6,11 @@ ChangeItemCommand::ChangeItemCommand()
     m_arguments.initArgument("-id", 0);
 }
 
-std::string ChangeItemCommand::exec()
+void ChangeItemCommand::exec()
 {
-    auto id = std::stoi(*std::next(m_arguments.begin()));
-    Application::instance().getDirector().changeItem(id,std::move(m_arguments));
-    return "changed";
+    // auto id = std::stoi(*std::next(m_arguments.begin()));
+    // Application::instance().getDirector().changeItem(id,std::move(m_arguments));
+    // return "changed";
 }
 
 std::unique_ptr<Command> ChangeItemCommand::clone() const

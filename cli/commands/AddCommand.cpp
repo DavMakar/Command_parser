@@ -1,6 +1,6 @@
 #include "AddCommand.hpp"
 #include "../../Application.hpp"
-#include "../../director/AddItemAction.hpp"
+#include "../../director/actions/AddItemAction.hpp"
 #include <string>
 
 using namespace std::literals;
@@ -21,19 +21,19 @@ AddCommand::AddCommand()
     m_arguments.initArgument("-size", 0);
 }
 
-std::string AddCommand::exec()
+void AddCommand::exec()
 {
     auto newItem = register_.findItem(m_arguments.getArgument<std::string>("-name")); 
 
     for(auto& option : newItem->getOptions()){
         newItem->setAttribute(option , m_arguments[option]);
     }
-    auto currentSlideIdx = Application::instance().getDirector().getCurrentSlideIndex();
-    auto action = std::make_unique<AddItemAction>(Application::instance().getDocument().getSlide(currentSlideIdx) , newItem);
+    
+    auto action = std::make_unique<AddItemAction>(Application::instance()->getDocument().getCurrentSlide() , std::move(newItem));
 
-    Application::instance().getDirector().runAction(std::move(action));
+    Application::instance()->getDirector().runAction(std::move(action));
 
-    return "item added"; 
+    Application::instance()->getController().logOutput("item added"); 
 }
 
 

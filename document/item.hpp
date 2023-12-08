@@ -8,16 +8,15 @@
 #include <stdexcept>
 #include <any>
 
+
 class iSerializer;
 
 class Item
 { 
 using Options = std::unordered_set<std::string>;
 public:
-    enum class Item_tag : size_t { Rect};    
-    Item();
-    virtual ~Item();
-    int getId();
+    enum class Item_tag : size_t { Rect , Text , Circle};    
+    virtual ~Item() = default;
     Options& getOptions();
     
     virtual void accept(iSerializer& vi) = 0;
@@ -29,9 +28,6 @@ public:
 
 protected:
     Options itemOptions;
-private:
-    int id_;
-    static int counter;
 };
 
 

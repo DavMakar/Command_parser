@@ -1,12 +1,12 @@
 #ifndef COMMAND_CREATOR_HPP
 #define COMMAND_CREATOR_HPP
 
-#include "commands/command.hpp"
+#include "commands/Command.hpp"
 #include "commandRegistry.hpp"
 
 class CommandCreator{
 public:
-    std::unique_ptr<Command> createCommand(std::istream& stream);
+    std::unique_ptr<Command> CreateSlideCommand(std::istream& stream);
     void parseArguments(std::istream& stream , Command& command);
 private:
     CommandRegistry commandRegistry_;

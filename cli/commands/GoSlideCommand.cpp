@@ -1,15 +1,19 @@
 #include "GoSlideCommand.hpp"
 #include "../../Application.hpp"
+#include "../../director/actions/GoSlideAction.hpp"
+
 GoSlideCommand::GoSlideCommand()
 {
     m_arguments.initArgument("-id", 0);
 }
 
-std::string GoSlideCommand::exec()
+void GoSlideCommand::exec()
 {
     auto id = m_arguments.getArgument<int>("-id");
-    Application::instance().getDirector().changeCurrentSlide(id);    
-    return "slide changed"; //TODO return from changeCurrentSlide
+    auto action = std::make_unique<GoSlideAction>(Application::instance()->getDocument(), id);
+    Application::instance()->getDirector().runAction(std::move(action));
+
+    Application::instance()->getController().logOutput("draw slide");
 }
 
 std::unique_ptr<Command> GoSlideCommand::clone() const

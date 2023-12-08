@@ -29,15 +29,15 @@ PowerPoint::PowerPoint(QWidget *parent)
     //connect(workingArea, &WorkingArea::clickedCoord,this, &PowerPoint::handlePoints);
     connect(itemsTb, &ItemsToolBar::actionTriggered, this, &PowerPoint::handleToolBarActions);
     connect(commandBar, &CommandBar::commandEntered, this, &PowerPoint::execute);
-    connect(&Application::instance().getController(),&Controller::outputLoged , commandLog, &CommandLog::logCommand);
+    connect(&Application::instance()->getController(),&Controller::outputLoged , commandLog, &CommandLog::logCommand);
 }
 
 void PowerPoint::execute(std::istream& input)
 {
     try{
-        Application::instance().getController().run(input);
+        Application::instance()->getController().run(input);
     }catch(const std::exception& e){
-        Application::instance().getController().logOutput(e.what());
+        Application::instance()->getController().logOutput(e.what());
     }
 }
 

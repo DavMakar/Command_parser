@@ -12,7 +12,10 @@ public:
     Document() = default;
     
     size_t addSlide();
-    void deleteSlide(size_t idx);
+    void deleteSlide(size_t id);
+    std::shared_ptr<Slide> getCurrentSlide();
+    void changeCurrentSlide(size_t id);
+
     SlideVector& getSlides();
     std::shared_ptr<Slide> getSlide(int i);
 
@@ -32,6 +35,7 @@ public:
 
 private:
     SlideVector slides;
+    std::shared_ptr<Slide> currentSlide;
     size_t slidesCount = 0; 
 };
 

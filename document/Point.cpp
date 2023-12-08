@@ -2,29 +2,39 @@
 #include "../serializer/iSerializer.hpp"
 
 Point::Point(double x, double y)
-    :x_(x),y_(y)
+    :m_x(x),m_y(y)
 {
 }
 
 void Point::setX(double x)
 {
-    x_ = x;
+    m_x = x;
 }
 
 void Point::setY(double y)
 {
-    y_ = y;
+    m_y = y;
+}
+
+double Point::x()
+{
+    return m_x;
+}
+
+double Point::y()
+{
+    return m_y;
 }
 
 void Point::accept(iSerializer &vi)
 {
-    vi.visit(x_);
-    vi.visit(y_);
+    vi.visit(m_x);
+    vi.visit(m_y);
 }
 
 std::string Point::info()
 {
-    std::string info = type() + " " + std::to_string(x_) + " " + std::to_string(y_);
+    std::string info = type() + " " + std::to_string(m_x) + " " + std::to_string(m_y);
     return info;
 }
 

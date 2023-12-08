@@ -1,12 +1,12 @@
 #ifndef REMOVE_COMMAND_HPP
 #define REMOVE_COMMAND_HPP
 
-#include "command.hpp"
+#include "Command.hpp"
 
 class RemoveCommand:public Command{
 public:
     RemoveCommand();
-    std::string exec() override;
+    void exec() override;
     std::unique_ptr<Command> clone() const override;
 };
 

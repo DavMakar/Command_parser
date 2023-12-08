@@ -8,18 +8,24 @@
 
 class Application : public QApplication{
 public: 
-    static Application& instance(int argc = 0 , char** argv = nullptr)
+    static Application* instance()
     {
-        static Application app(argc,argv);
-        return app;
+        return dynamic_cast<Application*>(QApplication::instance());
     }
-    
+
+    Application(int argc, char** argv)
+    :QApplication(argc,argv){
+        m_document.init();
+        setApplicationName("PowerPoint");
+    }
+
     int exec(){
         return QApplication::exec();   
     }
     void quit(){
         QApplication::quit();
     }
+
     Document& getDocument(){
         return m_document;
     }
@@ -30,12 +36,6 @@ public:
 
     Controller& getController(){
         return m_controller;
-    }
-
-private:
-    Application(int argc, char** argv)
-    :QApplication(argc,argv){
-        setApplicationName("PowerPoint");
     }
 
 private:

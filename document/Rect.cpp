@@ -1,6 +1,7 @@
 #include "Rect.hpp"
 #include "../serializer/iSerializer.hpp"
 
+
 Rect::Rect()
 {
     itemOptions.insert("-x1");
@@ -16,7 +17,7 @@ std::string Rect::type()
 
 std::string Rect::info()
 {
-    std::string objInfo = type() + " " + p1.info() + " " + p2.info();
+    std::string objInfo = type() + " " + m_topLeft.info() + " " + m_bottomRight.info();
     return objInfo;
 }
 
@@ -29,23 +30,33 @@ void Rect::accept(iSerializer &vi)
 {
     auto rect_tag = tag();
     vi.visit(rect_tag);
-    vi.visit(p1);
-    vi.visit(p2);
+    vi.visit(m_topLeft);
+    vi.visit(m_bottomRight);
+}
+
+Point Rect::getTopLeft()
+{
+    return m_topLeft;
+}
+
+Point Rect::getBottomRight()
+{
+    return m_bottomRight;
 }
 
 void Rect::setAttribute(std::string key, std::any value)
 {
     if(key == "-x1"){
-        p1.setX(std::any_cast<double>(value));
+        m_topLeft.setX(std::any_cast<double>(value));
     }
     if(key == "-y1"){
-        p1.setY(std::any_cast<double>(value));
+        m_topLeft.setY(std::any_cast<double>(value));
     }
     if(key == "-x2"){
-        p2.setX(std::any_cast<double>(value));
+        m_bottomRight.setX(std::any_cast<double>(value));
     }
     if(key == "-y2"){
-        p2.setY(std::any_cast<double>(value));
+        m_bottomRight.setY(std::any_cast<double>(value));
     }
 }
 

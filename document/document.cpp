@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
+#include <cassert>
 
 void Document::init()
 {
@@ -11,14 +12,31 @@ void Document::init()
 
 size_t Document::addSlide()
 {
-    slides.push_back(std::make_shared<Slide>());
+    currentSlide = std::make_shared<Slide>();
+    slides.push_back(currentSlide);
     return ++slidesCount;
 }
 
 void Document::deleteSlide(size_t idx)
 {
-    slides.erase(std::next(begin(),idx));
+    assert(idx > slidesCount);
+    auto it = slides.erase(std::next(begin(),idx));
+    if(idx < slidesCount){
+        currentSlide = *it;
+    }else{
+        currentSlide = *std::prev(it);
+    }
     --slidesCount;
+}
+
+std::shared_ptr<Slide> Document::getCurrentSlide()
+{
+    return currentSlide;
+}
+
+void Document::changeCurrentSlide(size_t id)
+{
+    currentSlide = slides[id]; 
 }
 
 SlideVector &Document::getSlides()

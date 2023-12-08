@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-std::unique_ptr<Command> CommandCreator::createCommand(std::istream& stream)
+std::unique_ptr<Command> CommandCreator::CreateSlideCommand(std::istream& stream)
 {
     std::string commandName;
     stream >> commandName;

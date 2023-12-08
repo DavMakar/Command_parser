@@ -9,14 +9,15 @@ LoadCommand::LoadCommand()
     m_arguments.initArgument("-file", "new.txt");
 }
 
-std::string LoadCommand::exec()
+void LoadCommand::exec()
 {
     auto filename = m_arguments.getArgument<std::string>("-file");
     std::ifstream file(filename);
     TxtDeserializer deserializer(file);
     
-    Application::instance().getDirector().loadDocument(deserializer);
-    return "loaded";
+    Application::instance()->getDirector().loadDocument(Application::instance()->getDocument(),deserializer);
+    
+    Application::instance()->getController().logOutput("loaded");
 }
 
 std::unique_ptr<Command> LoadCommand::clone() const

@@ -11,13 +11,15 @@ public:
     Point(double x, double y);
     void setX(double x);
     void setY(double y);
+    double x();
+    double y();
     void accept(iSerializer& vi);
 
     std::string info(); 
     std::string type();
 private:
-    double x_;
-    double y_;
+    double m_x;
+    double m_y;
 };
 
 #endif //POINT_HPP

@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <memory>
 
-#include "commands/command.hpp"
+#include "commands/Command.hpp"
 
 class CommandRegistry
 {

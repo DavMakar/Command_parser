@@ -1,4 +1,5 @@
 #include "Director.hpp"
+#include "actions/Action.hpp"
 #include "../document/Document.hpp" //TODO 
 #include "../serializer/TxtSerializer.hpp"
 #include "../serializer/TxtDeserializer.hpp"
@@ -10,7 +11,17 @@ void Director::runAction(std::unique_ptr<Action> action)
     }catch(const std::exception& e){
         throw std::runtime_error("Action incomplite");
     }
-    history.push(action);
+    m_history.push(std::move(action));
+}
+
+void Director::undoAction()
+{
+    m_history.undo();
+}
+
+void Director::redoAction()
+{
+    m_history.redo();
 }
 
 // void Director::changeItem(int itemId, const std::vector<std::string>& arguments)
@@ -20,11 +31,6 @@ void Director::runAction(std::unique_ptr<Action> action)
 //     //     item->setAttribute(*it,*std::next(it));
 //     // }    
 // }
-
-void Director::changeCurrentSlide(size_t n)
-{
-    currentSlideIdx = n;
-}
 
 void Director::saveDocument(Document& doc,TxtSerializer& se)
 {
@@ -37,33 +43,3 @@ void Director::loadDocument(Document& doc,TxtDeserializer& de)
     de.visit(newDoc);
     std::swap(doc,newDoc);
 }
-
-std::string Director::displayAllSlides()
-{
-    std::string result;
-    // int slideIdx{1};
-    // for(auto& slide:doc.getSlides()){
-    //     result+= "slide " + std::to_string(slideIdx) + "\n";    
-    //     for(const auto& [id,item]: *slide){
-    //         result += std::to_string(id) + " " + item->type() + "\n";
-    //     }
-    //     ++slideIdx;
-    // }
-    return result;
-}
-
-size_t &Director::getCurrentSlideIndex()
-{
-    return currentSlideIdx;
-}
-
-std::string Director::displayCurrentSlide()
-{
-    //return doc.getSlide(currentSlide)->getAllItems();
-}
-
-std::string Director::displaySlideItem(int itemId)
-{
-//    return doc.getSlide(currentSlide)->getItemById(itemId)->info();
-}
-

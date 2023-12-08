@@ -1,8 +1,8 @@
 #include "AddItemAction.hpp"
-#include "../document/slide.hpp"
+#include "../../document/slide.hpp"
 
-AddItemAction::AddItemAction(std::shared_ptr<Slide> slide, std::shared_ptr<Item> item)
-    :m_slide(slide), m_item(item)
+AddItemAction::AddItemAction(std::shared_ptr<Slide> slide, std::unique_ptr<Item> item)
+    :m_slide(slide), m_item(std::move(item))
 {
 }
 

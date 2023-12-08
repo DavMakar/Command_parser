@@ -8,7 +8,7 @@ class Slide;
 
 class AddItemAction : public Action{
 public:
-    AddItemAction(std::shared_ptr<Slide> slide, std::shared_ptr<Item> item);  
+    AddItemAction(std::shared_ptr<Slide> slide, std::unique_ptr<Item> item);  
     void execute() override;
     void unexecute() override;
 private:

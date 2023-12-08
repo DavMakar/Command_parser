@@ -1,11 +1,11 @@
 #ifndef QUIT_COMMAND_HPP
 #define QUIT_COMMAND_HPP
 
-#include "command.hpp"
+#include "Command.hpp"
 
 class QuitCommand:public Command{
 public:
-    std::string exec() override;
+    void exec() override;
     std::unique_ptr<Command> clone() const override;
 };
 

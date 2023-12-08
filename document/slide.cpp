@@ -1,5 +1,6 @@
 #include "slide.hpp"
 #include "../serializer/iSerializer.hpp"
+#include <QDebug>
 
 Slide::Slide()
 {
@@ -7,6 +8,7 @@ Slide::Slide()
 
 size_t Slide::addItem(std::shared_ptr<Item> new_item)
 {
+    qDebug()<< QString::number(itemId);
     items_[itemId] = new_item;
     ++itemCount;
     return itemId++;

@@ -22,15 +22,22 @@ SOURCES += \
     cli/commands/AddCommand.cpp \
 #    cli/commands/ChangeItemCommand.cpp \
     cli/commands/GoSlideCommand.cpp \
-    cli/commands/CreateCommand.cpp \
+    cli/commands/CreateSlideCommand.cpp \
     cli/commands/DisplayCommand.cpp \
+    cli/commands/DrawCommand.cpp \
     cli/commands/ListCommand.cpp \
     cli/commands/LoadCommand.cpp \
     cli/commands/QuitCommand.cpp \
     cli/commands/RemoveCommand.cpp \
     cli/commands/SaveCommand.cpp \
+    cli/commands/UndoCommand.cpp \
+    cli/commands/RedoCommand.cpp \
     document/itemRegistry.cpp \
-    director/director.cpp \ 
+    director/Director.cpp \
+    director/ActionHistory.cpp \
+    director/actions/AddItemAction.cpp \
+    director/actions/GoSlideAction.cpp \
+    director/actions/CreateSlideAction.cpp \
     document/document.cpp \ 
     document/Slide.cpp \
     document/item.cpp \ 
@@ -38,7 +45,10 @@ SOURCES += \
     document/Point.cpp \
     serializer/iSerializer.cpp \
     serializer/TxtSerializer.cpp \
-    serializer/TxtDeserializer.cpp \ 
+    serializer/TxtDeserializer.cpp \
+    rendering/Renderer.cpp \
+    rendering/ShapeBase.cpp \
+    rendering/ShapeRect.cpp \ 
 
 
 HEADERS += \
@@ -51,20 +61,28 @@ HEADERS += \
     cli/controller.hpp \
     cli/commandCreator.hpp \
     cli/commandRegistry.cpp \ 
-    cli/commands/command.hpp \
+    cli/commands/Command.hpp \
     cli/Argument.hpp \
     cli/commands/AddCommand.hpp \
 #    cli/commands/ChangeItemCommand.hpp \
     cli/commands/GoSlideCommand.hpp \
-    cli/commands/CreateCommand.hpp \
+    cli/commands/CreateSlideCommand.hpp \
     cli/commands/DisplayCommand.hpp \
+    cli/commands/DrawCommand.hpp \
     cli/commands/ListCommand.hpp \
     cli/commands/LoadCommand.hpp \
     cli/commands/QuitCommand.hpp \
     cli/commands/RemoveCommand.hpp \
     cli/commands/SaveCommand.hpp \
+    cli/commands/UndoCommand.hpp \
+    cli/commands/RedoCommand.hpp \
+    director/Director.hpp \
+    director/ActionHistory.hpp \
+    director/actions/Action.hpp \
+    director/actions/AddItemAction.hpp \
+    director/actions/GoSlideAction.hpp \
+    director/actions/CreateSlideAction.hpp \
     document/itemRegistry.hpp \
-    director/director.hpp \
     document/Document.hpp \ 
     document/Slide.hpp \
     document/item.hpp \ 
@@ -73,6 +91,12 @@ HEADERS += \
     serializer/iSerializer.hpp \
     serializer/TxtSerializer.hpp \
     serializer/TxtDeserializer.hpp \ 
+    rendering/Renderer.hpp \
+    rendering/ITextualDisplayable.hpp \ 
+    rendering/IVisualDisplayable.hpp \ 
+    rendering/IShape.hpp \
+    rendering/ShapeBase.hpp \
+    rendering/ShapeRect.hpp \ 
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
