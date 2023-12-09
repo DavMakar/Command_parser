@@ -16,7 +16,7 @@ public:
     void accept(iSerializer& vi) override;
     Point getTopLeft();
     Point getBottomRight();
-    void setAttribute(std::string key , std::any value) override;
+    void setAttribute(std::string key , std::variant<std::string,double,int> value) override;
     std::unique_ptr<Item> clone() override;
 private:
     Point m_topLeft;

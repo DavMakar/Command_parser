@@ -6,8 +6,7 @@
 #include <unordered_set>
 #include <memory>
 #include <stdexcept>
-#include <any>
-
+#include <variant>
 
 class iSerializer;
 
@@ -23,7 +22,7 @@ public:
     virtual std::string type() = 0;
     virtual std::string info() = 0;
     virtual Item_tag tag() = 0;
-    virtual void setAttribute(std::string key , std::any value) = 0;
+    virtual void setAttribute(std::string key , std::variant<std::string,double,int> value) = 0;
     virtual std::unique_ptr<Item> clone() = 0;  
 
 protected:

@@ -44,19 +44,19 @@ Point Rect::getBottomRight()
     return m_bottomRight;
 }
 
-void Rect::setAttribute(std::string key, std::any value)
+void Rect::setAttribute(std::string key, std::variant<std::string,double,int> value)
 {
     if(key == "-x1"){
-        m_topLeft.setX(std::any_cast<double>(value));
+        m_topLeft.setX(std::get<double>(value));
     }
     if(key == "-y1"){
-        m_topLeft.setY(std::any_cast<double>(value));
+        m_topLeft.setY(std::get<double>(value));
     }
     if(key == "-x2"){
-        m_bottomRight.setX(std::any_cast<double>(value));
+        m_bottomRight.setX(std::get<double>(value));
     }
     if(key == "-y2"){
-        m_bottomRight.setY(std::any_cast<double>(value));
+        m_bottomRight.setY(std::get<double>(value));
     }
 }
 

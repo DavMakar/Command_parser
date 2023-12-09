@@ -14,25 +14,20 @@ std::unique_ptr<Command> CommandCreator::CreateSlideCommand(std::istream& stream
 void CommandCreator::parseArguments(std::istream &stream, Command& command)
 {
     std::string key;
-    while(stream >> key){
-        if(key == "-name"){
-            std::string itemType;
-            stream >> itemType;
-            command.m_arguments.setArgument(key,itemType);
-        }
-        else if(key == "-x1" || key == "-x2" || key == "-y1" || key == "-y2" || 
-           key == "-x"  || key == "-y" || key == "-r"){ 
-            double value;
-            stream >> value;
-            command.m_arguments.setArgument(key,value);
-        }
-        else if(key == "-size" || key == "-id"){ 
-            int value;
-            stream >> value;       
-            command.m_arguments.setArgument(key,value);
-        }
-        else{
-            throw std::runtime_error("invalid key " + key);
+    while (stream >> key)
+    {
+        auto argumentType = command.m_arguments.getArgumentType(key);
+        switch (argumentType)
+        {
+        case ArgumentType::INT:
+            setAs<int>(stream, key ,command);
+            break;
+        case ArgumentType::DOUBLE:
+            setAs<double>(stream,key,command);
+            break;
+        case ArgumentType::STRING:
+            setAs<std::string>(stream,key,command);
+            break;
         }
     }
 }

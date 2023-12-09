@@ -5,6 +5,7 @@
 #include "director/Director.hpp"
 #include "document/Document.hpp"
 #include "cli/controller.hpp"
+#include "rendering/Renderer.hpp"
 
 class Application : public QApplication{
 public: 
@@ -37,11 +38,15 @@ public:
     Controller& getController(){
         return m_controller;
     }
+    Renderer& getRenderer(){
+        return m_renderer;
+    }
 
 private:
     Director m_director;
     Document m_document;
     Controller m_controller;
+    Renderer m_renderer;
 };
 
 #endif // APPLICATION_HPP

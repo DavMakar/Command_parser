@@ -9,6 +9,14 @@ public:
     std::unique_ptr<Command> CreateSlideCommand(std::istream& stream);
     void parseArguments(std::istream& stream , Command& command);
 private:
+    template<typename T>
+    void setAs(std::istream& stream, std::string key , Command& command){
+        T value;
+        stream >> value;
+        command.m_arguments.setArgument(key, value);
+    }
+
+private:
     CommandRegistry commandRegistry_;
 };
 

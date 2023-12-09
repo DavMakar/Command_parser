@@ -48,7 +48,8 @@ SOURCES += \
     serializer/TxtDeserializer.cpp \
     rendering/Renderer.cpp \
     rendering/ShapeBase.cpp \
-    rendering/ShapeRect.cpp \ 
+    rendering/ShapeRect.cpp \
+    rendering/ShapeLibrary.cpp \
 
 
 HEADERS += \
@@ -96,7 +97,8 @@ HEADERS += \
     rendering/IVisualDisplayable.hpp \ 
     rendering/IShape.hpp \
     rendering/ShapeBase.hpp \
-    rendering/ShapeRect.hpp \ 
+    rendering/ShapeRect.hpp \
+    rendering/ShapeLibrary.hpp \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
