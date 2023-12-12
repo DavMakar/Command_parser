@@ -12,7 +12,7 @@ void ListCommand::exec()
         }
         ++slideIdx;
     }
-    Application::instance()->getController().logOutput(result);
+    Application::instance()->getUiController().logOutput(result);
 }
 
 std::unique_ptr<Command> ListCommand::clone() const

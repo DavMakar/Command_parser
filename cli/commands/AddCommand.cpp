@@ -33,7 +33,7 @@ void AddCommand::exec()
 
     Application::instance()->getDirector().runAction(std::move(action));
 
-    Application::instance()->getController().logOutput("item added"); 
+    Application::instance()->getUiController().logOutput("item added"); 
 }
 
 

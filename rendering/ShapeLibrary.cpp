@@ -4,7 +4,7 @@
 
 ShapeLibrary::ShapeLibrary()
 {
-    m_lib[Item::Item_tag::Rect] = std::make_unique<ShapeRect>();   
+    m_lib[Item::Item_tag::RECT] = std::make_unique<ShapeRect>();
   //m_lib[Item::Item_tag::Text] = std::make_unique<ShapeText>();   
 }
 

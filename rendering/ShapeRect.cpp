@@ -8,9 +8,6 @@
 void ShapeRect::draw(QPainter *painter, std::shared_ptr<Item> item)
 {
     auto rect = std::dynamic_pointer_cast<Rect>(item);
-    QPointF topLeft = QPointF(rect->getTopLeft().x(),rect->getTopLeft().y());
-    QPointF bottomRight = QPointF(rect->getBottomRight().x(),rect->getBottomRight().y());
-    QRectF qrect(topLeft,bottomRight);
-
+    QRectF qrect(rect->getTopLeft(),rect->getBottomRight());
     painter->drawRect(qrect);
 }

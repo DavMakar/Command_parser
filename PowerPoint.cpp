@@ -1,6 +1,7 @@
 #include "PowerPoint.hpp"
-#include "view/WorkingArea.hpp"
-#include "view/ItemsToolBar.hpp"
+#include "gui/view/WorkingArea.hpp"
+#include "gui/view/ItemsToolBar.hpp"
+#include "gui/view/CommandWidget.hpp"
 #include "Application.hpp"
 
 #include <exception>
@@ -17,48 +18,38 @@ PowerPoint::PowerPoint(QWidget *parent)
     addToolBar(Qt::TopToolBarArea, itemsTb);
 
     workingArea = new WorkingArea;
-    CommandBar* commandBar = new CommandBar;
-    CommandLog* commandLog = new CommandLog;
+    commandWidget = new CommandWidget;
 
     QVBoxLayout* vLayout = new QVBoxLayout;
     vLayout->addWidget(workingArea);
-    vLayout->addWidget(commandBar);
-    vLayout->addWidget(commandLog);
+    vLayout->addWidget(commandWidget);
     centralWidget()->setLayout(vLayout);
 
     //connect(workingArea, &WorkingArea::clickedCoord,this, &PowerPoint::handlePoints);
-    connect(itemsTb, &ItemsToolBar::actionTriggered, this, &PowerPoint::handleToolBarActions);
-    connect(commandBar, &CommandBar::commandEntered, this, &PowerPoint::execute);
-    connect(&Application::instance()->getController(),&Controller::outputLoged , commandLog, &CommandLog::logCommand);
+    //connect(itemsTb, &ItemsToolBar::actionTriggered, this, &PowerPoint::handleToolBarActions);
+    connect(commandWidget, &CommandWidget::commandEntered, &Application::instance()->getUiController(), &UiController::runCommand);
+    connect(&Application::instance()->getUiController(), &UiController::logOutputSignal ,commandWidget, &CommandWidget::logCommand);
 }
 
-void PowerPoint::execute(std::istream& input)
-{
-    try{
-        Application::instance()->getController().run(input);
-    }catch(const std::exception& e){
-        Application::instance()->getController().logOutput(e.what());
-    }
-}
 
-void PowerPoint::handleToolBarActions(QAction *action)
-{
-        command.append("add -name ");
-        if(action->text() == "1"){
-            command.append("Rect");
-            workingArea->setClickCount(2);
-        }
-        else if(action->text() == "2"){
-            command.append("Circle");
-            workingArea->setClickCount(2);
-        }
-        else if(action->text() == "3"){
-            command.append("Line");
-            workingArea->setClickCount(2);
-        }
-        else if(action->text() == "4"){
-            command.append("Text");
-            workingArea->setClickCount(1);
-        }
-}
+// void PowerPoint::handleToolBarActions(QAction *action)
+// {
+//         command.append("add -name ");
+//         if(action->text() == "1"){
+//             command.append("Rect");
+//             workingArea->setClickCount(2);
+//         }
+//         else if(action->text() == "2"){
+//             command.append("Circle");
+//             workingArea->setClickCount(2);
+//         }
+//         else if(action->text() == "3"){
+//             command.append("Line");
+//             workingArea->setClickCount(2);
+//         }
+//         else if(action->text() == "4"){
+//             command.append("Text");
+//             workingArea->setClickCount(1);
+//         }
+// }
 

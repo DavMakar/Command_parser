@@ -5,6 +5,7 @@
 #include "director/Director.hpp"
 #include "document/Document.hpp"
 #include "cli/controller.hpp"
+#include "gui/UiController.hpp"
 #include "rendering/Renderer.hpp"
 
 class Application : public QApplication{
@@ -42,10 +43,15 @@ public:
         return m_renderer;
     }
 
+    UiController& getUiController(){
+        return m_uiController;
+    }
+
 private:
     Director m_director;
     Document m_document;
     Controller m_controller;
+    UiController m_uiController;
     Renderer m_renderer;
 };
 

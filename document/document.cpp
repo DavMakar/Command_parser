@@ -39,16 +39,6 @@ void Document::changeCurrentSlide(size_t id)
     currentSlide = slides[id]; 
 }
 
-SlideVector &Document::getSlides()
-{
-    return slides;
-}
-
-std::shared_ptr<Slide> Document::getSlide(int i)
-{
-    return slides[i];
-}
-
 void Document::accept(iSerializer &vi)
 {
     std::string type("Document");
@@ -66,4 +56,8 @@ void Document::accept(iSerializer &vi)
 void Document::swap(Document &doc)
 {
     std::swap(this->slides , doc.slides);
+}
+
+size_t Document::getSlidesCount(){
+    return slidesCount;
 }

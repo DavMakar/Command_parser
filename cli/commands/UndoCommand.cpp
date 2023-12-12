@@ -4,7 +4,7 @@
 void UndoCommand::exec()
 {
     Application::instance()->getDirector().undoAction();
-    Application::instance()->getController().logOutput("undo");
+    Application::instance()->getUiController().logOutput("undo");
 }
 
 std::unique_ptr<Command> UndoCommand::clone() const

@@ -1,19 +1,12 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include <QObject>
 #include "commandCreator.hpp"
-#include <sstream>
+#include <istream>
 
-class Controller: public QObject{
-    Q_OBJECT
+class Controller{
 public:     
     void run(std::istream& input);
-    void logOutput(const std::string& output);
-
-signals:
-    void outputLoged(const std::string& output);
- 
 private:
     CommandCreator creator;
 };

@@ -2,12 +2,11 @@
 #define POWERPOINT_HPP
 
 #include <QMainWindow>
-#include "view/CommandLog.hpp"
-#include "view/CommandBar.hpp"
 
 class QAction;
 class ItemsToolBar;
 class WorkingArea;
+class CommandWidget;
 
 class PowerPoint : public QMainWindow
 {
@@ -15,14 +14,14 @@ class PowerPoint : public QMainWindow
 public:
     explicit PowerPoint(QWidget *parent = nullptr);
 
-private slots:
-    void execute(std::istream& input);
-    void handleToolBarActions(QAction* action);
+//private slots:
+    //void handleToolBarActions(QAction* action);
     //void handlePoints(QPoint p);
 private:
     QString command;
     ItemsToolBar* itemsTb;
     WorkingArea* workingArea;
+    CommandWidget* commandWidget;
 };
 
 #endif // POWERPOINT_HPP

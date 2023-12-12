@@ -4,7 +4,7 @@
 
 void ShapeBase::print(std::shared_ptr<Item> item)
 {
-    Application::instance()->getController().logOutput(item->info());
+    Application::instance()->getUiController().logOutput(item->info());
 }
 
 std::unique_ptr<IShape> ShapeBase::clone()

@@ -14,7 +14,7 @@ class Item
 { 
 using Options = std::unordered_set<std::string>;
 public:
-    enum class Item_tag : size_t { Rect , Text , Circle};    
+    enum class Item_tag : int { RECT , TEXT , CIRCLE};    
     virtual ~Item() = default;
     Options& getOptions();
     

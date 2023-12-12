@@ -11,10 +11,11 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     PowerPoint.cpp \
-    view/ItemsToolBar.cpp \
-    view/CommandBar.cpp \
-    view/CommandLog.cpp \
-    view/WorkingArea.cpp \
+    gui/UiController.cpp \
+    gui/view/ItemsToolBar.cpp \
+    gui/view/CommandWidget.cpp \
+    gui/view/CommandLog.cpp \
+    gui/view/WorkingArea.cpp \
     cli/controller.cpp \
     cli/commandCreator.cpp \
     cli/commandRegistry.cpp \ 
@@ -38,7 +39,7 @@ SOURCES += \
     director/actions/AddItemAction.cpp \
     director/actions/GoSlideAction.cpp \
     director/actions/CreateSlideAction.cpp \
-    document/document.cpp \ 
+    document/Document.cpp \ 
     document/Slide.cpp \
     document/item.cpp \ 
     document/Rect.cpp \ 
@@ -55,10 +56,11 @@ SOURCES += \
 HEADERS += \
     Application.hpp \
     PowerPoint.hpp \
-    view/ItemsToolBar.hpp \
-    view/CommandBar.hpp \
-    view/CommandLog.hpp \
-    view/WorkingArea.hpp \
+    gui/UiController.hpp \
+    gui/view/ItemsToolBar.hpp \
+    gui/view/CommandWidget.hpp \
+    gui/view/CommandLog.hpp \
+    gui/view/WorkingArea.hpp \
     cli/controller.hpp \
     cli/commandCreator.hpp \
     cli/commandRegistry.cpp \ 

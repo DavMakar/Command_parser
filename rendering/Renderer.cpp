@@ -13,12 +13,13 @@ void Renderer::draw(std::shared_ptr<Slide> slide, QPaintDevice* paintDevice)
     //auto item = slide->getTopItem();
 
     //for test
-    auto item = std::make_shared<Rect>();
-    std::shared_ptr<IShape> shape = m_shapeLibrary.getShape(item->tag());
-
-    auto ivd = std::dynamic_pointer_cast<IVisualDisplayable>(shape);
-    assert((ivd != nullptr));
-    ivd->draw(&painter,item);
+    //auto item = std::make_shared<Rect>();
+    for(auto [id,item] : *slide){
+        std::shared_ptr<IShape> shape = m_shapeLibrary.getShape(item->tag());
+        auto ivd = std::dynamic_pointer_cast<IVisualDisplayable>(shape);
+        assert(ivd);
+        ivd->draw(&painter,item);
+    }
     painter.end();
 }
 

@@ -10,8 +10,3 @@ CommandLog::CommandLog(QWidget *parrent): QTextEdit(parrent)
     pal.setColor(QPalette::Text, Qt::yellow);
     this->setPalette(pal);
 }
-
-void CommandLog::logCommand(const std::string& command)
-{
-    this->append(QString::fromStdString(command));
-}

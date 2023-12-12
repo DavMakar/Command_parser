@@ -15,9 +15,7 @@ public:
     void deleteSlide(size_t id);
     std::shared_ptr<Slide> getCurrentSlide();
     void changeCurrentSlide(size_t id);
-
-    SlideVector& getSlides();
-    std::shared_ptr<Slide> getSlide(int i);
+    size_t getSlidesCount();
 
     void accept(iSerializer& vi) ;
     

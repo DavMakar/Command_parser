@@ -23,7 +23,7 @@ std::string Rect::info()
 
 Item::Item_tag Rect::tag()
 {
-    return Item_tag::Rect;
+    return Item_tag::RECT;
 }
 
 void Rect::accept(iSerializer &vi)

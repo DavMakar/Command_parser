@@ -11,7 +11,7 @@ void CreateSlideCommand::exec()
     auto action = std::make_unique<CreateSlideAction>(Application::instance()->getDocument());
     Application::instance()->getDirector().runAction(std::move(action));
     
-    Application::instance()->getController().logOutput("added slide");
+    Application::instance()->getUiController().logOutput("added slide");
 }
 
 std::unique_ptr<Command> CreateSlideCommand::clone() const

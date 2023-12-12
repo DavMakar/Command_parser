@@ -17,7 +17,7 @@ void LoadCommand::exec()
     
     Application::instance()->getDirector().loadDocument(Application::instance()->getDocument(),deserializer);
     
-    Application::instance()->getController().logOutput("loaded");
+    Application::instance()->getUiController().logOutput("loaded");
 }
 
 std::unique_ptr<Command> LoadCommand::clone() const

@@ -4,7 +4,7 @@
 void RedoCommand::exec()
 {
     Application::instance()->getDirector().redoAction();
-    Application::instance()->getController().logOutput("redo");
+    Application::instance()->getUiController().logOutput("redo");
 }
 
 std::unique_ptr<Command> RedoCommand::clone() const

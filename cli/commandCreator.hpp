@@ -6,7 +6,7 @@
 
 class CommandCreator{
 public:
-    std::unique_ptr<Command> CreateSlideCommand(std::istream& stream);
+    std::unique_ptr<Command> createCommand(std::istream& stream);
     void parseArguments(std::istream& stream , Command& command);
 private:
     template<typename T>

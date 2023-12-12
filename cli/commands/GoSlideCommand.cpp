@@ -13,7 +13,7 @@ void GoSlideCommand::exec()
     auto action = std::make_unique<GoSlideAction>(Application::instance()->getDocument(), id);
     Application::instance()->getDirector().runAction(std::move(action));
 
-    Application::instance()->getController().logOutput("draw slide");
+    Application::instance()->getUiController().logOutput("draw slide");
 }
 
 std::unique_ptr<Command> GoSlideCommand::clone() const
