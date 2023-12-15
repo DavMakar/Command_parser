@@ -11,7 +11,7 @@ void DrawCommand::exec()
     QImage img(1336,768, QImage::Format_ARGB32_Premultiplied);
     Application::instance()->getRenderer().draw(currentSlide,&img);
     img.save(&filename,"PNG");
-    Application::instance()->getUiController().logOutput("draw slide");   
+    Application::instance()->getUiController().logOutput("draw slide");  
 }
 
 std::unique_ptr<Command> DrawCommand::clone() const

@@ -19,6 +19,10 @@ void TxtSerializer::visit(size_t& count)
     file_ << count << " " ;
 }
 
+void TxtSerializer::visit(BoundingBox &box)
+{
+}
+
 void TxtSerializer::visit(std::shared_ptr<Item> &i)
 {
     file_ << std::endl;

@@ -33,23 +33,28 @@ SOURCES += \
     cli/commands/SaveCommand.cpp \
     cli/commands/UndoCommand.cpp \
     cli/commands/RedoCommand.cpp \
-    document/itemRegistry.cpp \
     director/Director.cpp \
     director/ActionHistory.cpp \
     director/actions/AddItemAction.cpp \
     director/actions/GoSlideAction.cpp \
     director/actions/CreateSlideAction.cpp \
-    document/Document.cpp \ 
-    document/Slide.cpp \
-    document/item.cpp \ 
-    document/Rect.cpp \ 
     document/Point.cpp \
+    document/BoundingBox.cpp \
+    document/PenStyle.cpp \
+    document/item.cpp \
+    document/Rect.cpp \
+    document/Ellipse.cpp \
+    document/itemRegistry.cpp \
+    document/Slide.cpp \
+    document/Document.cpp \ 
     serializer/iSerializer.cpp \
     serializer/TxtSerializer.cpp \
     serializer/TxtDeserializer.cpp \
     rendering/Renderer.cpp \
+    rendering/PenStyleConverter.cpp \
     rendering/ShapeBase.cpp \
     rendering/ShapeRect.cpp \
+    rendering/ShapeEllipse.cpp \
     rendering/ShapeLibrary.cpp \
 
 
@@ -63,7 +68,7 @@ HEADERS += \
     gui/view/WorkingArea.hpp \
     cli/controller.hpp \
     cli/commandCreator.hpp \
-    cli/commandRegistry.cpp \ 
+    cli/commandRegistry.hpp \ 
     cli/commands/Command.hpp \
     cli/Argument.hpp \
     cli/commands/AddCommand.hpp \
@@ -85,21 +90,26 @@ HEADERS += \
     director/actions/AddItemAction.hpp \
     director/actions/GoSlideAction.hpp \
     director/actions/CreateSlideAction.hpp \
-    document/itemRegistry.hpp \
-    document/Document.hpp \ 
-    document/Slide.hpp \
+    document/Point.hpp \
+    document/BoundingBox.hpp \ 
+    document/PenStyle.hpp \
     document/item.hpp \ 
     document/Rect.hpp \ 
-    document/Point.hpp \
+    document/Ellipse.hpp \
+    document/itemRegistry.hpp \
+    document/Slide.hpp \
+    document/Document.hpp \ 
     serializer/iSerializer.hpp \
     serializer/TxtSerializer.hpp \
     serializer/TxtDeserializer.hpp \ 
     rendering/Renderer.hpp \
+    rendering/PenStyleConverter.hpp \
     rendering/ITextualDisplayable.hpp \ 
     rendering/IVisualDisplayable.hpp \ 
     rendering/IShape.hpp \
     rendering/ShapeBase.hpp \
     rendering/ShapeRect.hpp \
+    rendering/ShapeEllipse.hpp \
     rendering/ShapeLibrary.hpp \
 
 # Default rules for deployment.

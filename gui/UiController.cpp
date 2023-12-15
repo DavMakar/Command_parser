@@ -6,6 +6,7 @@ void UiController::runCommand(std::istream &input)
 {
     try{
         Application::instance()->getController().run(input);
+        //QUESTION cli controller only cals once
     }catch(const std::exception& e){
         emit logOutputSignal(e.what());
     }

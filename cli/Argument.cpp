@@ -2,16 +2,17 @@
 
 std::map<std::string, ArgumentType> Argument::argumentTypeMap = {
     {"-name", ArgumentType::STRING},
-    {"-text",ArgumentType::STRING},
-    {"-size", ArgumentType::INT},
+    {"-content",ArgumentType::STRING},
+    {"-color",ArgumentType::STRING},
+    {"-style",ArgumentType::STRING},
+    {"-w",ArgumentType::INT},
     {"-id", ArgumentType::INT},
     {"-x1", ArgumentType::DOUBLE},
-    {"-x2", ArgumentType::DOUBLE},
     {"-y1", ArgumentType::DOUBLE},
+    {"-x2", ArgumentType::DOUBLE},
     {"-y2", ArgumentType::DOUBLE},
-    {"-x", ArgumentType::DOUBLE},
-    {"-y", ArgumentType::DOUBLE},
-    {"-r", ArgumentType::DOUBLE}
+    {"-x3", ArgumentType::DOUBLE},
+    {"-y3", ArgumentType::DOUBLE},
 };
 
 Argument::iterator Argument::begin() {

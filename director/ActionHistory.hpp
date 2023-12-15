@@ -13,7 +13,7 @@ public:
     void push(std::unique_ptr<Action> action);
     void undo();
     void redo();
-
+    
 private:
     ActionContainer m_history;
     ActionIter historyIter;

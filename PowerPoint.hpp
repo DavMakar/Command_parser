@@ -19,8 +19,10 @@ public:
     //void handlePoints(QPoint p);
 private:
     QString command;
+    //QImage image;
+    //QLabel* slideView;
+    WorkingArea* slideView;
     ItemsToolBar* itemsTb;
-    WorkingArea* workingArea;
     CommandWidget* commandWidget;
 };
 

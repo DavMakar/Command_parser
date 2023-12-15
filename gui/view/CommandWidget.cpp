@@ -5,21 +5,21 @@
 CommandWidget::CommandWidget(QWidget *parent)
     : QWidget(parent)
 {
-    commandBar = new QLineEdit;
+    commandLine = new QLineEdit;
     commandLog = new CommandLog;
 
     QVBoxLayout* layout = new QVBoxLayout; 
-    layout->addWidget(commandBar);
+    layout->addWidget(commandLine);
     layout->addWidget(commandLog);
     setLayout(layout);
 
-    connect(commandBar, &QLineEdit::returnPressed, this, &CommandWidget::executeCommand);
+    connect(commandLine, &QLineEdit::returnPressed, this, &CommandWidget::executeCommand);
 }
 
 void CommandWidget::executeCommand(){
-    std::istringstream iss{commandBar->text().toStdString()};
+    std::istringstream iss{commandLine->text().toStdString()};
     emit commandEntered(iss);
-    commandBar->clear();
+    commandLine->clear();
 }
 
 void CommandWidget::logCommand(const std::string& output){

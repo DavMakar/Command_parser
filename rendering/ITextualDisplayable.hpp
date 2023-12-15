@@ -2,6 +2,7 @@
 #define INTERFACE_TEXTUAL_DISPLAYABLE
 
 #include <iostream>
+#include <memory>
 class Item;
 
 class ITextualDisplayable{

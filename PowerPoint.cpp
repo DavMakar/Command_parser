@@ -1,7 +1,7 @@
 #include "PowerPoint.hpp"
-#include "gui/view/WorkingArea.hpp"
 #include "gui/view/ItemsToolBar.hpp"
 #include "gui/view/CommandWidget.hpp"
+#include "gui/view/WorkingArea.hpp"
 #include "Application.hpp"
 
 #include <exception>
@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 #include <QPixmap>
 #include <QMessageBox>
+#include <QLabel>
 
 PowerPoint::PowerPoint(QWidget *parent)
     : QMainWindow{parent}
@@ -17,11 +18,11 @@ PowerPoint::PowerPoint(QWidget *parent)
     itemsTb = new ItemsToolBar;
     addToolBar(Qt::TopToolBarArea, itemsTb);
 
-    workingArea = new WorkingArea;
+    slideView = new WorkingArea;
     commandWidget = new CommandWidget;
 
     QVBoxLayout* vLayout = new QVBoxLayout;
-    vLayout->addWidget(workingArea);
+    vLayout->addWidget(slideView);
     vLayout->addWidget(commandWidget);
     centralWidget()->setLayout(vLayout);
 

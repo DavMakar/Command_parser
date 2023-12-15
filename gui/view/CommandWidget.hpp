@@ -18,7 +18,7 @@ private slots:
     void executeCommand();
 
 private:
-    QLineEdit* commandBar;
+    QLineEdit* commandLine;
     CommandLog* commandLog;    
 };
 

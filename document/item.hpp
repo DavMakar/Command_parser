@@ -8,16 +8,25 @@
 #include <stdexcept>
 #include <variant>
 
+#include "BoundingBox.hpp"
+#include "PenStyle.hpp"
+
 class iSerializer;
 
 class Item
 { 
 using Options = std::unordered_set<std::string>;
 public:
-    enum class Item_tag : int { RECT , TEXT , CIRCLE};    
+    enum class Item_tag : int { RECT , ELLIPSE, TEXT, CIRCLE};
     virtual ~Item() = default;
-    Options& getOptions();
-    
+    Options getOptions() const ;
+    BoundingBox getBoundingBox() const;
+    PenStyle getPenStyle() const;
+
+    void setPenStyle(PenStyle penStyle);
+    void setOptions(Options options);
+    void setBoundingBox(BoundingBox box);
+
     virtual void accept(iSerializer& vi) = 0;
     virtual std::string type() = 0;
     virtual std::string info() = 0;
@@ -26,7 +35,9 @@ public:
     virtual std::unique_ptr<Item> clone() = 0;  
 
 protected:
-    Options itemOptions;
+    PenStyle m_penStyle;
+    Options m_itemOptions;
+    BoundingBox m_box;
 };
 
 

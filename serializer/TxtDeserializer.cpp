@@ -24,6 +24,10 @@ void TxtDeserializer::visit(std::shared_ptr<Item>& i)
     i->accept(*this);
 }
 
+void TxtDeserializer::visit(BoundingBox &box)
+{
+}
+
 void TxtDeserializer::visit(Point &p)
 {
     p.accept(*this);

@@ -1,11 +1,12 @@
 #include "ShapeLibrary.hpp"
 #include "ShapeRect.hpp"
 #include "ShapeText.hpp"
+#include "ShapeEllipse.hpp"
 
 ShapeLibrary::ShapeLibrary()
 {
     m_lib[Item::Item_tag::RECT] = std::make_unique<ShapeRect>();
-  //m_lib[Item::Item_tag::Text] = std::make_unique<ShapeText>();   
+    m_lib[Item::Item_tag::ELLIPSE] = std::make_unique<ShapeEllipse>();   
 }
 
 std::shared_ptr<ShapeBase> ShapeLibrary::getShape(Item::Item_tag tag)
