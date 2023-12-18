@@ -10,11 +10,15 @@ class WorkingArea : public QWidget
 public:
     explicit WorkingArea(QWidget *parent = nullptr);
     void setClickCount(int);
-
-signals:
-    void clickedCoord(QPoint point);
 protected:
-    void mousePressEvent(QMouseEvent* event);
+    void paintEvent(QPaintEvent* event);
+
+public slots:
+    void onDocumnetChanged();
+// signals:
+//     void clickedCoord(QPoint point);
+// protected:
+//     void mousePressEvent(QMouseEvent* event);
 
 private:
     int clickCount = 0;

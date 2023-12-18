@@ -4,12 +4,16 @@
 #include "Point.hpp"
 #include <QRectF>
 
+class ISerializer;
+
 class BoundingBox{
 public:
     BoundingBox() = default;
     BoundingBox(Point topLeft , Point bottomRight);
     Point getTopLeft();
     Point getBottomRight();
+
+    void accept(iSerializer& se);
 
     void setTopLeftX(double x);
     void setTopLetfY(double y);

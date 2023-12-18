@@ -1,10 +1,10 @@
 #include "Application.hpp"
-#include "PowerPoint.hpp"
+#include "MainWindow.hpp"
 
 int main(int argc, char *argv[])
 {
     Application a(argc,argv);
-    PowerPoint w;
+    MainWindow w;
     w.show();
     return Application::instance()->exec();
 }

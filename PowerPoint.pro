@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    PowerPoint.cpp \
+    MainWindow.cpp \
     gui/UiController.cpp \
     gui/view/ItemsToolBar.cpp \
     gui/view/CommandWidget.cpp \
@@ -42,6 +42,7 @@ SOURCES += \
     document/BoundingBox.cpp \
     document/PenStyle.cpp \
     document/item.cpp \
+    document/Text.cpp \
     document/Rect.cpp \
     document/Ellipse.cpp \
     document/itemRegistry.cpp \
@@ -55,12 +56,14 @@ SOURCES += \
     rendering/ShapeBase.cpp \
     rendering/ShapeRect.cpp \
     rendering/ShapeEllipse.cpp \
+    rendering/ShapeText.cpp \
     rendering/ShapeLibrary.cpp \
+
 
 
 HEADERS += \
     Application.hpp \
-    PowerPoint.hpp \
+    MainWindow.hpp \
     gui/UiController.hpp \
     gui/view/ItemsToolBar.hpp \
     gui/view/CommandWidget.hpp \
@@ -95,6 +98,7 @@ HEADERS += \
     document/PenStyle.hpp \
     document/item.hpp \ 
     document/Rect.hpp \ 
+    document/Text.hpp \
     document/Ellipse.hpp \
     document/itemRegistry.hpp \
     document/Slide.hpp \
@@ -110,6 +114,7 @@ HEADERS += \
     rendering/ShapeBase.hpp \
     rendering/ShapeRect.hpp \
     rendering/ShapeEllipse.hpp \
+    rendering/ShapeText.hpp \
     rendering/ShapeLibrary.hpp \
 
 # Default rules for deployment.

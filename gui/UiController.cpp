@@ -6,10 +6,14 @@ void UiController::runCommand(std::istream &input)
 {
     try{
         Application::instance()->getController().run(input);
-        //QUESTION cli controller only cals once
+        documentChanged();
     }catch(const std::exception& e){
         emit logOutputSignal(e.what());
     }
+}
+
+void UiController::documentChanged(){
+    emit signalDocumentChanged();
 }
 
 void UiController::logOutput(const std::string& message){

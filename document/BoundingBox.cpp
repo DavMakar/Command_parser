@@ -1,4 +1,5 @@
 #include "BoundingBox.hpp"
+#include "../serializer/iSerializer.hpp"
 
 BoundingBox::BoundingBox(Point topLeft, Point bottomRight)
     : m_topLeft(topLeft) , m_bottomRight(bottomRight)
@@ -12,6 +13,12 @@ Point BoundingBox::getTopLeft()
 
 Point BoundingBox::getBottomRight(){
     return m_bottomRight;
+}
+
+void BoundingBox::accept(iSerializer& se)
+{
+    se.visit(m_topLeft);
+    se.visit(m_bottomRight);
 }
 
 void BoundingBox::setTopLeftX(double x)

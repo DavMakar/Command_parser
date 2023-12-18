@@ -1,11 +1,13 @@
 #include "itemRegistry.hpp"
 #include "Rect.hpp"
 #include "Ellipse.hpp"
+#include "Text.hpp"
 
 ItemRegistry::ItemRegistry()
 {
     registerItem("Rect", std::make_unique<Rect>());
     registerItem("Ellipse",std::make_unique<Ellipse>());
+    registerItem("Text",std::make_unique<Text>());
 }
 
 void ItemRegistry::registerItem(const std::string &itemName, std::unique_ptr<Item> item)

@@ -11,7 +11,9 @@ public slots:
 
 public:
     void logOutput(const std::string& message);
+    void documentChanged();
 signals:
+    void signalDocumentChanged();
     void logOutputSignal(const std::string& message);
 };
 

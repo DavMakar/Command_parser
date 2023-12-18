@@ -21,7 +21,8 @@ AddCommand::AddCommand()
     m_arguments.initArgument("-color", "#000000");
     m_arguments.initArgument("-style", "SolidLine");
     m_arguments.initArgument("-w", 1);
-    //m_arguments.initArgument("-content", ""s);
+
+    m_arguments.initArgument("-content", ""s);
     
     //m_arguments.initArgument("-size", 0);
 }

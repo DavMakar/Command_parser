@@ -19,9 +19,11 @@ void TxtSerializer::visit(size_t& count)
     file_ << count << " " ;
 }
 
-void TxtSerializer::visit(BoundingBox &box)
+void TxtSerializer::visit(Point &p)
 {
+    p.accept(*this);
 }
+
 
 void TxtSerializer::visit(std::shared_ptr<Item> &i)
 {
@@ -29,9 +31,9 @@ void TxtSerializer::visit(std::shared_ptr<Item> &i)
     i->accept(*this);
 }
 
-void TxtSerializer::visit(Point &p)
-{
-    p.accept(*this);
+void TxtSerializer::visit(BoundingBox &box)
+{   
+    box.accept(*this);   
 }
 
 void TxtSerializer::visit(Slide& s)

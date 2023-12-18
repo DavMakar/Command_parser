@@ -1,5 +1,5 @@
-#ifndef POWERPOINT_HPP
-#define POWERPOINT_HPP
+#ifndef MainWindow_HPP
+#define MainWindow_HPP
 
 #include <QMainWindow>
 
@@ -8,11 +8,11 @@ class ItemsToolBar;
 class WorkingArea;
 class CommandWidget;
 
-class PowerPoint : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit PowerPoint(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
 //private slots:
     //void handleToolBarActions(QAction* action);
@@ -21,9 +21,9 @@ private:
     QString command;
     //QImage image;
     //QLabel* slideView;
-    WorkingArea* slideView;
+    WorkingArea* workingArea;
     ItemsToolBar* itemsTb;
     CommandWidget* commandWidget;
 };
 
-#endif // POWERPOINT_HPP
+#endif // MainWindow_HPP

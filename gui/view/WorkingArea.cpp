@@ -1,5 +1,7 @@
 #include "WorkingArea.hpp"
-#include <QMouseEvent>
+#include "../../Application.hpp"
+#include <QPaintEvent>
+#include <QPainter>
 
 WorkingArea::WorkingArea(QWidget *parent)
     : QWidget{parent}
@@ -7,17 +9,33 @@ WorkingArea::WorkingArea(QWidget *parent)
     setMinimumSize(200,300);
 }
 
-void WorkingArea::setClickCount(int n)
+void WorkingArea::paintEvent(QPaintEvent *event)
 {
-    clickCount = n;
+    auto currentSlide = Application::instance()->getDocument().getCurrentSlide();
+    QImage image(size(), QImage::Format_ARGB32_Premultiplied);
+
+    Application::instance()->getRenderer().draw(currentSlide,&image);
+
+    QPainter widgetPainter(this);
+    widgetPainter.drawImage(0, 0, image);
 }
 
-void WorkingArea::mousePressEvent(QMouseEvent *event)
+void WorkingArea::onDocumnetChanged()
 {
-    if(clickCount > 0){
-        if(event->button() == Qt::LeftButton){
-            --clickCount;
-            emit clickedCoord(event->pos());
-        }
-    }
+    qDebug() << "apo";
+    this->update();
 }
+// void WorkingArea::setClickCount(int n)
+// {
+//     clickCount = n;
+// }
+
+// void WorkingArea::mousePressEvent(QMouseEvent *event)
+// {
+//     if(clickCount > 0){
+//         if(event->button() == Qt::LeftButton){
+//             --clickCount;
+//             emit clickedCoord(event->pos());
+//         }
+//     }
+// }

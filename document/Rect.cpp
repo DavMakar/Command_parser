@@ -22,6 +22,7 @@ void Rect::accept(iSerializer &vi)
     auto rect_tag = tag();
     vi.visit(rect_tag);
     vi.visit(m_box);
+    //vi.visit(m_penStyle);
 }
 
 void Rect::setAttribute(std::string key, std::variant<std::string,double,int> value)

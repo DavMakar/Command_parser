@@ -12,7 +12,7 @@ public:
     std::string type() override;
     std::string info() override;
     Item::Item_tag tag() override;
-    void accept(iSerializer& vi) override;
+    void accept(iSerializer&) override;
     void setAttribute(std::string key , std::variant<std::string,double,int> value) override;
     std::unique_ptr<Item> clone() override;
 };
