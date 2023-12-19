@@ -1,6 +1,11 @@
 #include "Text.hpp"
 #include "../serializer/iSerializer.hpp"
 
+Text::Text(){
+    m_itemOptions.insert("-content");
+    m_itemOptions.insert("-size");
+}
+
 std::string Text::type()
 {
     return std::string("Text");
@@ -27,7 +32,10 @@ void Text::accept(iSerializer& vi)
 void Text::setAttribute(std::string key, std::variant<std::string, double, int> value)
 {
     if(key == "-content"){
-        content = std::get<std::string>(value);
+        m_content = std::get<std::string>(value);
+    }
+    if(key == "-size"){
+        m_size = std::get<int>(value);
     }
 }
 
@@ -36,7 +44,12 @@ std::unique_ptr<Item> Text::clone()
     return std::make_unique<Text>();
 }
 
-std::string Text::getContent()
+int Text::getSize() const
 {
-    return content;
+    return m_size;
+}
+
+std::string Text::getContent() const
+{
+    return m_content;
 }

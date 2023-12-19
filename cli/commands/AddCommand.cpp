@@ -23,8 +23,8 @@ AddCommand::AddCommand()
     m_arguments.initArgument("-w", 1);
 
     m_arguments.initArgument("-content", ""s);
+    m_arguments.initArgument("-size",8);
     
-    //m_arguments.initArgument("-size", 0);
 }
 
 void AddCommand::exec()

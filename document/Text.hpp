@@ -6,6 +6,7 @@
 
 class Text : public Item{
 public:
+    Text();
     std::string type() override;
     std::string info() override;
     Item::Item_tag tag() override;
@@ -13,9 +14,11 @@ public:
     void setAttribute(std::string key , std::variant<std::string,double,int> value) override;
     std::unique_ptr<Item> clone() override;
     
-    std::string getContent();
+    int getSize() const ;
+    std::string getContent() const;
 private:
-    std::string content;
+    int m_size;
+    std::string m_content;
 };
 
 #endif //TEXT_ITEM_HPP

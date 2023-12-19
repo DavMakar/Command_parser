@@ -7,6 +7,7 @@ class QAction;
 class ItemsToolBar;
 class WorkingArea;
 class CommandWidget;
+class SlideView; 
 
 class MainWindow : public QMainWindow
 {
@@ -14,13 +15,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-//private slots:
-    //void handleToolBarActions(QAction* action);
-    //void handlePoints(QPoint p);
 private:
     QString command;
     //QImage image;
     //QLabel* slideView;
+    SlideView* slideView;
     WorkingArea* workingArea;
     ItemsToolBar* itemsTb;
     CommandWidget* commandWidget;

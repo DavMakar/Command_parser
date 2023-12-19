@@ -5,7 +5,6 @@
 
 class ItemsToolBar : public QToolBar
 {
-    Q_OBJECT
 public:
     ItemsToolBar(QToolBar* parent = nullptr);
 };

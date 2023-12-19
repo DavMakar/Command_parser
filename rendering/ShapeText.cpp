@@ -7,6 +7,9 @@
 void ShapeText::draw(QPainter *painter, std::shared_ptr<Item> item)
 {
     auto textItem = std::dynamic_pointer_cast<Text>(item);
-    painter->setFont(QFont("Times", 25, QFont::Normal));
-    painter->drawText(textItem->getBoundingBox(), Qt::AlignCenter, QString::fromStdString(textItem->getContent()));
+    QFont font = painter->font();
+    font.setPixelSize(textItem->getSize());
+    painter->setFont(font);
+    painter->drawText(textItem->getBoundingBox(), QString::fromStdString(textItem->getContent()));
 }
+

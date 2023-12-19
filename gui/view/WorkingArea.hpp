@@ -9,12 +9,12 @@ class WorkingArea : public QWidget
     Q_OBJECT
 public:
     explicit WorkingArea(QWidget *parent = nullptr);
-    void setClickCount(int);
+
 protected:
     void paintEvent(QPaintEvent* event);
 
 public slots:
-    void onDocumnetChanged();
+    void onDocumentChanged();
 // signals:
 //     void clickedCoord(QPoint point);
 // protected:

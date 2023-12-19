@@ -15,7 +15,7 @@ public:
     size_t addItem(std::shared_ptr<Item>);
     void removeItem(size_t id);
     void changeItem(size_t id);
-    
+    size_t getItemCount(); 
     //void accept(SerializeriSerializer& sv);
     //void accept(DeserializeriSerializer& dv);
 
@@ -32,9 +32,9 @@ public:
 private:
     ItemStore::iterator findItem(int id);
 private:
-    size_t itemId = 0;
-    size_t itemCount = 0;
-    ItemStore items_;
+    size_t m_itemId = 0;
+    size_t m_itemCount = 0;
+    ItemStore m_items;
 };
 
 #endif //SLIDE_HPP

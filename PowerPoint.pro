@@ -16,6 +16,7 @@ SOURCES += \
     gui/view/CommandWidget.cpp \
     gui/view/CommandLog.cpp \
     gui/view/WorkingArea.cpp \
+    gui/view/SlideView.cpp \
     cli/controller.cpp \
     cli/commandCreator.cpp \
     cli/commandRegistry.cpp \ 
@@ -69,6 +70,7 @@ HEADERS += \
     gui/view/CommandWidget.hpp \
     gui/view/CommandLog.hpp \
     gui/view/WorkingArea.hpp \
+    gui/view/SlideView.hpp \
     cli/controller.hpp \
     cli/commandCreator.hpp \
     cli/commandRegistry.hpp \ 

@@ -10,7 +10,7 @@ void CreateSlideCommand::exec()
 {
     auto action = std::make_unique<CreateSlideAction>(Application::instance()->getDocument());
     Application::instance()->getDirector().runAction(std::move(action));
-    
+        
     Application::instance()->getUiController().logOutput("added slide");
 }
 

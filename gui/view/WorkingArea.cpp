@@ -6,7 +6,7 @@
 WorkingArea::WorkingArea(QWidget *parent)
     : QWidget{parent}
 {
-    setMinimumSize(200,300);
+    setMinimumSize(550,400);
 }
 
 void WorkingArea::paintEvent(QPaintEvent *event)
@@ -20,9 +20,8 @@ void WorkingArea::paintEvent(QPaintEvent *event)
     widgetPainter.drawImage(0, 0, image);
 }
 
-void WorkingArea::onDocumnetChanged()
+void WorkingArea::onDocumentChanged()
 {
-    qDebug() << "apo";
     this->update();
 }
 // void WorkingArea::setClickCount(int n)

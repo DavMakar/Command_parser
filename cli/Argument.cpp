@@ -3,6 +3,7 @@
 std::map<std::string, ArgumentType> Argument::argumentTypeMap = {
     {"-name", ArgumentType::STRING},
     {"-content",ArgumentType::STRING},
+    {"-size",ArgumentType::INT},
     {"-color",ArgumentType::STRING},
     {"-style",ArgumentType::STRING},
     {"-w",ArgumentType::INT},
