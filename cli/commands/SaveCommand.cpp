@@ -1,21 +1,27 @@
 #include "SaveCommand.hpp"
-#include <fstream>
-
-//#include "../../director/Director.hpp"
 #include "../../Application.hpp"
-#include "../../serializer/TxtSerializer.hpp"
+#include "../../serializer/json/Serializer.hpp"
+#include <QJsonDocument>
+#include <QFile>
+#include <QIODevice>
 
 SaveCommand::SaveCommand()
 {
-    m_arguments.initArgument("-file","new.txt");
+    m_arguments.initArgument("-path","new.txt");
 }
 
 void SaveCommand::exec()
 {
-    auto filename = m_arguments.getArgument<std::string>("-file");
-    std::ofstream file(filename);
-    TxtSerializer serializer(file);
-    Application::instance()->getDirector().saveDocument(Application::instance()->getDocument(), serializer);
+    auto filename = m_arguments.getArgument<std::string>("-path");
+    Serializer serializer;
+    QJsonDocument jsonDoc;
+    serializer.serializeDocument(Application::instance()->getDocument(),jsonDoc);
+
+    QFile file(QString::fromStdString(filename));
+    file.open(QIODevice::WriteOnly);
+    file.write(jsonDoc.toJson(QJsonDocument::Indented));
+    file.close();
+    //Application::instance()->getDirector().saveDocument(Application::instance()->getDocument(), serializer);
     Application::instance()->getUiController().logOutput("save");
 }
 

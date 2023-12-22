@@ -10,11 +10,18 @@ void Document::init()
     addSlide();
 }
 
+
 size_t Document::addSlide()
 {
     currentSlide = std::make_shared<Slide>();
     slides.push_back(currentSlide);
     return ++slidesCount;
+}
+
+void Document::appendSlide(std::shared_ptr<Slide> slide)
+{
+    slides.push_back(slide);
+    ++slidesCount;
 }
 
 void Document::deleteSlide(size_t idx)
@@ -55,7 +62,9 @@ void Document::accept(iSerializer &vi)
 
 void Document::swap(Document &doc)
 {
+    using std::swap;
     std::swap(this->slides , doc.slides);
+    slidesCount = doc.getSlidesCount();
 }
 
 size_t Document::getSlidesCount(){

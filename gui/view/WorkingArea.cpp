@@ -2,6 +2,7 @@
 #include "../../Application.hpp"
 #include <QPaintEvent>
 #include <QPainter>
+#include <QLabel>
 
 WorkingArea::WorkingArea(QWidget *parent)
     : QWidget{parent}
@@ -11,12 +12,14 @@ WorkingArea::WorkingArea(QWidget *parent)
 
 void WorkingArea::paintEvent(QPaintEvent *event)
 {
+
     auto currentSlide = Application::instance()->getDocument().getCurrentSlide();
     QImage image(size(), QImage::Format_ARGB32_Premultiplied);
 
     Application::instance()->getRenderer().draw(currentSlide,&image);
 
     QPainter widgetPainter(this);
+    widgetPainter.drawRect(rect());
     widgetPainter.drawImage(0, 0, image);
 }
 
@@ -24,17 +27,3 @@ void WorkingArea::onDocumentChanged()
 {
     this->update();
 }
-// void WorkingArea::setClickCount(int n)
-// {
-//     clickCount = n;
-// }
-
-// void WorkingArea::mousePressEvent(QMouseEvent *event)
-// {
-//     if(clickCount > 0){
-//         if(event->button() == Qt::LeftButton){
-//             --clickCount;
-//             emit clickedCoord(event->pos());
-//         }
-//     }
-// }

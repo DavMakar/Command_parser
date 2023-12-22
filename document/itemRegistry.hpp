@@ -7,13 +7,12 @@
 
 class ItemRegistry{
 
-using Register = std::unordered_map<std::string,std::unique_ptr<Item>>; 
+using Register = std::unordered_map<std::string, Item::Item_tag>; 
 public:
     ItemRegistry();
-    void registerItem(const std::string& itemName, std::unique_ptr<Item> entry);
-    std::unique_ptr<Item> findItem(const std::string& itemName);
+    Item::Item_tag findItem(const std::string& itemName);
 private:
-    Register registry_;
+    Register m_registry;
 };
 
 #endif //ITEM_REGISTRY_HPP

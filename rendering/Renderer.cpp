@@ -2,7 +2,7 @@
 #include "../document/Slide.hpp"
 #include "../document/item.hpp"
 #include "IVisualDisplayable.hpp"
-#include "PenStyleConverter.hpp"
+#include "PenAttributesConverter.hpp"
 #include <QPainter>
 
 
@@ -10,11 +10,11 @@ void Renderer::draw(std::shared_ptr<Slide> slide, QPaintDevice* paintDevice)
 {
     QPainter painter;
     painter.begin(paintDevice);
-    PenStyleConverter psConverter;
+    PenAttributesConverter penAttrConverter;
     //auto item = slide->getTopItem();
 
-    for(auto [id,item] : *slide){
-        painter.setPen(psConverter.toQPen(item->getPenStyle()));
+    for(auto item : *slide){
+        painter.setPen(penAttrConverter.toQPen(item->getPenAttributes()));
         std::shared_ptr<IShape> shape = m_shapeLibrary.getShape(item->tag());
         auto ivd = std::dynamic_pointer_cast<IVisualDisplayable>(shape);
         assert(ivd);

@@ -30,8 +30,8 @@ void SlideView::updateDocumentTree(){
     for(auto slide : Application::instance()->getDocument()){
         QStandardItem *slideItem = new QStandardItem("Slide " + QString::number(slideIdx));
 
-        for (const auto &[id, item] : *slide) {
-            QStandardItem* itemRow =  new QStandardItem(QString::fromStdString(item->info()) + " " + QString::number(id));
+        for (const auto item : *slide) {
+            QStandardItem* itemRow =  new QStandardItem(QString::fromStdString(item->type()) + " " + QString::number(item->getId()));
             slideItem->appendRow(itemRow);
         }
         model->appendRow(slideItem);

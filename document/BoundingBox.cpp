@@ -6,12 +6,13 @@ BoundingBox::BoundingBox(Point topLeft, Point bottomRight)
 {
 }
 
-Point BoundingBox::getTopLeft()
+Point BoundingBox::getTopLeft() const
 {
     return m_topLeft;
 }
 
-Point BoundingBox::getBottomRight(){
+Point BoundingBox::getBottomRight() const
+{
     return m_bottomRight;
 }
 

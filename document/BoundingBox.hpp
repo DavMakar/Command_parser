@@ -10,8 +10,8 @@ class BoundingBox{
 public:
     BoundingBox() = default;
     BoundingBox(Point topLeft , Point bottomRight);
-    Point getTopLeft();
-    Point getBottomRight();
+    Point getTopLeft() const;
+    Point getBottomRight() const;
 
     void accept(iSerializer& se);
 

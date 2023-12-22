@@ -6,7 +6,7 @@
 #include <ostream>
 #include "item.hpp"
 
-using ItemStore = std::unordered_map<size_t ,std::shared_ptr<Item>>;
+using ItemStore = std::vector<std::shared_ptr<Item>>;
 
 class Slide{
 public:
@@ -32,7 +32,6 @@ public:
 private:
     ItemStore::iterator findItem(int id);
 private:
-    size_t m_itemId = 0;
     size_t m_itemCount = 0;
     ItemStore m_items;
 };

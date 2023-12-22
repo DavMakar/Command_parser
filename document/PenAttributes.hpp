@@ -1,14 +1,14 @@
-#ifndef PEN_STYLE_HPP
-#define PEN_STYLE_HPP
+#ifndef PEN_ATTRIBUTES_HPP
+#define PEN_ATTRIBUTES_HPP
 
 #include <string>
 #include <map>
 #include <QPen>
 
-class PenStyle{
+class PenAttributes{
 public:
-    PenStyle() = default;
-    PenStyle(const std::string& color, const std::string& style , int width);
+    PenAttributes() = default;
+    PenAttributes(const std::string& color, const std::string& style , int width);
     std::string getColor() const;
     std::string getStyle() const;
     int getWidth() const;
@@ -19,4 +19,4 @@ private:
     int m_width;
 };
 
-#endif //PEN_STYLE_HPP
+#endif //PEN_ATTRIBUTES_HPP

@@ -1,25 +1,17 @@
 #include "itemRegistry.hpp"
-#include "Rect.hpp"
-#include "Ellipse.hpp"
-#include "Text.hpp"
 
 ItemRegistry::ItemRegistry()
 {
-    registerItem("Rect", std::make_unique<Rect>());
-    registerItem("Ellipse",std::make_unique<Ellipse>());
-    registerItem("Text",std::make_unique<Text>());
+    m_registry["Rect"] = Item::Item_tag::RECT;
+    m_registry["Ellipse"] = Item::Item_tag::ELLIPSE;
+    m_registry["Text"] = Item::Item_tag::TEXT;
 }
 
-void ItemRegistry::registerItem(const std::string &itemName, std::unique_ptr<Item> item)
+Item::Item_tag ItemRegistry::findItem(const std::string &itemName)
 {
-    registry_[itemName] = std::move(item);
-}
-
-std::unique_ptr<Item> ItemRegistry::findItem(const std::string &itemName)
-{
-    auto itemIter = registry_.find(itemName);    
-    if(itemIter == registry_.end()){
+    auto itemIter = m_registry.find(itemName);    
+    if(itemIter == m_registry.end()){
         throw std::runtime_error("not such a item "+ itemName);
     }
-    return itemIter->second->clone();
+    return itemIter->second;
 }

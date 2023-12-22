@@ -8,10 +8,9 @@ Slide::Slide()
 
 size_t Slide::addItem(std::shared_ptr<Item> new_item)
 {
-    qDebug()<< QString::number(m_itemId);
-    m_items[m_itemId] = new_item;
-    ++m_itemCount;
-    return m_itemId++;
+    auto id = new_item->getId();
+    m_items.push_back(new_item);
+    return id;
 }
 
 void Slide::changeItem(size_t id)
@@ -26,7 +25,7 @@ size_t Slide::getItemCount()
 
 void Slide::removeItem(size_t id)
 {
-    m_items.erase(id);
+    m_items.erase(findItem(id));
 }
 
 void Slide::accept(iSerializer &vi)
@@ -43,7 +42,7 @@ void Slide::accept(iSerializer &vi)
             vi.visit(m_items[i]);
         }
     }else{
-        for(auto& [id , item] : m_items){
+        for(auto& item : m_items){
             vi.visit(item);
         }
     }
@@ -52,16 +51,16 @@ void Slide::accept(iSerializer &vi)
 std::string Slide::getAllItems()
 {
     std::string result;
-    for(const auto& [id , item] : m_items){
-        result += std::to_string(id) + " " + item->type() + "\n";
+    for(const auto& item : m_items){
+        result += std::to_string(item->getId()) + " " + item->type() + "\n";
     }
     return result;
 }
 
 std::shared_ptr<Item> Slide::getItemById(int id)
 {
-    auto item = findItem(id);
-    return item->second;
+    auto it = findItem(id);
+    return *it;
 }
 
 ItemStore::iterator Slide::begin()
@@ -94,9 +93,12 @@ ItemStore::const_iterator Slide::end() const
 
 ItemStore::iterator Slide::findItem(int id)
 {
-    auto item =  m_items.find(id);
-    if(item == m_items.end()){
+    auto it = std::find_if(m_items.begin(),m_items.end(), [=](auto item){
+                return item->getId() == id;
+              });
+              
+    if(it == m_items.end()){
         throw std::runtime_error("item not found");
     }
-    return item;
+    return it;
 }  

@@ -2,10 +2,11 @@
 
 std::map<std::string, ArgumentType> Argument::argumentTypeMap = {
     {"-name", ArgumentType::STRING},
-    {"-content",ArgumentType::STRING},
+    {"-text",ArgumentType::STRING},
     {"-size",ArgumentType::INT},
     {"-color",ArgumentType::STRING},
     {"-style",ArgumentType::STRING},
+    {"-path", ArgumentType::STRING},
     {"-w",ArgumentType::INT},
     {"-id", ArgumentType::INT},
     {"-x1", ArgumentType::DOUBLE},

@@ -4,12 +4,12 @@
 
 GoSlideCommand::GoSlideCommand()
 {
-    m_arguments.initArgument("-id", 0);
+    m_arguments.initArgument("-id", 1);
 }
 
 void GoSlideCommand::exec()
 {
-    auto id = m_arguments.getArgument<int>("-id");
+    auto id = m_arguments.getArgument<int>("-id") - 1;
     auto action = std::make_unique<GoSlideAction>(Application::instance()->getDocument(), id);
     Application::instance()->getDirector().runAction(std::move(action));
 

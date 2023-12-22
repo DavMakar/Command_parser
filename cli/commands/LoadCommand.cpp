@@ -1,8 +1,10 @@
 #include "LoadCommand.hpp"
-#include <fstream>
-
+#include <QFile>
+#include <QIODevice>
+#include <QJsonDocument>
 #include "../../Application.hpp"
-#include "../../serializer/TxtDeserializer.hpp"
+//#include "../../serializer/TxtDeserializer.hpp"
+#include "../../serializer/json/Deserializer.hpp"
 
 LoadCommand::LoadCommand()
 {
@@ -12,11 +14,15 @@ LoadCommand::LoadCommand()
 void LoadCommand::exec()
 {
     auto filename = m_arguments.getArgument<std::string>("-file");
-    std::ifstream file(filename);
-    TxtDeserializer deserializer(file);
+    QFile file(QString::fromStdString(filename));
+    file.open(QIODevice::ReadOnly);
+    QJsonDocument jsonDoc =  QJsonDocument::fromJson(file.readAll());
     
-    Application::instance()->getDirector().loadDocument(Application::instance()->getDocument(),deserializer);
-    
+    Deserializer deserializer;
+    auto newDoc =  deserializer.deserializeDocument(jsonDoc);
+
+    Application::instance()->getDocument().swap(*newDoc);
+    //Application::instance()->getDirector().loadDocument(Application::instance()->getDocument(),deserializer);
     Application::instance()->getUiController().logOutput("loaded");
 }
 

@@ -12,6 +12,7 @@ public:
     Document() = default;
     
     size_t addSlide();
+    void appendSlide(std::shared_ptr<Slide> slide);
     void deleteSlide(size_t id);
     std::shared_ptr<Slide> getCurrentSlide();
     void changeCurrentSlide(size_t id);

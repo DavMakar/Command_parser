@@ -1,9 +1,9 @@
 #include "MainWindow.hpp"
-#include "gui/view/ItemsToolBar.hpp"
-#include "gui/view/CommandWidget.hpp"
-#include "gui/view/WorkingArea.hpp"
-#include "gui/view/SlideView.hpp"
-#include "Application.hpp"
+#include "view/ItemsToolBar.hpp"
+#include "view/CommandWidget.hpp"
+#include "view/WorkingArea.hpp"
+#include "view/SlideView.hpp"
+#include "../Application.hpp"
 
 #include <QToolBar>
 #include <QVBoxLayout>

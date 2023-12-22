@@ -9,34 +9,39 @@
 #include <variant>
 
 #include "BoundingBox.hpp"
-#include "PenStyle.hpp"
+#include "PenAttributes.hpp"
+#include "TextAttributes.hpp"
 
 class iSerializer;
 
 class Item
 { 
-using Options = std::unordered_set<std::string>;
 public:
     enum class Item_tag : int { RECT , ELLIPSE, TEXT, CIRCLE};
-    virtual ~Item() = default;
-    Options getOptions() const ;
-    BoundingBox getBoundingBox() const;
-    PenStyle getPenStyle() const;
+    Item() = default;
 
-    void setPenStyle(PenStyle penStyle);
-    void setOptions(Options options);
+    Item(Item_tag tag , BoundingBox box , PenAttributes PenAttributes, TextAttributes textAttributes);
+    
+    int getId();
+    TextAttributes getTextAttributes() const ;
+    BoundingBox getBoundingBox() const;
+    PenAttributes getPenAttributes() const;
+
+    void setPenAttributes(PenAttributes penAttr);
+    void setTextAttributes(TextAttributes textAttr);
     void setBoundingBox(BoundingBox box);
 
-    virtual void accept(iSerializer& vi) = 0;
-    virtual std::string type() = 0;
-    virtual std::string info() = 0;
-    virtual Item_tag tag() = 0;
-    virtual void setAttribute(std::string key , std::variant<std::string,double,int> value) = 0;
-    virtual std::unique_ptr<Item> clone() = 0;  
+    void accept(iSerializer& vi);
+    std::string type();
+    std::string info();
+    Item_tag tag();
 
 protected:
-    PenStyle m_penStyle;
-    Options m_itemOptions;
+    Item_tag m_tag;
+    int m_id;
+    static int counter;
+    TextAttributes m_textAttributes;
+    PenAttributes m_penAttributes;
     BoundingBox m_box;
 };
 

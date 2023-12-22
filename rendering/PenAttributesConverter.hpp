@@ -4,11 +4,11 @@
 #include <QPen>
 #include <QColor>
 
-class PenStyle;
+class PenAttributes;
 
-class PenStyleConverter{
+class PenAttributesConverter{
 public:
-    QPen toQPen(const PenStyle& penStyle);
+    QPen toQPen(const PenAttributes& penAttr);
 private:
     QColor toQColor(const std::string& color);
     Qt::PenStyle toQtPenStyle(const std::string& style);

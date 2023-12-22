@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QList>
 
+class QLabel;
+class QScrollArea;
+
 class WorkingArea : public QWidget
 {
     Q_OBJECT
@@ -15,13 +18,6 @@ protected:
 
 public slots:
     void onDocumentChanged();
-// signals:
-//     void clickedCoord(QPoint point);
-// protected:
-//     void mousePressEvent(QMouseEvent* event);
-
-private:
-    int clickCount = 0;
 };
 
 #endif // WORKING_AREA_HPP

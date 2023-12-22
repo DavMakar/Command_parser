@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    MainWindow.cpp \
+    gui/MainWindow.cpp \
     gui/UiController.cpp \
     gui/view/ItemsToolBar.cpp \
     gui/view/CommandWidget.cpp \
@@ -41,19 +41,22 @@ SOURCES += \
     director/actions/CreateSlideAction.cpp \
     document/Point.cpp \
     document/BoundingBox.cpp \
-    document/PenStyle.cpp \
+    document/PenAttributes.cpp \
+    document/TextAttributes.cpp \
     document/item.cpp \
-    document/Text.cpp \
-    document/Rect.cpp \
-    document/Ellipse.cpp \
+#   document/Text.cpp \
+#   document/Rect.cpp \
+#   document/Ellipse.cpp \
     document/itemRegistry.cpp \
     document/Slide.cpp \
     document/Document.cpp \ 
+    serializer/json/Serializer.cpp \ 
+    serializer/json/Deserializer.cpp \ 
     serializer/iSerializer.cpp \
     serializer/TxtSerializer.cpp \
     serializer/TxtDeserializer.cpp \
     rendering/Renderer.cpp \
-    rendering/PenStyleConverter.cpp \
+    rendering/PenAttributesConverter.cpp \
     rendering/ShapeBase.cpp \
     rendering/ShapeRect.cpp \
     rendering/ShapeEllipse.cpp \
@@ -64,7 +67,7 @@ SOURCES += \
 
 HEADERS += \
     Application.hpp \
-    MainWindow.hpp \
+    gui/MainWindow.hpp \
     gui/UiController.hpp \
     gui/view/ItemsToolBar.hpp \
     gui/view/CommandWidget.hpp \
@@ -97,19 +100,22 @@ HEADERS += \
     director/actions/CreateSlideAction.hpp \
     document/Point.hpp \
     document/BoundingBox.hpp \ 
-    document/PenStyle.hpp \
+    document/PenAttributes.hpp \
+    document/TextAttributes.hpp \
     document/item.hpp \ 
-    document/Rect.hpp \ 
-    document/Text.hpp \
-    document/Ellipse.hpp \
+#   document/Rect.hpp \ 
+#   document/Text.hpp \
+#   document/Ellipse.hpp \
     document/itemRegistry.hpp \
     document/Slide.hpp \
     document/Document.hpp \ 
+    serializer/json/Serializer.hpp \
+    serializer/json/Deserializer.hpp \ 
     serializer/iSerializer.hpp \
     serializer/TxtSerializer.hpp \
     serializer/TxtDeserializer.hpp \ 
     rendering/Renderer.hpp \
-    rendering/PenStyleConverter.hpp \
+    rendering/PenAttributesConverter.hpp \
     rendering/ITextualDisplayable.hpp \ 
     rendering/IVisualDisplayable.hpp \ 
     rendering/IShape.hpp \

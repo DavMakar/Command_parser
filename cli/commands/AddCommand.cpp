@@ -1,8 +1,13 @@
 #include "AddCommand.hpp"
 #include "../../Application.hpp"
 #include "../../director/actions/AddItemAction.hpp"
-#include <string>
+
 #include "../../document/BoundingBox.hpp"
+#include "../../document/PenAttributes.hpp"
+#include "../../document/TextAttributes.hpp"
+#include "../../document/item.hpp"
+
+#include <string>
 
 using namespace std::literals;
 
@@ -22,29 +27,27 @@ AddCommand::AddCommand()
     m_arguments.initArgument("-style", "SolidLine");
     m_arguments.initArgument("-w", 1);
 
-    m_arguments.initArgument("-content", ""s);
+    m_arguments.initArgument("-text", ""s);
     m_arguments.initArgument("-size",8);
     
 }
 
 void AddCommand::exec()
 {
-    //item creation and init
-    auto newItem = register_.findItem(m_arguments.getArgument<std::string>("-name")); 
+    Item::Item_tag itemTag = register_.findItem(m_arguments.getArgument<std::string>("-name"));
+    
     BoundingBox box({m_arguments.getArgument<double>("-x1"),m_arguments.getArgument<double>("-y1")},
                     {m_arguments.getArgument<double>("-x2"),m_arguments.getArgument<double>("-y2")});
-    newItem->setBoundingBox(box);
 
-    for(auto& option : newItem->getOptions()){
-        newItem->setAttribute(option , m_arguments[option]);
-    }
+    PenAttributes penAttr(m_arguments.getArgument<std::string>("-color"),
+                  m_arguments.getArgument<std::string>("-style"),
+                  m_arguments.getArgument<int>("-w"));
 
-    std::string penColor = m_arguments.getArgument<std::string>("-color");
-    std::string penStyle = m_arguments.getArgument<std::string>("-style");
-    int penWidth = m_arguments.getArgument<int>("-w");
-    PenStyle ps(penColor,penStyle,penWidth);
-    newItem->setPenStyle(ps);
+    TextAttributes textAttr(m_arguments.getArgument<std::string>("-text"),
+                            m_arguments.getArgument<int>("-size"));
 
+    auto newItem = std::make_unique<Item>(itemTag, box, penAttr , textAttr);
+    
     auto action = std::make_unique<AddItemAction>(Application::instance()->getDocument().getCurrentSlide() , std::move(newItem));
     Application::instance()->getDirector().runAction(std::move(action));
     Application::instance()->getUiController().logOutput("item added"); 

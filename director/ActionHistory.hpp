@@ -1,21 +1,20 @@
 #ifndef ACTION_HISTORY_HPP
 #define ACTION_HISTORY_HPP
 
-#include <vector>
+#include <list>
 #include <memory>
 
-class Action;
+#include "actions/Action.hpp"
 
 class ActionHistory{
-    using ActionContainer = std::vector<std::shared_ptr<Action>>;
-    using ActionIter = ActionContainer::iterator;
+    using ActionList = std::list<std::unique_ptr<Action>>;
 public:
     void push(std::unique_ptr<Action> action);
     void undo();
     void redo();
     
 private:
-    ActionContainer m_history;
-    ActionIter historyIter;
+    ActionList undoList;
+    ActionList redoList;
 };
-#endif //ACTION_HISTORY_HPP
+#endif //ACTION_HISTORY_HPP 

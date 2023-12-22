@@ -3,21 +3,28 @@
 
 void ActionHistory::push(std::unique_ptr<Action> action)
 {
-    m_history.push_back(std::move(action));
-    historyIter = std::prev(m_history.end());
+    redoList.clear();
+
+    undoList.push_back(std::move(action));
 }
 
 void ActionHistory::undo()
 {
-    if(historyIter != m_history.begin()){
-        (*historyIter)->unexecute();
-        --historyIter;
+    if (!undoList.empty()) {
+        auto it = --undoList.end();
+        auto action = std::move(*it);
+        undoList.erase(it);
+        action->unexecute();
+        redoList.push_back(std::move(action));
     }
 }
 
 void ActionHistory::redo(){
-    if(historyIter != std::prev(m_history.end())){
-        ++historyIter;
-        (*historyIter)->execute();
+    if (!redoList.empty()) {
+        auto it = --redoList.end(); 
+        auto action = std::move(*it);
+        redoList.erase(it);
+        action->execute();
+        undoList.push_back(std::move(action));
     }
 }
