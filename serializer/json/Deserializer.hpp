@@ -23,7 +23,7 @@ public:
     std::unique_ptr<Document> deserializeDocument(const QJsonDocument& jsonDoc);
 
 private:
-    std::shared_ptr<Slide> deserializeSlide(const QJsonObject& jsonObj);
+    std::unique_ptr<Slide> deserializeSlide(const QJsonObject& jsonObj);
     std::shared_ptr<Item> deserializeItem(const QJsonObject& jsonObj);
     BoundingBox deserializeBoundingBox(const QJsonObject& jsonObj);
     PenAttributes deserializePenAttributes(const QJsonObject& jsonObj);

@@ -12,10 +12,11 @@ public:
     Document() = default;
     
     size_t addSlide();
-    void appendSlide(std::shared_ptr<Slide> slide);
+    void insertSlide(std::shared_ptr<Slide> slide = std::make_shared<Slide>());
     void deleteSlide(size_t id);
-    std::shared_ptr<Slide> getCurrentSlide();
     void changeCurrentSlide(size_t id);
+
+    std::shared_ptr<Slide> getCurrentSlide();
     size_t getSlidesCount();
 
     void accept(iSerializer& vi) ;
@@ -23,19 +24,19 @@ public:
     void swap(Document& doc);
     void init();
 
-    auto begin(){ return slides.begin();}
-    auto end(){ return slides.end();}
+    auto begin(){ return m_slides.begin();}
+    auto end(){ return m_slides.end();}
 
-    auto begin()const {return slides.cbegin();}
-    auto end()const {  return slides.cend();}
+    auto begin()const {return m_slides.cbegin();}
+    auto end()const {  return m_slides.cend();}
 
-    auto cbegin() const {return slides.cbegin();}
-    auto cend() const {return slides.cend();}
-
+    auto cbegin() const {return m_slides.cbegin();}
+    auto cend() const {return m_slides.cend();}
+ 
 private:
-    SlideVector slides;
-    std::shared_ptr<Slide> currentSlide;
-    size_t slidesCount = 0; 
+    SlideVector m_slides;
+    std::shared_ptr<Slide> m_pCurrentSlide;
+    size_t m_slidesCount = 0; 
 };
 
 #endif //DOCUMENT_HPP

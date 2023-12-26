@@ -1,10 +1,5 @@
 #include "slide.hpp"
 #include "../serializer/iSerializer.hpp"
-#include <QDebug>
-
-Slide::Slide()
-{
-}
 
 size_t Slide::addItem(std::shared_ptr<Item> new_item)
 {
@@ -20,7 +15,7 @@ void Slide::changeItem(size_t id)
 
 size_t Slide::getItemCount()
 {
-    return m_itemCount;
+    return m_items.size();
 }
 
 void Slide::removeItem(size_t id)
@@ -30,22 +25,22 @@ void Slide::removeItem(size_t id)
 
 void Slide::accept(iSerializer &vi)
 {
-    std::string type("Slide");
-    vi.visit(type);
-    vi.visit(m_itemCount);
+    // std::string type("Slide");
+    // vi.visit(type);
+    // //vi.visit(m_itemCount);
 
-    if(m_items.empty()){
-        for(size_t i = 0 ; i < m_itemCount ; ++i){
-            Item::Item_tag tag;       
-            vi.visit(tag);
-            m_items[i]= std::move(vi.make_item(tag));
-            vi.visit(m_items[i]);
-        }
-    }else{
-        for(auto& item : m_items){
-            vi.visit(item);
-        }
-    }
+    // if(m_items.empty()){
+    //     for(size_t i = 0 ; i < m_itemCount ; ++i){
+    //         Item::Item_tag tag;       
+    //         vi.visit(tag);
+    //         m_items[i]= std::move(vi.make_item(tag));
+    //         vi.visit(m_items[i]);
+    //     }
+    // }else{
+    //     for(auto& item : m_items){
+    //         vi.visit(item);
+    //     }
+    // }
 }
 
 std::string Slide::getAllItems()

@@ -10,7 +10,6 @@ using ItemStore = std::vector<std::shared_ptr<Item>>;
 
 class Slide{
 public:
-    Slide();
     void accept(iSerializer& vi);
     size_t addItem(std::shared_ptr<Item>);
     void removeItem(size_t id);
@@ -32,7 +31,6 @@ public:
 private:
     ItemStore::iterator findItem(int id);
 private:
-    size_t m_itemCount = 0;
     ItemStore m_items;
 };
 

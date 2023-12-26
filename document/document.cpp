@@ -7,66 +7,66 @@
 
 void Document::init()
 {
-    addSlide();
+    insertSlide();
 }
-
 
 size_t Document::addSlide()
 {
-    currentSlide = std::make_shared<Slide>();
-    slides.push_back(currentSlide);
-    return ++slidesCount;
+    insertSlide();
+    return m_slidesCount;
 }
 
-void Document::appendSlide(std::shared_ptr<Slide> slide)
+void Document::insertSlide(std::shared_ptr<Slide> slide)
 {
-    slides.push_back(slide);
-    ++slidesCount;
+    m_pCurrentSlide = std::move(slide);
+    m_slides.push_back(m_pCurrentSlide);
+    ++m_slidesCount;
 }
 
 void Document::deleteSlide(size_t idx)
 {
-    assert(idx > slidesCount);
-    auto it = slides.erase(std::next(begin(),idx));
-    if(idx < slidesCount){
-        currentSlide = *it;
+    assert(idx > m_slidesCount);
+    auto it = m_slides.erase(std::next(begin(),idx));
+    if(idx < m_slidesCount){
+        m_pCurrentSlide = *it;
     }else{
-        currentSlide = *std::prev(it);
+        m_pCurrentSlide = *std::prev(it);
     }
-    --slidesCount;
+    --m_slidesCount;
 }
 
 std::shared_ptr<Slide> Document::getCurrentSlide()
 {
-    return currentSlide;
+    return m_pCurrentSlide;
 }
 
 void Document::changeCurrentSlide(size_t id)
 {
-    currentSlide = slides[id]; 
+    m_pCurrentSlide = m_slides[id];
 }
 
 void Document::accept(iSerializer &vi)
 {
-    std::string type("Document");
-    vi.visit(type);
-    vi.visit(slidesCount);
-    slides.resize(slidesCount);
-    for(auto& slide : slides){
-        if(!slide){
-            slide = std::make_unique<Slide>();
-        }
-        vi.visit(*slide);
-    }
+    // std::string type("Document");
+    // vi.visit(type);
+    // vi.visit(slidesCount);
+    // slides.resize(slidesCount);
+    // for(auto& slide : slides){
+    //     if(!slide){
+    //         slide = std::make_unique<Slide>();
+    //     }
+    //     vi.visit(*slide);
+    // }
 }
 
 void Document::swap(Document &doc)
 {
     using std::swap;
-    std::swap(this->slides , doc.slides);
-    slidesCount = doc.getSlidesCount();
+    std::swap(this->m_slides , doc.m_slides);
+    changeCurrentSlide(0);
+    std::swap(this->m_slidesCount,doc.m_slidesCount);
 }
 
 size_t Document::getSlidesCount(){
-    return slidesCount;
+    return m_slidesCount;
 }

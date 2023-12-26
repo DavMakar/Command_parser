@@ -1,9 +1,9 @@
 #include "SaveCommand.hpp"
-#include "../../Application.hpp"
-#include "../../serializer/json/Serializer.hpp"
-#include <QJsonDocument>
 #include <QFile>
 #include <QIODevice>
+#include <QJsonDocument>
+#include "../../Application.hpp"
+#include "../../serializer/json/Serializer.hpp"
 
 SaveCommand::SaveCommand()
 {
@@ -21,7 +21,7 @@ void SaveCommand::exec()
     file.open(QIODevice::WriteOnly);
     file.write(jsonDoc.toJson(QJsonDocument::Indented));
     file.close();
-    //Application::instance()->getDirector().saveDocument(Application::instance()->getDocument(), serializer);
+    
     Application::instance()->getUiController().logOutput("save");
 }
 
